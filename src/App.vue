@@ -1,53 +1,52 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import { useRoute, useRouter, RouterView } from 'vue-router'
 import 'waypoints/lib/noframework.waypoints.min.js'
 import Navi from './components/Navi.vue'
 import Home from './components/Home.vue'
 import Selector from './components/Selector.vue'
-import MeView from './views/MeView.vue'
-import ExpView from './views/ExpView.vue'
-import WorkView from './views/WorkView.vue'
 
-import { state, BG_IMG } from './store.js'
+import { state } from './store.js'
 
 /////////////////////////// variables /////////////////////////////
 const router = useRouter()
 const route = useRoute()
 const selectView = ref(null)
 
+const bgImgPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/coding-screen-1.jpg'
+
 ////////////////////////// methods /////////////////////////////
 function setWaypoints() {
-  // var waypoint1 = new Waypoint({
-  //   element: selectView.value,
-  //   handler: (direction) => pinItemsToNav(direction, 1),
-  //   offset: 100,
-  // })
-
-    var timeId = null
-    window.addEventListener('resize', () => {
-        clearTimeout(timeId)
-        timeId = setTimeout(() => {
-            Waypoint.destroyAll()
-            setWaypoints()
-        }, 1000)
+  var waypoint1 = new Waypoint({
+    element: selectView.value,
+    handler: (direction) => pinItemsToNav(direction, 1),
+    offset: 100,
   })
+//   console.log(waypoint1);
+//     var timeId = null
+//     window.addEventListener('resize', () => {
+//         clearTimeout(timeId)
+//         timeId = setTimeout(() => {
+//             Waypoint.destroyAll()
+//             setWaypoints()
+//         }, 1000)
+//   })
 }
 function pinItemsToNav(direction, num) {
     state[`scrolled${num}`] = direction === 'down' ? true : false
 }
 function checkEntryRoute() {
-    state.pageType = route.path.split('/')[1]
+    // state.pageType = route.path.split('/')[1]
 }
 function selectorClick(option) {
     if (option) {
         state.selectorActive = option
         router.push(`/${option}`)
     }
-    // else {
-    //     state.selectorActive = null
-    //     router.push(`/${state.pageType}`)
-    // }
+    else {
+        state.selectorActive = null
+        router.push(`/`)
+    }
 }
 
 ///////////////////////// lifecycle //////////////////////////////
@@ -66,7 +65,7 @@ watch(() => state.selectorActive, (selectorActive) => {
     <div id="top"></div>
     <div :class="`shade-overlay ${state.scrolledClass}`"></div>
     <Transition name="fade">
-        <img :src="BG_IMG['web']" alt="closeup view of coding text editor"
+        <img :src="bgImgPath" alt="closeup view of coding text editor"
             class="bgImg"/>
     </Transition>
   
@@ -74,68 +73,58 @@ watch(() => state.selectorActive, (selectorActive) => {
 
     <div class="fullscreen-wrapper grid">
         <div class="container">
-            <Home :pageType="state.pageType" />
-            <Selector @selector-click="selectorClick"
-                        :selectorActive="state.selectorActive"
-                        :selectorActiveClass="state.selectorActiveClass" />
+            <Home />
         </div>
     </div>
 
-    <div class="fullscreen-wrapper grid">
-        <div class="container">
-            <MeView />
-        </div>
-    </div>
-    
-    <div class="fullscreen-wrapper grid">
-        <div class="container">
-            <ExpView />
-        </div>
+    <div ref="selectView" class="fullscreen-wrapper flex column">
+        <Selector @selector-click="selectorClick"
+              :selectorActive="state.selectorActive"
+              :pageType="state.pageType"
+              :selectorActiveClass="state.selectorActiveClass"
+        />
+        <Transition name="fade">
+            <div v-if="state.selectorActive" class="router-wrapper grow flex-aligned column">
+                <RouterView></RouterView>
+            </div>
+        </Transition>
     </div>
 
-    <div class="fullscreen-wrapper grid">
-        <div class="container">
-            <WorkView />
-        </div>
-    </div>
-    
-  <!-- <Transition name="fade">
-      <div v-if="state.selectorActive" ref="selectView" class="fullscreen-wrapper">
-        <RouterView></RouterView>
-      </div>
-  </Transition> -->
-
-  <!-- <AudioPlayer /> -->
 </template>
 
 <style lang="scss">
 @import '@/assets/variables.scss';
-
+.router-wrapper {
+    position: relative;
+    top: 0;
+    margin-top: 15px;
+    // margin-top: 50px;
+}
 .fade-enter-active, 
 .fade-leave-active {
-  transition: opacity .5s linear;
+  transition: top .4s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+    top: 100vh;
 }
 .shade-overlay {
   pointer-events: none;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
   z-index: 0;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.8);
   transition: background-color .3s linear;
   &.scrolled {
-    background-color: rgba(0,0,0,0.85);
+      background-color: rgba(0,0,0,0.9);
   }
 }
 .fullscreen-wrapper {
   min-height: 100%;
   position: relative;
   z-index: 1;
-  padding: 15px 15px 0;
+  padding: 10px;
   &.grid {
     align-content: center;
     display: grid;
@@ -143,19 +132,18 @@ watch(() => state.selectorActive, (selectorActive) => {
 }
 .container {
   width: 100%;
-  max-width: 1440px;
   margin: 0 auto;
 }
-.studioZTK {
+.site-title-text {
   position: relative;
-  text-align: right;
+  text-align: center;
   animation: fadein 1s linear, slideFromLeft 1s ease;
 }
 
 h2.selector {
   margin-bottom: 32px;
   font-size: 4rem;
-  transition: font-size .3s ease, margin .3s ease;
+  transition: font-size .4s ease, margin .4s ease;
   margin-top: 55px;
   &.active {
     margin-top: 15px;
@@ -207,18 +195,14 @@ h2.selector {
   }
 }
 
-#pageTypeText {
+.keywords {
   position: relative;
   margin: 20px calc(50% - 301px);
   animation: slideFromBottom 1s ease;
   transition: margin .3s ease;
+  animation: fadein 1s linear;
   p {
     font-size: 22px;
-  }
-  .pageTypeText {
-    &.active {
-      animation: fadein 1s linear;
-    }
   }
 }
 
@@ -282,30 +266,31 @@ h2.selector {
   }
 }
 
-@media (min-width: 1024px) {
-  #home-grid {
-    display: grid;
-    grid-template-columns: 10fr 2fr 10fr;
-    align-items: center;
-    min-height: 25vh;
-    margin-bottom: 45px;
-  }
-  #home-divider {
-    min-height: 200px;
-    height: 100%;
-    max-height: 300px;
-    width: 4px;
-    border-radius: 5px;
-    background-color: white;
-    justify-self: center;
-    position: relative;
-    animation: fadein 1s linear, slideFromTop 1s ease;
-  }
-
-  #welcome-text {
-    position: relative;
-    animation: fadein 1s linear, slideFromRight 1s ease;
-  }
+@media (min-width: 768px) {
+    #home-grid {
+        display: grid;
+        grid-template-columns: 10fr 2fr 10fr;
+        align-items: center;
+        min-height: 25vh;
+        margin-bottom: 45px;
+    }
+    .site-title-text {
+        text-align: right;
+    }
+    #home-divider {
+        min-height: 200px;
+        height: 100%;
+        max-height: 300px;
+        width: 4px;
+        border-radius: 5px;
+        background-color: white;
+        justify-self: center;
+        position: relative;
+        animation: fadein 1s linear, slideFromTop 1s ease;
+    }
+    #welcome-text {
+        text-align: left;
+    }
 }
 
 </style>

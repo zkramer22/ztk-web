@@ -2,12 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import BaseView from '../views/BaseView.vue'
 import MeView from '../views/MeView.vue'
 import ExpView from '../views/ExpView.vue'
+import WorkView from '../views/WorkView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      // redirect: { path: '/audio' },
       component: BaseView,
     },
     {
@@ -19,6 +19,11 @@ const router = createRouter({
       path: '/exp',
       name: 'exp',
       component: ExpView,
+    },
+    {
+      path: '/work',
+      name: 'work',
+      component: WorkView,
     },
     // {
     //   path: '/audio',

@@ -1,18 +1,22 @@
 hip<script setup>
     import WorkBlock from '../components/WorkBlock.vue'
-    import { workItems, chipsObj } from '@/data/workItems.js'
+    import Chip from '../components/Chip.vue'
+    import { chips, workItems } from '@/data/workItems.js'
+
 
 </script>
 
 <template>
-    <div class="grid img-text-grid">
+    <!-- <div class="flex wrap">
+        <Chip v-for="(chip, i) in chips" :chip/>
+    </div> -->
 
-        <WorkBlock v-for="({ title, body, imgs, chips }, i) in workItems"
+    <!-- <div class="grid img-text-grid"> -->
+    <div class="z-mb-1">
+        <WorkBlock v-for="(workItem, i) in workItems"
             :key="`work-${i}`"
-            :title="title"
-            :body="body"
-            :imgs="imgs"
-            :chips="chips"
+            :workItem
+            :num="i"
         />
     </div>
 </template>

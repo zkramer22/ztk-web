@@ -3,9 +3,10 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: inherit;
+    scroll-behavior: smooth !important;
 }
 
 body, html {
@@ -36,7 +37,7 @@ body, html {
     font-weight: normal;
     color: white;
     height: 100%;
-  // min-height: 100vh;
+    // overflow-x: hidden;
 }
 
 .boldish-underline {
@@ -51,14 +52,16 @@ h1 {
 
 h2 {
     font-size: 4rem;
+    // font-size: 3rem;
     line-height: 1;
 }
 
 h3 {
-    font-size: 2rem;
+    // font-size: 2rem;
+    font-size: 1.7rem;
     line-height: 1;
     font-weight: bold;
-    margin-bottom: 17px;
+    // margin-bottom: 17px;
 }
 
 h4 {
@@ -66,7 +69,7 @@ h4 {
 }
 
 p {
-    margin: 10px 0;
+    margin: 0 0 10px 0;
     font-size: 18px;
     font-weight: lighter;
 }
@@ -83,7 +86,7 @@ p {
     font-size: 12px;
 }
 
-img {
+img, video {
     display: block;
     height: auto;
     width: 100%;
@@ -117,12 +120,30 @@ canvas {
     white-space: nowrap;
 }
 
-.flex {
-    display: flex;
+.z-mb-1 {
+    margin-bottom: 15px;
 }
 
 .z-mr-4 {
     margin-right: 4rem;
+}
+
+
+
+.flex {
+    display: flex;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-direction: column;
 }
 
 .flex-aligned {
@@ -148,12 +169,12 @@ canvas {
     align-items: center;
 }
 
-.relative {
-    position: relative;
+.grow {
+    flex-grow: 1;
 }
 
-.column {
-    flex-direction: column;
+.relative {
+    position: relative;
 }
 
 .grid {
@@ -165,11 +186,6 @@ canvas {
 }
 .justify-self-end {
     justify-self: end;
-}
-
-.flex {
-    display: flex;
-    align-items: center;
 }
 
 .relative {
@@ -187,11 +203,15 @@ canvas {
     height: 30px;
 }
 
-.router-view-section {
-    padding-bottom: 130px;
+.container {
+    max-width: 1000px;
 }
 
 .img-container {
+    &.rounded {
+        border-radius: 10px;
+        overflow: hidden;
+    }
     &.headshot {
         border: 2px solid;
         max-width: 350px;
@@ -200,9 +220,7 @@ canvas {
         border-radius: 50%;
     }
     &.screenshot {
-        border: 2px solid #222222;
-        border-radius: 30px;
-        overflow: hidden;
+        border: 2px solid #111111;
     }
 }
 
