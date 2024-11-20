@@ -2,24 +2,19 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  option: String,
-  num: Number,
-  isActive: Boolean,
-  pageType: String,
+    option: String,
+    num: Number,
+    isActive: Boolean,
 })
 
 /////////////////////////// variables /////////////////////////////
 const selectorStyle = computed(() => {
-  if (props.isActive) return { activeClass: 'active ', button: '#fff' }
-  else return { activeClass: '', button: props.buttonColor }
+    if (props.isActive) return { activeClass: 'active ', button: '#fff' }
+    else return { activeClass: '', button: props.buttonColor }
 })
 const activeLabelStyle = computed(() => {
-  let style = { opacity: '', fontSize: '', left: '', right: '', pointerEvents: 'none' }
-  return style
-})
-const rightOrLeft = computed(() => {
-  if (props.num % 2 === 0) return { right: '60px' }
-  else return { left: '60px' }
+    let style = { opacity: '', fontSize: '', left: '', right: '', pointerEvents: 'none' }
+    return style
 })
 const isSelected = computed(() => props.isActive ? 'active' : '')
 
@@ -31,8 +26,7 @@ const isSelected = computed(() => props.isActive ? 'active' : '')
             <div :class="`button-selector-icon flex-centered`">0{{ num + 1 }}</div>
             <p class="option-text text-center" :style="activeLabelStyle">{{ option }}</p>
         </div>
-
-        <p :class="`option-selected ${isSelected}`" :style="rightOrLeft">{{ option }}</p>
+        <p :class="`option-selected ${isSelected}`">{{ option }}</p>
     </div>
 </template>
 
@@ -49,33 +43,15 @@ const isSelected = computed(() => props.isActive ? 'active' : '')
             font-size: 22px;
         }
     }
-    .button-selector-icon {
-        transition: $selector-transitions;
-        font-size: 64px;
-    }
-    p.option-text {
-        transition: $selector-transitions;
-        font-size: 36px;
-        transition: font-size .4s ease;
-    }
-    p.option-selected {
-        position: absolute;
-        z-index: 0;
-        opacity: 0;
-        transition: opacity .4s ease, left .4s ease, right .4s ease;
-        &.active {
-            opacity: 1;
-        }
-    }
+
     .selector-option {
         display: flex;
         justify-content: center;
         align-items: center;
         position: relative;
         width: 100%;
-        height: 100%;
-        max-width: 250px;
-        max-height: 250px;
+        height: auto;
+        aspect-ratio: 1 / 1;
         border-radius: 6px;
         z-index: 1;
     }
@@ -91,18 +67,61 @@ const isSelected = computed(() => props.isActive ? 'active' : '')
         border-radius: 10px;
         overflow: hidden;
         line-height: 1;
-        transition: scale .1s linear, background-color .1s linear;
+        transition: scale .1s linear, background-color .4s linear;
         background-color: #1f1f1f;
         z-index: 1;
-        cursor: pointer;
+        ;
         &:hover {
             scale:1.05;
         }
         &:active {
             scale: 1;
         }
+        &.active {
+            background-color: white;
+            color: #1f1f1f;
+        }
         p {
             margin: 0 auto;
+        }
+    }
+    
+    .button-selector-icon {
+        font-size: 2.4rem;
+        transition: $selector-transitions;
+    }
+    p.option-text {
+        font-size: 1.7rem;
+        transition: $selector-transitions;
+    }
+    p.option-selected {
+        position: absolute;
+        z-index: 0;
+        opacity: 0;
+        margin: auto;
+        bottom: 0;
+        transition: $selector-transitions;
+        &.active {
+            opacity: 1;
+            bottom: 90%;
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        .button-selector-icon {
+            font-size: 3.2rem;
+        }
+        p.option-text {
+            font-size: 2rem;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .button-selector-icon {
+            font-size: 4rem;
+        }
+        p.option-text {
+            font-size: 2.5rem;
         }
     }
 </style>

@@ -1,9 +1,8 @@
 <script setup>
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter, RouterView } from 'vue-router'
 import 'waypoints/lib/noframework.waypoints.min.js'
 import Navi from './components/Navi.vue'
-import Home from './components/Home.vue'
 import Selector from './components/Selector.vue'
 
 import { state } from './store.js'
@@ -12,16 +11,21 @@ import { state } from './store.js'
 const router = useRouter()
 const route = useRoute()
 const selectView = ref(null)
-
 const bgImgPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/coding-screen-1.jpg'
+const cursor = ref(null)
+const cursorX = ref(0)
+const cursorY = ref(0)
+const scrollY = ref(0)
+const scrollDir = ref('')
 
+const scrolledClass = computed(() => scrollY.value > 0 ? 'scrolled' : '')
 ////////////////////////// methods /////////////////////////////
 function setWaypoints() {
-  var waypoint1 = new Waypoint({
-    element: selectView.value,
-    handler: (direction) => pinItemsToNav(direction, 1),
-    offset: 100,
-  })
+//   var waypoint1 = new Waypoint({
+//     element: selectView.value,
+//     handler: (direction) => pinItemsToNav(direction, 1),
+//     offset: 100,
+//   })
 //   console.log(waypoint1);
 //     var timeId = null
 //     window.addEventListener('resize', () => {
@@ -35,10 +39,22 @@ function setWaypoints() {
 function pinItemsToNav(direction, num) {
     state[`scrolled${num}`] = direction === 'down' ? true : false
 }
+
 function checkEntryRoute() {
-    // state.pageType = route.path.split('/')[1]
+    const path = (route.path.split('/')[1])
+    state.selectorActive = path
+}
+function disableMouseEvents() {
+    document.body.onmousemove = null
+    document.body.onmousemove = null
+}
+function enableMouseEvents() {
+    document.body.onmousemove = mouseMove
+    document.body.onscroll = mouseScroll
 }
 function selectorClick(option) {
+    if (option === state.selectorActive) window.scrollTo({ top: 0 })
+    else window.scrollTo({ top: 0, behavior: 'instant' })
     if (option) {
         state.selectorActive = option
         router.push(`/${option}`)
@@ -48,57 +64,87 @@ function selectorClick(option) {
         router.push(`/`)
     }
 }
+function updateMouse() {
+    cursor.value.style.left = `${cursorX.value}px`
+    cursor.value.style.top = `${cursorY.value}px`
+}
+function mouseMove(e) {
+    cursorX.value = e.clientX
+    cursorY.value = e.clientY + scrollY.value
+    updateMouse()
+}
+function mouseScroll(e) {
+    const scroll = document.documentElement.scrollTop
+    // deteremine any change in scroll direction
+    if (scroll > scrollY.value && scrollDir.value !== 'down') scrollDir.value = 'down'  // scroll has changed to down
+    else if (scroll < scrollY.value && scrollDir.value !== 'up') scrollDir.value = 'up'  // scroll has changed to up
+
+    // update cursorY value based on scroll direction and scroll delta
+    if (scrollDir.value === 'down') cursorY.value += scroll - scrollY.value
+    else if (scrollDir.value === 'up') cursorY.value -= scrollY.value - scroll
+    
+    // update cursor style with new cursorY value
+    updateMouse()
+
+    // update , safeguard against values < 0
+    scrollY.value = scroll <= 0 ? 0 : scroll
+}
 
 ///////////////////////// lifecycle //////////////////////////////
 onMounted(() => {
-    setWaypoints()
-    // setTimeout(() => checkEntryRoute(), 0)
-})
-
-///////////////////////// watchers //////////////////////////////
-watch(() => state.selectorActive, (selectorActive) => {
-
+    enableMouseEvents()
+    setTimeout(() => checkEntryRoute(), 0)
 })
 </script>
 
 <template>
     <div id="top"></div>
-    <div :class="`shade-overlay ${state.scrolledClass}`"></div>
-    <Transition name="fade">
-        <img :src="bgImgPath" alt="closeup view of coding text editor"
-            class="bgImg"/>
-    </Transition>
-  
-    <Navi :scrolledClass="state.scrolledClass" />
-
+    <div :class="`shade-overlay ${state.selectorActiveClass}`"></div>
+    <img :src="bgImgPath" alt="closeup view of coding text editor"
+        class="bgImg"/>
+    <div ref="cursor" id="invertedcursor"></div>
     <div class="fullscreen-wrapper grid">
-        <div class="container">
-            <Home />
-        </div>
+        <Navi :scrolledClass="scrolledClass" />
+        <RouterView v-slot="{ Component }">
+            <component :is="Component" />
+            <Selector @selector-click="selectorClick"
+                :selectorActive="state.selectorActive"
+                :selectorActiveClass="state.selectorActiveClass"
+            />
+        </RouterView>
     </div>
-
-    <div ref="selectView" class="fullscreen-wrapper flex column">
-        <Selector @selector-click="selectorClick"
-              :selectorActive="state.selectorActive"
-              :pageType="state.pageType"
-              :selectorActiveClass="state.selectorActiveClass"
-        />
-        <Transition name="fade">
-            <div v-if="state.selectorActive" class="router-wrapper grow flex-aligned column">
-                <RouterView></RouterView>
-            </div>
-        </Transition>
-    </div>
-
 </template>
 
 <style lang="scss">
-@import '@/assets/variables.scss';
+@import '@/assets/variables.scss'; 
+.app {
+    pointer-events: auto;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.spacer {
+    margin-bottom: 100px;
+}
+@media (hover:hover) {
+    #invertedcursor {
+        position: absolute;
+        pointer-events: none;
+        width: 35px;
+        height: 35px;
+        background: #fff;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        mix-blend-mode: difference;
+        transition: transform .2s;
+    }
+}
+
 .router-wrapper {
     position: relative;
     top: 0;
     margin-top: 15px;
-    // margin-top: 50px;
 }
 .fade-enter-active, 
 .fade-leave-active {
@@ -116,19 +162,19 @@ watch(() => state.selectorActive, (selectorActive) => {
   z-index: 0;
   background-color: rgba(0,0,0,0.8);
   transition: background-color .3s linear;
-  &.scrolled {
+  &.active {
       background-color: rgba(0,0,0,0.9);
   }
 }
 .fullscreen-wrapper {
-  min-height: 100%;
-  position: relative;
-  z-index: 1;
-  padding: 10px;
-  &.grid {
-    align-content: center;
-    display: grid;
-  }
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 10px;
+    &.grid {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr 30vh;
+    }
 }
 .container {
   width: 100%;
@@ -164,7 +210,7 @@ h2.selector {
   border-radius: 30px;
   background-color: #313532;
   animation: slideFromBottom 1s ease, fadein 1s ease;
-  cursor: pointer;
+  ;
   .switch-indicator {
     position: absolute;
     margin: 3px;
@@ -272,7 +318,7 @@ h2.selector {
         grid-template-columns: 10fr 2fr 10fr;
         align-items: center;
         min-height: 25vh;
-        margin-bottom: 45px;
+        // margin-bottom: 45px;
     }
     .site-title-text {
         text-align: right;

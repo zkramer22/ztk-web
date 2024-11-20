@@ -174,7 +174,7 @@ onMounted(() => {
 .audio-timestamp {
     display: flex;
     align-items: center;
-    cursor: pointer;
+    ;
     font-size: 12px;
     margin-right: 5px;
     border-radius: 15px;

@@ -71,7 +71,7 @@ function loadImg() {
     position: relative;
     padding: 0 12px;
     user-select: none;
-    cursor: pointer;
+    ;
     &:hover {
         background-color: $hover-color-darker;
     }
@@ -146,7 +146,7 @@ function loadImg() {
 }
 .play, .pause {
     display: flex;
-    cursor: pointer;
+    ;
 }
 
 </style>

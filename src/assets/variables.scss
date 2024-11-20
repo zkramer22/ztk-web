@@ -4,7 +4,6 @@ $third-color-audio: #54508b;
 $primary-color-web: #8FBC94;
 $secondary-color-web: #B8CEBA;
 $primary-gray: #313532;
-// $primary-black-trans: rgba(35, 35, 35, 0.5);
 $primary-black-trans: rgba(35, 35, 35, 0.8);
 
 
@@ -12,5 +11,8 @@ $button-hover-bg-color: #666666;
 $hover-color-darker: #3b3b3b;
 $hover-color-darkest: #2d2d2d;
 
-// $selector-transitions: width 2s ease, height 2s ease, grid-gap 2s ease, left 2s ease, right 2s ease, font-size 2s ease, opacity 2s ease, background-color 2s ease;
-$selector-transitions: width .4s ease, height .4s ease, grid-gap .4s ease, left .4s ease, right .4s ease, font-size .4s ease, background-color .4s ease, margin .4s ease;
+$selector-transitions: 
+    width .4s ease, height .4s ease, 
+    bottom .4s ease, left .4s ease, right .4s ease,
+    background-color .4s ease, color .4s ease, opacity .4s ease,
+    font-size .4s ease, grid-gap .4s ease;

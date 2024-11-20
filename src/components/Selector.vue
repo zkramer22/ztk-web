@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import SelectorOption from './SelectorOption.vue'
 import backArrow from '@/assets/icon/backarrow.svg?raw'
 
@@ -9,8 +9,6 @@ const props = defineProps({
 })
 
 const selectorBackButton = ref(null)
-const selectorGrid = ref(null)
-const selectorTop = ref(null)
 
 const emit = defineEmits(['selectorClick'])
 
@@ -19,93 +17,91 @@ const selector = ['me', 'exp', 'work', 'msg']
 
 ////////////////////////// methods /////////////////////////////
 function selectorClick(option) {
-// change selector margin from 'auto' to pixel value for smooth transition.
-    let selectorTransition
-    if (option) {
-        selectorTop.value = selectorGrid.value.getBoundingClientRect().top - 10
-        selectorTransition = getComputedStyle(selectorGrid.value).transition
-        selectorGrid.value.style.transition = ''
-        requestAnimationFrame(() => {
-            selectorGrid.value.style.margin = `${selectorTop.value}px auto auto`
-            selectorGrid.value.style.transition = selectorTransition
-            requestAnimationFrame(() => {
-                selectorGrid.value.style.margin = '75px auto auto'
-            })
-        })
-        setTimeout(() => selectorBackButton.value.classList.add('active'), 500)
-    }
-    else {
-        selectorGrid.value.style.margin = `${selectorTop.value}px auto auto`
-        selectorGrid.value.addEventListener('transitionend', function t(e) {
-            console.log(e.propertyName);
-            if (e.propertyName !== 'margin-top') return
-            selectorGrid.value.removeEventListener('transitionend', t)
-            selectorGrid.value.style.margin = 'auto auto'
-            window.scrollTo(0, document.body.scrollHeight, { behavior: { smooth: true }})
-        })
-        selectorBackButton.value.classList.remove('active')
-    }
     emit('selectorClick', option)
 }
-
 </script>
 
 <template>
-    <div ref="selectorGrid" :class="`selector-grid ${selectorActiveClass}`">
-        <div ref="selectorBackButton" v-if="selectorActive" 
+    <div :class="`selector-wrapper ${selectorActiveClass}`">
+        <div ref="selectorBackButton"
             @click="selectorClick(null)" v-html="backArrow"
-            class="selector-back-button"
+            :class="`selector-back-button ${selectorActiveClass}`"
         ></div>
-        <SelectorOption v-for="(option, i) in selector" 
-            @click="selectorClick(option)"
-            :key="`opt-${i}`"
-            :option="option"
-            :num="i"
-            :isActive="selectorActive === option" 
-        />
+        <div ref="selectorGrid" :class="`selector-grid ${selectorActiveClass}`">
+            <SelectorOption v-for="(option, i) in selector" 
+                @click="selectorClick(option)"
+                :key="`opt-${i}`"
+                :option="option"
+                :num="i"
+                :isActive="selectorActive === option" 
+            />
+        </div>
     </div>
 </template>
 
 <style lang="scss">
 @import '@/assets/variables.scss';
+    .selector-wrapper {
+        position: fixed;
+        bottom: 25vh;
+        width: calc(100% - 20px);
+        left: 10px;
+        right: 10px;
+        transition: $selector-transitions;
+        animation: fadein 1s linear, translateFromRight 1s ease;
+        &.active {
+            // top: 0;
+            bottom: 10px;
+        }
+        @media screen and (height < 600px) {
+
+            border: 1px solid green;
+        }
+    }
+
+
     .selector-grid {
-        position: relative;
-        display: grid;
+        z-index: 10;
+        bottom: 30vh;
+        // right: 10px;
+        display: flex;
         align-content: center;
-        z-index: 4;
-        margin: auto;
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-        width: 70vmin;
-        height: 70vmin;
-        max-width: 500px;
-        max-height: 500px;
         grid-gap: 10px;
+        margin: auto;
+        width: 100%;
+        max-width: 600px;
         transition: $selector-transitions;
         &.active {
-            width: 100px;
-            height: 100px;
+            width: 220px;
             grid-gap: 5px;
-            font-size: 20px;
-            // margin-top: 75px;
-        }
+        } 
     }
     .selector-back-button {
         position: absolute;
+        pointer-events: none;
         z-index: 5;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-        border-radius: 8px;
+        aspect-ratio: 1 / 1;
+        height: 100%;
+        left: 0;
+        bottom: -100vh;
+        border: 2px solid;
+        border-radius: 10px;
         opacity: 0;
-        transition: opacity .15s linear;
-        background-color: rgba(49, 53, 50, .9);
+        transition: $selector-transitions;
+        background-color: #1f1f1f;
         &.active {
-            &:hover {
-                opacity: .9;
-                cursor: pointer;
-            }
+            // left: 0;
+            bottom: 0;
+            opacity: 1;
+            pointer-events: all;
         }
     }
+
+    @media screen and (min-width: 1024px) {
+        .selector-grid {
+            max-width: 700px;
+        }
+    }
+
+    
 </style>

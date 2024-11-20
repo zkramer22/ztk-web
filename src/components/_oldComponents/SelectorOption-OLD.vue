@@ -65,7 +65,7 @@ const rightOrLeft = computed(() => {
     border-radius: 10px;
     overflow: hidden;
     transition: scale .1s linear, background-color .1s linear;
-    cursor: pointer;
+    ;
     &:hover {
       scale:1.05;
     }

@@ -105,7 +105,7 @@ const albumClass = computed(() => state.albumView ? 'album' : '')
         margin-right: 10px;
         height: 30px;
         .switch {
-            cursor: pointer;
+            ;
             border: 1px solid white;
             border-radius: 7px;
             padding: 5px;

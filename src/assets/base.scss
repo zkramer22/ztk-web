@@ -6,10 +6,11 @@
     box-sizing: border-box;
     margin: 0;
     font-weight: inherit;
-    scroll-behavior: smooth !important;
+    scroll-behavior: smooth;
 }
 
 body, html {
+    cursor: none;
     height: 100%;
     line-height: 1.6;
     font-family:
@@ -203,6 +204,10 @@ canvas {
     height: 30px;
 }
 
+svg {
+    display: block;
+}
+
 .container {
     max-width: 1000px;
 }
@@ -278,6 +283,14 @@ canvas {
     }
     100% {
         transform: scale(1);
+    }
+}
+@keyframes translateFromRight{
+    0% {
+        transform: translateX(40px);
+    }
+    100% {
+        transform: translateX(0);
     }
 }
 @keyframes fadeFromBlack {

@@ -114,7 +114,7 @@
         justify-content: center;
         align-items: center;
         opacity: 0;
-        cursor: pointer;
+        ;
         &:hover {
             background-color: rgba(0,0,0,.3);
             opacity: 1;
@@ -123,7 +123,7 @@
     .button {
         width: fit-content;
         border-radius: 35px;
-        cursor: pointer;
+        ;
         &.see-more {
             background-color: $primary-gray;
             padding: 10px 20px;

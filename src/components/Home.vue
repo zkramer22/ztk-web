@@ -5,47 +5,40 @@ import design from '@/assets/icon/design.svg?raw'
 </script>
 
 <template>
-    <div id="home-grid">
-      <h1 class="site-title-text">
-        <span>ztk</span> <span style="font-weight: 500">web</span>
-      </h1>
+    <div class="container grow">
+        <div id="home-grid">
+            <h1 class="site-title-text">
+                <span>ztk</span> <span style="font-weight: 500">web</span>
+            </h1>
 
-      <div id="home-divider"></div>
+            <div id="home-divider"></div>
 
-      <div id="welcome-text" class="">
-        <strong>zach kramer </strong> is a 
-        <div class="chip">
-            <span class="icon" v-html="development"></span>
-            <span>developer</span>
-        </div> 
-        and <div class="chip">
-            <span class="icon" v-html="design"></span>
-            <span>designer</span>
-        </div>
-        focused on bringing smooth, enjoyable, and memorable experiences to the web. 
-        <span class="nobreak">He's currently based in San Diego.</span>
+            <div id="welcome-text" class="">
+                <strong>zach kramer </strong> is a 
+                <div class="chip">
+                    <span class="icon" v-html="development"></span>
+                    <span>developer</span>
+                </div> 
+                and 
+                <div class="chip">
+                    <span class="icon" v-html="design"></span>
+                    <span>designer</span>
+                </div>
+                focused on bringing smooth, enjoyable, and memorable experiences to the web. 
+                <span class="nobreak">He's currently based in San Diego.</span>
+            </div>
         </div>
     </div>
 
-    <div class="sinewave-container absolute pulse delay" v-html="sinewave2"></div>
+    <!-- <div class="sinewave-container absolute pulse delay" v-html="sinewave2"></div> -->
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/variables.scss';
 
-@keyframes paint {
-  to {
-    stroke-dashoffset: -3000;
-  }
-}
-@keyframes pulse {
-  0% {
-    stroke: rgba(255,255,255,1);
-  }
-
-  100% {
-    stroke: rgba(255,255,255,0);
-  }
+.container {
+    grid-row: 2 / 4;
+    align-content: center;
 }
 
 #welcome-text {
@@ -82,6 +75,21 @@ import design from '@/assets/icon/design.svg?raw'
             }
         }
     }
+}
+
+@keyframes paint {
+  to {
+    stroke-dashoffset: -3000;
+  }
+}
+@keyframes pulse {
+  0% {
+    stroke: rgba(255,255,255,1);
+  }
+
+  100% {
+    stroke: rgba(255,255,255,0);
+  }
 }
 
 .sinewave-container {

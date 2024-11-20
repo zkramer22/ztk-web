@@ -44,7 +44,7 @@ const top = document.getElementById('top')
     display: flex;
     justify-content: space-between;
     #monologo {
-      cursor: pointer;
+      ;
       width: 80px;
       height: 80px;
       padding: 3px;
@@ -90,7 +90,7 @@ const top = document.getElementById('top')
     margin: 0 5px;
     padding: 7px 10px;
     height: 45px;
-    cursor: pointer;
+    ;
     background-color: $primary-gray;
     transition: background-color .2s linear;
     &.icon {

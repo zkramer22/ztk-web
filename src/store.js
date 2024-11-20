@@ -10,10 +10,8 @@ export const BG_IMG = {
 
 /////////////////////////////// reactives //////////////////////////////////
 export const state = reactive({
-    pageType: '',
     scrolled1: false,
     selectorActive: null,
-    scrolledClass: computed(() => state.scrolled1 ? 'scrolled' : ''),
     selectorActiveClass: computed(() => state.selectorActive ? 'active' : ''),
 })
 

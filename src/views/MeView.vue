@@ -4,6 +4,7 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
 
 <template>
     <div class="container">
+        <h4 class="text-center">about me</h4>
         <div class="img-text-grid">
             <div class="img-container headshot">
                 <img :src="headshotPath" alt="photo of zach kramer"/>
@@ -27,13 +28,22 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
                 </p>
             </div>
         </div>
+        <div class="spacer"></div>
     </div>
 </template>
 
 
 <style lang="scss" scoped>
+    h4 {
+        margin-bottom: 35px;
+    }
+
     .container {
+        margin-top: 15px;
         max-width: 400px;
+        align-content: center;
+        position: relative;
+        animation: fadein .7s ease, slideFromBottom .7s ease;
     }
     .img-text-grid {
         gap: 10px;
@@ -50,11 +60,13 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
 
     @media screen and (min-width: 768px) {
         .container {
+            grid-row: 1 / 6;
+            margin-top: 0;
             max-width: 1000px;
         }
         .img-text-grid {
             display: flex;
-            margin-top: 25px;
+            // margin-top: 25px;
             gap: 0 25px;
             align-self: center;
             .img-container {

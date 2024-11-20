@@ -131,7 +131,7 @@ function selectorClick(option) {
     &.active {
       &:hover {
         opacity: .9;
-        cursor: pointer;
+        ;
       }
     }
   }

@@ -169,7 +169,7 @@ h2.selector {
   border-radius: 30px;
   background-color: #313532;
   animation: slideFromBottom 1s ease, fadein 1s ease;
-  cursor: pointer;
+  ;
   .switch-indicator {
     position: absolute;
     margin: 3px;
