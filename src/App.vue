@@ -10,13 +10,14 @@ import { state } from './store.js'
 /////////////////////////// variables /////////////////////////////
 const router = useRouter()
 const route = useRoute()
-const selectView = ref(null)
 const bgImgPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/coding-screen-1.jpg'
 const cursor = ref(null)
 const cursorX = ref(0)
 const cursorY = ref(0)
 const scrollY = ref(0)
 const scrollDir = ref('')
+
+const screenWatcher = ref(null)
 
 const scrolledClass = computed(() => scrollY.value > 0 ? 'scrolled' : '')
 ////////////////////////// methods /////////////////////////////
@@ -89,11 +90,30 @@ function mouseScroll(e) {
     // update , safeguard against values < 0
     scrollY.value = scroll <= 0 ? 0 : scroll
 }
+function preventLandscape() {
+  if (window.screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock("portrait-primary")
+      .catch((error) => {});
+  }
+}
+function watchScreenOrientation() {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    if (isMobile) {
+        preventLandscape()
+
+        window.addEventListener("orientationchange", () => {
+            if (window.screen.orientation.type.includes("landscape")) {
+                preventLandscape()
+            }
+        })
+    }
+}
 
 ///////////////////////// lifecycle //////////////////////////////
 onMounted(() => {
-    enableMouseEvents()
     setTimeout(() => checkEntryRoute(), 0)
+    enableMouseEvents()
+    watchScreenOrientation()
 })
 </script>
 
@@ -103,26 +123,32 @@ onMounted(() => {
     <img :src="bgImgPath" alt="closeup view of coding text editor"
         class="bgImg"/>
     <div ref="cursor" id="invertedcursor"></div>
-    <div class="fullscreen-wrapper grid">
-        <Navi :scrolledClass="scrolledClass" />
+    <div id="mainView" :class="`fullscreen-wrapper grid ${state.selectorActiveClass}`">
+        <Navi @selector-click="selectorClick"
+            :scrolledClass="scrolledClass" 
+            :selectorActiveClass="state.selectorActiveClass"
+        >
+            <Selector @selector-click="selectorClick"
+              :selectorActive="state.selectorActive"
+              :selectorActiveClass="state.selectorActiveClass"
+            />
+        </Navi>
+        
         <RouterView v-slot="{ Component }">
             <component :is="Component" />
-            <Selector @selector-click="selectorClick"
-                :selectorActive="state.selectorActive"
-                :selectorActiveClass="state.selectorActiveClass"
-            />
         </RouterView>
     </div>
+    <div id="windowSmall">
+        <h4>Oops. The window is too small!</h4>
+        <h4>Please resize to improve viewing experience.</h4>
+    </div>
+    <!-- <div id="noMobileLandscape">
+        <h4>It'll be much better</h4>
+    </div> -->
 </template>
 
 <style lang="scss">
 @import '@/assets/variables.scss'; 
-.app {
-    pointer-events: auto;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-}
 .spacer {
     margin-bottom: 100px;
 }
@@ -139,6 +165,20 @@ onMounted(() => {
         mix-blend-mode: difference;
         transition: transform .2s;
     }
+}
+#mainView {
+    display: default;
+}
+#windowSmall {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    align-content: center;
+    text-align: center;
 }
 
 .router-wrapper {
@@ -173,7 +213,12 @@ onMounted(() => {
     padding: 10px;
     &.grid {
         display: grid;
-        grid-template-rows: 1fr 1fr 1fr 1fr 30vh;
+        grid-template-rows: 0px 2fr 250px 0fr 4fr;
+        grid-gap: 15px;
+        transition: grid-template-rows .4s ease;
+        &.active {
+            grid-template-rows: 0px 2fr 250px 4fr 0fr;
+        }
     }
 }
 .container {
@@ -312,19 +357,47 @@ h2.selector {
   }
 }
 
-@media (min-width: 768px) {
+
+
+// @media screen and (aspect-ratio > 9 / 16) and (max-height: 500px) {
+@media screen and (max-height: 380px) {
+    #mainView {
+        display: none;
+    }
+    #windowSmall {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 500px) and (max-height: 500px) {
+    #mainView {
+        display: none;
+    }
+    #windowSmall {
+        display: block;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .fullscreen-wrapper.grid {
+        grid-template-rows: 0px 1fr 150px 0fr 3fr;
+    }
+    nav {
+        grid-template-rows: 0px 1fr 150px 0fr 3fr;
+    }
+}
+
+@media (min-width: 768px) and (min-height: 500px) {
     #home-grid {
         display: grid;
         grid-template-columns: 10fr 2fr 10fr;
         align-items: center;
-        min-height: 25vh;
-        // margin-bottom: 45px;
     }
     .site-title-text {
         text-align: right;
     }
     #home-divider {
-        min-height: 200px;
+        // min-height: 200px;
         height: 100%;
         max-height: 300px;
         width: 4px;
@@ -336,6 +409,28 @@ h2.selector {
     }
     #welcome-text {
         text-align: left;
+    }
+}
+
+h4 {
+    margin-bottom: 35px;
+}
+
+@media screen and (min-width: 768px) {
+    h4 {
+        font-size: 1.75rem;
+    }
+    p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    h4 {
+        font-size: 2rem;
+    }
+    p {
+        font-size: 18px;
     }
 }
 

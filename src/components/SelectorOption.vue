@@ -45,6 +45,7 @@ const isSelected = computed(() => props.isActive ? 'active' : '')
     }
 
     .selector-option {
+        pointer-events: all;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -107,7 +108,7 @@ const isSelected = computed(() => props.isActive ? 'active' : '')
         }
     }
 
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 600px) and (min-height: 600px) {
         .button-selector-icon {
             font-size: 3.2rem;
         }
@@ -116,7 +117,7 @@ const isSelected = computed(() => props.isActive ? 'active' : '')
         }
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) and (min-height: 600px) {
         .button-selector-icon {
             font-size: 4rem;
         }

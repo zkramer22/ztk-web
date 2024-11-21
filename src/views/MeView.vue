@@ -34,13 +34,10 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
 
 
 <style lang="scss" scoped>
-    h4 {
-        margin-bottom: 35px;
-    }
-
     .container {
         margin-top: 15px;
         max-width: 400px;
+        align-self: start;
         align-content: center;
         position: relative;
         animation: fadein .7s ease, slideFromBottom .7s ease;
@@ -60,23 +57,39 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
 
     @media screen and (min-width: 768px) {
         .container {
-            grid-row: 1 / 6;
+            grid-row: 2 / 5;
             margin-top: 0;
             max-width: 1000px;
         }
         .img-text-grid {
             display: flex;
-            // margin-top: 25px;
             gap: 0 25px;
-            align-self: center;
+            align-items: center;
             .img-container {
                 justify-self: end;
-                align-self: start;
+                align-self: center;
                 max-width: 350px;
             }
         }
+        h4 {
+            font-size: 1.75rem;
+        }
         p {
             font-size: 15px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .img-text-grid {
+            display: flex;
+            gap: 0 25px;
+            align-items: center;
+            .img-container {
+                justify-self: end;
+                align-self: center;
+                max-width: 450px;
+                max-height: 450px;
+            }
         }
     }
 </style>

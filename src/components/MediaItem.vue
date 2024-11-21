@@ -11,7 +11,7 @@ const isVideo = props.mediaStr.split('.')[1] === 'mov'
 
 <template>
     <div class="media-item">
-        <video autoplay loop v-if="isVideo" :src="getS3Object('work', mediaStr)" />
+        <video v-if="isVideo" :src="getS3Object('work', mediaStr)" autoplay loop />
         <img v-else :src="getS3Object('work', mediaStr)" />
     </div>
 </template>

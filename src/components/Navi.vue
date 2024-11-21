@@ -7,94 +7,81 @@ import calendar from '@/assets/icon/calendar.svg?raw'
 import { computed, ref } from 'vue'
 /////////////////////////// variables /////////////////////////////
 const props = defineProps({
-  pageType: String,
   scrolledClass: String,
+  selectorActiveClass: String,
 })
 
 const navOpen = ref(false)
 const accordion = ref(null)
 const accordionWrapper = ref(null)
 
+const emit = defineEmits(['selectorClick'])
+
 const top = document.getElementById('top')
 const navActive = computed(() => navOpen.value ? 'active' : '')
-/////////////////////////// variables /////////////////////////////
+/////////////////////////// methods /////////////////////////////
 function expandAccordion() {
     navOpen.value = !navOpen.value
+}
+
+function selectorClick(option) {
+    emit('selectorClick', option)
 }
 </script>
 
 <template>
-  <nav class="">
-    <div class="flex-centered relative">
-      <img id="monologo" :class="`grow-animation ${scrolledClass}`" src="@/assets/img/ztk-logo.png"/>
-      <!-- <h1 :class="`site-title-text small ${scrolledClass}`"><span>ztk</span> <span style="font-weight: 500">web</span></h1> -->
-    </div>
-    <div class="slide-from-top menu-list">
-        <div class="nav-button transparent icon menu" @click="expandAccordion">
-            <div v-if="navOpen" class="button-icon-svg" v-html="x"></div>
-            <div v-else class="button-icon-svg" v-html="menu"></div>
+    <nav :class="selectorActiveClass">
+        <div class="flex-centered relative logo-wrapper">
+            <img id="monologo" @click="() => selectorClick(null)"
+                :class="`grow-animation ${scrolledClass}`" 
+                src="@/assets/img/ztk-logo.png"
+            />
+        <!-- <h1 :class="`site-title-text small ${scrolledClass}`"><span>ztk</span> <span style="font-weight: 500">web</span></h1> -->
         </div>
-        <div :class="`button-text-2 ${navActive}`">contact</div>
-        <div ref="accordion" class="accordion">
-            <div :class="`nav-button icon option web ${navActive}`">
-                <div class="button-text web">calendar</div>
-                <div class="button-icon-svg" v-html="calendar"></div>
+        <div class="slide-from-top menu-list">
+            <div :class="`nav-button icon menu ${scrolledClass}`" @click="expandAccordion">
+                <div v-if="navOpen" class="button-icon-svg" v-html="x"></div>
+                <div v-else class="button-icon-svg" v-html="menu"></div>
             </div>
-            <div :class="`nav-button icon option audio ${navActive}`">
-                <div class="button-text audio">call</div>
-                <div class="button-icon-svg" v-html="phone"></div>
-            </div>
-            <div :class="`nav-button icon option black ${navActive}`">
-                <div class="button-text black">email</div>
-                <div class="button-icon-svg" v-html="email"></div>
+            <div :class="`button-text-2 ${navActive}`">contact</div>
+            <div ref="accordion" class="accordion">
+                <div :class="`nav-button icon option web ${navActive} ${scrolledClass}`">
+                    <!-- <div class="button-text web">calendar</div> -->
+                    <div class="button-icon-svg" v-html="calendar"></div>
+                </div>
+                <div :class="`nav-button icon option audio ${navActive} ${scrolledClass}`">
+                    <!-- <div class="button-text audio">call</div> -->
+                    <div class="button-icon-svg" v-html="phone"></div>
+                </div>
+                <div :class="`nav-button icon option black ${navActive} ${scrolledClass}`">
+                    <!-- <div class="button-text black">email</div> -->
+                    <div class="button-icon-svg" v-html="email"></div>
+                </div>
             </div>
         </div>
-    </div>
-  </nav>
+        <slot></slot>
+    </nav>
 </template>
 
 <style lang="scss">
 @import '@/assets/variables.scss';
-    .menu-list {
-        display: flex;
-        flex-flow: column;
-        position: relative;
-        gap: 7px;
-    }
-    .accordion {
-        display: flex;
-        flex-flow: column;
-        gap: 7px;
-    }
     nav {
         pointer-events: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 7px;
         z-index: 2;
-        #monologo {
-            pointer-events: auto;
-            width: 70px;
-            height: 70px;
-            padding: 3px;
-            background-color: white;
-            border-radius: 5px;
-            transition: scale .1s linear, width .2s linear, height .2s linear, padding .2s linear;
-            &.scrolled {
-                width: 45px;
-                height: 45px;
-                padding: 2px;
-            }
-            @media(hover:hover) {
-                &:hover {
-                    scale: 1.1;
-                }
-            }
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+        display: grid;
+        grid-template-rows: 0px 2fr 250px 0fr 4fr;
+        grid-gap: 15px;
+        grid-template-columns: 75px auto 75px;
+        align-items: start;
+        transition: grid-template-rows .4s ease;
+        &.active {
+            grid-template-rows: 0px 2fr 250px 4fr 0fr;
         }
         .site-title-text {
             &.small {
@@ -107,16 +94,47 @@ function expandAccordion() {
                 top: 0px;
             }
         }
-        .pageTypeSwitch {
-            &.small {
-                scale: .8;
-                top: -100px;
-                transition: top .2s ease;
-            }
-            &.scrolled {
-                top: 0px;
+    }
+    
+    .logo-wrapper {
+        grid-column: 1 / 1;
+        grid-row: 1 / 1;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+    #monologo {
+        pointer-events: auto;
+        width: 70px;
+        height: 70px;
+        padding: 3px;
+        background-color: white;
+        border-radius: 5px;
+        transition: scale .1s linear, width .2s linear, height .2s linear, padding .2s linear;
+        &.scrolled {
+            width: 45px;
+            height: 45px;
+            padding: 2px;
+        }
+        @media(hover:hover) {
+            &:hover {
+                scale: 1.1;
             }
         }
+    }
+    .menu-list {
+        grid-column: 3 / 4;
+        grid-row: 1 / 1;
+        display: flex;
+        flex-flow: column;
+        align-items: end;
+        position: relative;
+        gap: 7px;
+    }
+    .accordion {
+        display: flex;
+        flex-flow: column;
+        gap: 7px;
     }
     .nav-button {
         position: relative;
@@ -127,10 +145,7 @@ function expandAccordion() {
         border-radius: 10px;
         padding: 7px 10px;
         height: 45px;
-        background-color: $primary-gray;
-        // &.transparent {
-        //     background-color: transparent;
-        // }
+        background-color: #eeeeee;
         &:active {
             filter: brightness(1.3);
         }
@@ -140,7 +155,7 @@ function expandAccordion() {
             }
         }
         &.menu {
-            z-index: 1;
+            z-index: 1;     
         }
         &.option {
             pointer-events: none;
@@ -148,9 +163,17 @@ function expandAccordion() {
             transition: scale .4s ease, transform .1s ease;
         }
         &.icon {
-            padding: 3px;
-            width: 45px;
-            height: 45px;
+            padding: 10px;
+            width: 70px;
+            height: 70px;
+            &.scrolled {
+                width: 45px;
+                height: 45px;
+                padding: 3px;
+            }
+        }
+        &.black {
+            background-color: $primary-gray;
         }
         &.audio {
             background-color: $primary-color-audio;
@@ -215,11 +238,5 @@ function expandAccordion() {
         height: auto;
         max-width: 70%;
         margin: 0 auto;
-    }
-
-    @media (hover:hover) {
-        .nav-button.option:hover {
-
-        }
     }
 </style>

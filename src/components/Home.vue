@@ -5,7 +5,7 @@ import design from '@/assets/icon/design.svg?raw'
 </script>
 
 <template>
-    <div class="container grow">
+    <div class="container">
         <div id="home-grid">
             <h1 class="site-title-text">
                 <span>ztk</span> <span style="font-weight: 500">web</span>
@@ -37,14 +37,14 @@ import design from '@/assets/icon/design.svg?raw'
 @import '@/assets/variables.scss';
 
 .container {
-    grid-row: 2 / 4;
+    grid-row: 3 / 4;
     align-content: center;
 }
 
 #welcome-text {
     user-select: none;
     position: relative;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0 auto;
     margin-top: 15px;
     line-height: 2;
@@ -76,6 +76,44 @@ import design from '@/assets/icon/design.svg?raw'
         }
     }
 }
+
+@media screen and (max-width: 350px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    #welcome-text {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-height: 500px) {
+    h1 {
+        font-size: 3rem;
+    }
+    #welcome-text {
+        font-size: 1rem;
+    }
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 500px) {
+    #welcome-text {
+        text-align: left;
+        margin: auto 0;
+        align-self: center;
+        max-width: 300px;
+    }
+}
+
+@media screen and (min-width: 768px) and (min-height: 500px) {
+    #welcome-text {
+        text-align: left;
+        margin: auto 0;
+        align-self: center;
+    }
+}
+
+////////////////////////////////////////////////////////
 
 @keyframes paint {
   to {

@@ -18,11 +18,9 @@
 
 
 <style lang="scss" scoped>
-h4 {
-    margin-bottom: 35px;
-}
 .container {
     position: relative;
+    align-self: start;
     margin-top: 15px;
     max-width: 1000px;
     animation: fadein .7s linear, slideFromBottom .7s ease;
