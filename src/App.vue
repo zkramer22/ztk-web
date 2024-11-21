@@ -357,6 +357,9 @@ h2.selector {
   }
 }
 
+p {
+    font-size: 14px;
+}
 
 
 // @media screen and (aspect-ratio > 9 / 16) and (max-height: 500px) {
@@ -397,7 +400,6 @@ h2.selector {
         text-align: right;
     }
     #home-divider {
-        // min-height: 200px;
         height: 100%;
         max-height: 300px;
         width: 4px;

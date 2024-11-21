@@ -22,9 +22,6 @@
 </template>
 
 <style lang="scss" scoped>
-    p {
-        font-size: 1rem;
-    }
     h3 {
         margin-bottom: 10px;
     }

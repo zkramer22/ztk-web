@@ -1,5 +1,7 @@
 <script setup>
 import { loaderMethods } from '@/store.js'
+import { defineAsyncComponent } from 'vue';
+import Loader from './Loader.vue'
 
 const { getS3Object } = loaderMethods
 const props = defineProps({
@@ -10,6 +12,14 @@ const isVideo = props.mediaStr.split('.')[1] === 'mov'
 </script>
 
 <template>
+    <Suspense>
+        <template #default>
+
+        </template>
+        <template #fallback>
+
+        </template>
+    </Suspense>
     <div class="media-item">
         <video v-if="isVideo" :src="getS3Object('work', mediaStr)" autoplay loop />
         <img v-else :src="getS3Object('work', mediaStr)" />

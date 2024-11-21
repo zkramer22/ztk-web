@@ -50,10 +50,7 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
             margin-bottom: 10px;
         }
     }
-    p {
-        font-size: 14px;
-        // text-indent: 3rem;
-    }
+
 
     @media screen and (min-width: 768px) {
         .container {
@@ -70,12 +67,6 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
                 align-self: center;
                 max-width: 350px;
             }
-        }
-        h4 {
-            font-size: 1.75rem;
-        }
-        p {
-            font-size: 15px;
         }
     }
 
