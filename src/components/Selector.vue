@@ -10,7 +10,7 @@ const props = defineProps({
 
 const selectorBackButton = ref(null)
 
-const emit = defineEmits(['selectorClick'])
+const emit = defineEmits(['selectorClick', 'backButtonClick'])
 
 /////////////////////////// variables /////////////////////////////
 const selector = ['me', 'exp', 'work', 'msg']
@@ -19,13 +19,20 @@ const selector = ['me', 'exp', 'work', 'msg']
 function selectorClick(option) {
     emit('selectorClick', option)
 }
+function backButtonClick() {
+    emit('backButtonClick')
+}
 </script>
 
 <template>
     <!-- <div :class="`selector-wrapper ${selectorActiveClass}`"> -->
     <div class="selector-wrapper">
-        <div ref="selectorBackButton"
+        <!-- <div ref="selectorHomeButton"
             @click="() => selectorClick(null)" v-html="backArrow"
+            :class="`selector-back-button ${selectorActiveClass}`"
+        ></div> -->
+        <div ref="selectorBackButton"
+            @click="backButtonClick" v-html="backArrow"
             :class="`selector-back-button ${selectorActiveClass}`"
         ></div>
         <div ref="selectorGrid" :class="`selector-grid ${selectorActiveClass}`">
@@ -69,13 +76,13 @@ function selectorClick(option) {
         z-index: 5;
         aspect-ratio: 1 / 1;
         height: 100%;
-        left: -100vw;
+        left: -50vw;
         bottom: 0;
         border: 2px solid;
         border-radius: 10px;
         opacity: 0;
         transition: $selector-transitions;
-        background-color: #1f1f1f;
+        background-color: $primary-black;
         &.active {
             left: 0;
             opacity: 1;

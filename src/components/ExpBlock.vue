@@ -52,7 +52,7 @@
             grid-auto-flow: row dense;
             .img-container {
                 float: none;
-                margin: 0 auto;
+                margin: 0;
                 max-width: unset;
                 grid-column: 2 / 3;
                 grid-row: 1 / 3;
@@ -66,6 +66,7 @@
             &:nth-of-type(2n - 1) {
                 .img-container {
                     grid-column: 1 / 2;
+                    // margin: 0 0 0 auto;
                 }
                 p, h3 {
                     grid-column: 2 / 3;

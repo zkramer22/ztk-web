@@ -5,7 +5,7 @@ $primary-color-web: #8FBC94;
 $secondary-color-web: #B8CEBA;
 $primary-gray: #313532;
 $primary-black-trans: rgba(35, 35, 35, 0.8);
-
+$primary-black: #1f1f1f;
 
 $button-hover-bg-color: #666666;
 $hover-color-darker: #3b3b3b;
@@ -13,6 +13,13 @@ $hover-color-darkest: #2d2d2d;
 
 $selector-transitions: 
     width .4s ease, height .4s ease, 
-    bottom .4s ease, left .4s ease, right .4s ease,
-    background-color .4s ease, color .4s ease, opacity .4s ease,
-    font-size .4s ease, grid-gap .4s ease;
+    bottom .4s ease,
+    left .4s ease, 
+    right .4s ease, 
+    background-color .4s ease, 
+    color .4s ease, 
+    opacity .4s ease, 
+    font-size .4s ease, 
+    grid-gap .4s ease,
+    scale .4s ease,
+    ;

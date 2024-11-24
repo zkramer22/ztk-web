@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter, RouterView } from 'vue-router'
-import 'waypoints/lib/noframework.waypoints.min.js'
 import Navi from './components/Navi.vue'
 import Selector from './components/Selector.vue'
 
@@ -17,34 +16,8 @@ const cursorY = ref(0)
 const scrollY = ref(0)
 const scrollDir = ref('')
 
-const screenWatcher = ref(null)
-
 const scrolledClass = computed(() => scrollY.value > 0 ? 'scrolled' : '')
 ////////////////////////// methods /////////////////////////////
-function setWaypoints() {
-//   var waypoint1 = new Waypoint({
-//     element: selectView.value,
-//     handler: (direction) => pinItemsToNav(direction, 1),
-//     offset: 100,
-//   })
-//   console.log(waypoint1);
-//     var timeId = null
-//     window.addEventListener('resize', () => {
-//         clearTimeout(timeId)
-//         timeId = setTimeout(() => {
-//             Waypoint.destroyAll()
-//             setWaypoints()
-//         }, 1000)
-//   })
-}
-function pinItemsToNav(direction, num) {
-    state[`scrolled${num}`] = direction === 'down' ? true : false
-}
-
-function checkEntryRoute() {
-    const path = (route.path.split('/')[1])
-    state.selectorActive = path
-}
 function disableMouseEvents() {
     document.body.onmousemove = null
     document.body.onmousemove = null
@@ -55,7 +28,7 @@ function enableMouseEvents() {
 }
 function selectorClick(option) {
     if (option === state.selectorActive) window.scrollTo({ top: 0 })
-    else window.scrollTo({ top: 0, behavior: 'instant' })
+
     if (option) {
         state.selectorActive = option
         router.push(`/${option}`)
@@ -108,13 +81,16 @@ function watchScreenOrientation() {
         })
     }
 }
+function backButtonClick() {
+    router.go(-1)
+}
 
 ///////////////////////// lifecycle //////////////////////////////
 onMounted(() => {
-    setTimeout(() => checkEntryRoute(), 0)
     enableMouseEvents()
     watchScreenOrientation()
 })
+
 </script>
 
 <template>
@@ -128,15 +104,14 @@ onMounted(() => {
             :scrolledClass="scrolledClass" 
             :selectorActiveClass="state.selectorActiveClass"
         >
-            <Selector @selector-click="selectorClick"
-              :selectorActive="state.selectorActive"
-              :selectorActiveClass="state.selectorActiveClass"
+            <Selector @selector-click="selectorClick" 
+                      @back-button-click="backButtonClick"
+                      :selectorActive="state.selectorActive"
+                      :selectorActiveClass="state.selectorActiveClass"
             />
         </Navi>
         
-        <RouterView v-slot="{ Component }">
-            <component :is="Component" />
-        </RouterView>
+        <RouterView />
     </div>
     <div id="windowSmall">
         <h4>Oops. The window is too small!</h4>
@@ -149,6 +124,16 @@ onMounted(() => {
 
 <style lang="scss">
 @import '@/assets/variables.scss'; 
+.container {
+    position: relative;
+    align-self: start;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 100%;
+    max-width: 1000px;
+    animation: fadein .7s linear, slideFromBottom .7s ease;
+}
+
 .spacer {
     margin-bottom: 100px;
 }
@@ -167,7 +152,7 @@ onMounted(() => {
     }
 }
 #mainView {
-    display: default;
+    // display: initial;
 }
 #windowSmall {
     display: none;
@@ -199,7 +184,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 0;
+  z-index: 1;
   background-color: rgba(0,0,0,0.8);
   transition: background-color .3s linear;
   &.active {
@@ -221,10 +206,7 @@ onMounted(() => {
         }
     }
 }
-.container {
-  width: 100%;
-  margin: 0 auto;
-}
+
 .site-title-text {
   position: relative;
   text-align: center;
@@ -251,7 +233,7 @@ h2.selector {
   display: grid;
   margin: 0 auto;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid #1f1f1f;
+  border: 1px solid $primary-black;
   border-radius: 30px;
   background-color: #313532;
   animation: slideFromBottom 1s ease, fadein 1s ease;
@@ -271,8 +253,10 @@ h2.selector {
       left: 68px;
       background-color: #8FBC94;
     }
-    &:hover {
-      filter: brightness(1.2);
+    @media (hover:hover) {
+        &:hover {
+          filter: brightness(1.2);
+        }
     }
   }
   .switch-text {
@@ -300,10 +284,11 @@ h2.selector {
 
 .bgImg {
   position: fixed;
-  z-index: -1;
+  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .portfolio-section {
@@ -358,12 +343,12 @@ h2.selector {
 }
 
 p {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 
 // @media screen and (aspect-ratio > 9 / 16) and (max-height: 500px) {
-@media screen and (max-height: 380px) {
+@media screen and (max-height: 300px) {
     #mainView {
         display: none;
     }
@@ -423,16 +408,19 @@ h4 {
         font-size: 1.75rem;
     }
     p {
-        font-size: 15px;
+        font-size: 18px;
+    }
+    .fullscreen-wrapper {
+        padding: 16px;
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1440px) {
     h4 {
         font-size: 2rem;
     }
     p {
-        font-size: 18px;
+        font-size: 22px;
     }
 }
 

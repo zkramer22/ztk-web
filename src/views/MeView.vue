@@ -4,7 +4,7 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
 
 <template>
     <div class="container">
-        <h4 class="text-center">about me</h4>
+        <h2 class="text-center">:: about me ::</h2>
         <div class="img-text-grid">
             <div class="img-container headshot">
                 <img :src="headshotPath" alt="photo of zach kramer"/>
@@ -35,16 +35,17 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
 
 <style lang="scss" scoped>
     .container {
-        margin-top: 15px;
+        // margin-top: 15px;
         max-width: 400px;
-        align-self: start;
+        // align-self: start;
         align-content: center;
-        position: relative;
-        animation: fadein .7s ease, slideFromBottom .7s ease;
+        // position: relative;
+        // animation: fadein .7s ease, slideFromBottom .7s ease;
     }
     .img-text-grid {
         gap: 10px;
         .img-container {
+            margin: 0 auto;
             justify-self: center;
             max-width: 200px;
             margin-bottom: 10px;
@@ -71,6 +72,9 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
     }
 
     @media screen and (min-width: 1024px) {
+        .container {
+            max-width: 1024px;
+        }
         .img-text-grid {
             display: flex;
             gap: 0 25px;

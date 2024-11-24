@@ -5,7 +5,7 @@
 
 <template>
     <div class="container">
-        <h4 class="text-center">experience</h4>
+        <h2 class="text-center">:: experience ::</h2>
         <ExpBlock v-for="({ title, body, img }, i) in expItems"
             :key="`exp-${i}`"
             :title="title"
@@ -18,11 +18,9 @@
 
 
 <style lang="scss" scoped>
-.container {
-    position: relative;
-    align-self: start;
-    margin-top: 15px;
-    max-width: 1000px;
-    animation: fadein .7s linear, slideFromBottom .7s ease;
-}
+    @media screen and (min-width: 1440px) {
+        .container {
+            max-width: 1260px;
+        }
+    }
 </style>

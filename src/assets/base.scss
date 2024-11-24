@@ -11,6 +11,7 @@
 
 body, html {
     cursor: none;
+    background-color: #696969;
     height: 100%;
     line-height: 1.6;
     font-family:
@@ -53,16 +54,14 @@ h1 {
 
 h2 {
     font-size: 4rem;
-    // font-size: 3rem;
     line-height: 1;
+    margin-bottom: 40px;
 }
 
 h3 {
-    // font-size: 2rem;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     line-height: 1;
-    font-weight: bold;
-    // margin-bottom: 17px;
+    // font-weight: bold;
 }
 
 h4 {
@@ -88,14 +87,18 @@ p {
 }
 
 img, video {
+    user-select: none;
     display: block;
     height: auto;
     width: 100%;
 }
 
 a {
+    display: block;
+    height: min-content;
     text-decoration: none;
     color: inherit;
+    cursor: none;
 }
 
 input {
@@ -180,6 +183,7 @@ canvas {
 
 .grid {
     display: grid;
+    grid-gap: 15px;
 }
 
 .justify-self-start {
@@ -206,10 +210,6 @@ canvas {
 
 svg {
     display: block;
-}
-
-.container {
-    max-width: 1000px;
 }
 
 .img-container {

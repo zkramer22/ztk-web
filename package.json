@@ -9,12 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.692.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "waveform-data": "^4.5.0",
-    "wavesurfer.js": "^7.7.7",
-    "waypoints": "^4.0.1"
+    "vue3-lazyload": "^0.3.8",
+    "wavesurfer.js": "^7.7.7"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
