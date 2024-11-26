@@ -1,7 +1,12 @@
+
 <script setup>
+
 </script>
+
 <template>
-    <div></div>
+    <div>yo</div>
 </template>
+
 <style>
+
 </style>

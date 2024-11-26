@@ -1,9 +1,7 @@
 <script setup>
-    import { ref } from 'vue'
     import { loaderMethods } from '@/store.js'
     const { getS3Object } = loaderMethods
 
-    import Chip from './Chip.vue'
     import Card from './Card.vue'
     import MediaItem from './MediaItem.vue'
 
@@ -13,74 +11,6 @@
         previewImg: String,
         chips: Array,
     })
-    
-    const gallery = ref(null)
-    const galleryHeight = ref(null)
-    const galleryContainer = ref(null)
-    const galleryActive = ref(false)
-
-    const isVideo = (mediaStr) => mediaStr.split('.')[1] === 'mov'
-
-    // function loadImage(imageSrc) {
-    //     return new Promise(resolve => {
-    //         const image = new Image();
-    //         image.onload = () => {
-    //             const { width, height } = image;
-    //             resolve({ width, height });
-    //         };
-    //         image.src = imageSrc;
-    //     })
-    // }
-    
-    // function loadAllMedia() {
-    //     const images = media.filter(item => !isVideo(item))
-    //     const videos = Array.from(document.querySelectorAll('video'))
-
-    //     const imagePromises = images.map(mediaStr => {
-    //         const fullPath = getS3Object('work', mediaStr)
-    //         return new Promise(resolve => {
-    //             const image = new Image();
-    //             image.src = fullPath;
-    //             image.onload = () => {
-    //                 const { width, height } = image;
-    //                 resolve({ src: image.src, width, height });
-    //             };
-    //         })
-    //     })
-    //     const videoPromises = videos.map(video => {
-    //         return new Promise(resolve => {
-    //             video.addEventListener('loadedmetadata', () => {
-    //                 const { videoWidth, videoHeight } = video
-    //                 resolve({ src: video.src, videoWidth, videoHeight })
-    //             })
-    //         })
-    //     })
-
-    //     return Promise.all([...imagePromises, ...videoPromises])
-    // }
-    
-    // onMounted(() => {
-    //     loadAllMedia().then(() => {
-    //         nextTick(() => {
-    //             state.loaded = true
-    //         })
-    //     })
-    // })
-
-    //////////////////////// methods ////////////////////////
-    // function switchGallery() {
-    //     galleryActive.value = !galleryActive.value
-    // }
-
-    // watch(galleryActive, (newVal) => {
-    //     if (newVal) {
-    //         galleryHeight.value = gallery.value.clientHeight
-    //         galleryContainer.value.style.height = `${galleryHeight.value}px`
-    //     }
-    //     else {
-    //         galleryContainer.value.style.height = ''
-    //     }
-    // })
 </script>
 
 <template>

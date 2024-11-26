@@ -5,7 +5,6 @@ import Card from './Card.vue'
 
 import { workBlocks } from '@/data/workItems.js'
 import { loaderMethods } from '@/store.js';
-import { onBeforeRouteUpdate } from 'vue-router';
 const { getS3Object } = loaderMethods
 
 const props = defineProps({
@@ -13,7 +12,7 @@ const props = defineProps({
 })
 
 const state = reactive({
-    workObj: computed(() => workBlocks[props.category])
+    workObj: computed(() => workBlocks[props.category]),
 })
 
 </script>
@@ -23,11 +22,15 @@ const state = reactive({
         <h3 class="text-center">{{ state.workObj.title }}</h3>
 
         <div class="grid">
-            <Card v-for="({ name, description, images }, i) in state.workObj.items"
-            animate long :key="`${name.split(' ')[0]}-${i}`"
+            <Card v-for="({ name, description, images }, i) in state.workObj.items" :key="name"
+                animation 
+                long 
+                drawer
+                :images
+                :getS3Object
             >
                 <template v-slot:preview>
-                    <MediaItem :mediaSrc="getS3Object('work', images[0])" />
+                    <MediaItem :mediaSrc="getS3Object('work', images[0])"/>
                 </template>
                 <template v-slot:description>
                     <h4>{{ name }}</h4>
@@ -42,6 +45,9 @@ const state = reactive({
 </template>
 
 <style lang="scss" scoped>
+    .grid {
+        grid-gap: 0;
+    }
     h3 {
         font-size: 2rem;
         margin-bottom: 50px;
@@ -54,17 +60,6 @@ const state = reactive({
     @media screen and (min-width: 768px) {
         .grid {
             // grid-template-columns: 1fr 1fr;
-        }
-        .card {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            grid-auto-rows: 180px;
-            .preview {
-                img {
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
         }
     }
 </style>

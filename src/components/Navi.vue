@@ -32,7 +32,7 @@ function selectorClick(option) {
 <template>
     <nav :class="selectorActiveClass">
         <div class="flex-centered relative logo-wrapper">
-            <img id="monologo" @click="() => selectorClick(null)"
+            <img id="monologo" @click="selectorClick(null)"
                 :class="`grow-animation ${scrolledClass}`" 
                 src="@/assets/img/ztk-logo.png"
             />

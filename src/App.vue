@@ -19,12 +19,12 @@ const scrollDir = ref('')
 const scrolledClass = computed(() => scrollY.value > 0 ? 'scrolled' : '')
 ////////////////////////// methods /////////////////////////////
 function disableMouseEvents() {
-    document.body.onmousemove = null
-    document.body.onmousemove = null
+    document.onmousemove = null
+    document.onmousemove = null
 }
 function enableMouseEvents() {
-    document.body.onmousemove = mouseMove
-    document.body.onscroll = mouseScroll
+    document.onmousemove = mouseMove
+    document.onscroll = mouseScroll
 }
 function selectorClick(option) {
     if (option === state.selectorActive) window.scrollTo({ top: 0 })
@@ -124,6 +124,7 @@ onMounted(() => {
 
 <style lang="scss">
 @import '@/assets/variables.scss'; 
+
 .container {
     position: relative;
     align-self: start;

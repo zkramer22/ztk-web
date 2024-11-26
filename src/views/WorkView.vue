@@ -1,18 +1,16 @@
 <script setup>
-    import { nextTick, reactive } from 'vue';
-    import Chip from '../components/Chip.vue'
+    import { useRoute } from 'vue-router';
     import WorkBlock from '../components/WorkBlock.vue'
-    
-    import { chips, workBlocks } from '@/data/workItems.js'
+    import { workBlocks } from '@/data/workItems.js'
 
     //////////////////// methods //////////////////////
+    function scrollTop() {
+        window.scrollTo({ top: 0 })
+    }
 
 </script>
 
 <template>
-    <!-- <div class="flex wrap">
-        <Chip v-for="(chip, i) in chips" :chip/>
-    </div> -->
     <div class="container">
         <h2 class="text-center">:: work ::</h2>
         <RouterView></RouterView>
@@ -20,7 +18,7 @@
         <h4>Projects By Type:</h4>
         <div class="work-view">
             <RouterLink v-for="({ previewImg, title, short, chips }, key) in workBlocks"
-                :to="`/work/${key}`"
+                :to="`/work/${key}`" @click.native="scrollTop()"
             >
                 <WorkBlock
                     :key="`work-${key}`"

@@ -247,34 +247,34 @@ svg {
 }
 @keyframes slideFromLeft {
     0% {
-        right: 50px;
+        transform: translateX(-50px);
     }
     100% {
-        right: 0px;
+        transform: translateX(0);
     }
 }
 @keyframes slideFromRight {
     0% {
-        left: 50px;
+        transform: translateX(50px);
     }
     100% {
-        left: 0px;
+        transform: translateX(0);
     }
 }
 @keyframes slideFromTop {
     0% {
-        top: -50px;
+        transform: translateY(-50px);
     }
     100% {
-        top: 0px;
+        transform: translateY(0);
     }
 }
 @keyframes slideFromBottom {
     0% {
-        bottom: -40px;
+        transform: translateY(50px);
     }
     100% {
-        bottom: 0px;
+        transform: translateY(0);
     }
 }
 @keyframes growFromZero {

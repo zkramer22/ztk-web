@@ -1,12 +1,4 @@
 export const workBlocks = {
-    'web-apps': {
-        title: "web applications",
-        short: "Vue & React projects, data visualization, user authentication, web analytics",
-        previewImg: '',
-        items: [
-
-        ],
-    },
     'enterprise-dev': {
         title: "enterprise web development",
         short: "E-commerce sites, advanced search & filtering, internal business solutions, Google Maps integrations",
@@ -39,7 +31,7 @@ export const workBlocks = {
                 name: "KitchenAid & Whirpool ",
                 description: "deliver smooth UI experience for online shoppers seeking home appliances & cookware",
                 images: [
-
+                    '',
                 ],
             },
         ]
@@ -59,35 +51,35 @@ export const workBlocks = {
                     'health-panels/panel09.jpg',
                 ],
             },
-            {
-                name: "Legend Biotech",
-                description: "I built a custom website for a global oncology biotech company – complete with responsive & interactive displays of scientific information. They actually sent me a nice North Face jacket as a token of appreciation 🥹",
-                images: [
-                    'health-sites/legend-home.png',  // maybe get localhost shots of this site
-                    'health-sites/legend-diagram.png',  // trim
-                    'health-sites/legend-3.png',  // get movile shots                 
-                ],
-            },
-            {
-                name: "Animated Advertisements",
-                description: "Eye-catching, animated ad assets of various sizes, primarily for pharmaceutical products.",
-                images: [
-                    'animated-ads/ad_r-squared_square.mov',
-                    'animated-ads/ad_r-squared_rect.mov',
-                    'animated-ads/aml-ad-square.mov',
-                    'animated-ads/aml-rect.mov',
-                ]
-            },
-            {
-                name: "Landing Pages",
-                description: "An assortment of pages built for the oncology marketing sector. These were an excellent opportunity to get unnecessarily fancy with CSS and JavaScript.",
-                images: [
-                    'health-sites/aml-site-audio.png',
-                    'health-sites/unithroid-2.png',
-                    'health-sites/unithroid-3.png',
-                    'health-sites/xiaflex-1.png',  // get mobile site                
-                ]
-            }
+            // {
+            //     name: "Legend Biotech",
+            //     description: "I built a custom website for a global oncology biotech company – complete with responsive & interactive displays of scientific information about clinical trials.",
+            //     images: [
+            //         'health-sites/legend-home.png',  // maybe get localhost shots of this site
+            //         'health-sites/legend-diagram.png',  // trim
+            //         'health-sites/legend-3.png',  // get movile shots                 
+            //     ],
+            // },
+            // {
+            //     name: "Animated Advertisements",
+            //     description: "Eye-catching, animated ad assets of various sizes, primarily for pharmaceutical products.",
+            //     images: [
+            //         'animated-ads/ad_r-squared_square.mov',
+            //         'animated-ads/ad_r-squared_rect.mov',
+            //         'animated-ads/aml-ad-square.mov',
+            //         'animated-ads/aml-rect.mov',
+            //     ]
+            // },
+            // {
+            //     name: "Landing Pages",
+            //     description: "An assortment of pages built for the oncology marketing sector. These were an excellent opportunity to get unnecessarily fancy with CSS and JavaScript.",
+            //     images: [
+            //         'health-sites/aml-site-audio.png',
+            //         'health-sites/unithroid-2.png',
+            //         'health-sites/unithroid-3.png',
+            //         'health-sites/xiaflex-1.png',  // get mobile site                
+            //     ]
+            // }
         ],
     },
     'design': {
@@ -95,6 +87,14 @@ export const workBlocks = {
         short: "UI design for web apps, components, SVG icons & drawings",
         previewImg: 'figma-design/app-design-1.png',
 
+    },
+    'web-apps': {
+        title: "web applications",
+        short: "Vue & React projects, data visualization, user authentication, web analytics",
+        previewImg: '',
+        items: [
+
+        ],
     },
     'components': {
         title: "components",
