@@ -25,8 +25,8 @@ export const loaderMethods = {
             setTimeout(() => audioItems[trackId].imgLoaded = true)
         }
     },
-    getS3Object(location, path) {
-        const fullPath = `https://ztk-web.s3.us-west-1.amazonaws.com/${location}/${path}`
+    getS3Object(path) {
+        const fullPath = `https://ztk-web.s3.us-west-1.amazonaws.com/${path}`
         return fullPath
     }
 }

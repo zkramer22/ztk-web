@@ -58,12 +58,13 @@ import MediaItem from './MediaItem.vue';
 
     onMounted(() => {
         if (!props.images) return
-        props.images.map((imageSrc, i) => {
-            const image = new Image()
-            image.onload = () => {
-                state.loadedImages.push(image)
+        props.images.map((img, i) => {
+            const imageObj = new Image()
+            imageObj.onload = () => {
+                state.loadedImages.push(imageObj)
             }
-            image.src = props.getS3Object('work', imageSrc)
+            imageObj.alt = img.caption
+            imageObj.src = props.getS3Object(img.path)
         })
     })
 </script>
@@ -86,6 +87,7 @@ import MediaItem from './MediaItem.vue';
                     @click="fullscreenHandler(index)"
                     :mediaSrc="image.src" 
                     :index
+                    :caption="image.alt"
                     fullscreenAble rounded 
                 />
             </div>
@@ -96,6 +98,7 @@ import MediaItem from './MediaItem.vue';
         <MediaItem :mediaSrc="state.loadedImages[state.fullscreenImage].src"
             :class="`img`"
         />
+        <p>{{ state.loadedImages[state.fullscreenImage].caption }}</p>
         <div class="x" v-html="x" @click="fullscreenHandler(null)"></div>
         <div class="bg"></div>
     </div>
@@ -155,9 +158,9 @@ import MediaItem from './MediaItem.vue';
         min-height: 300px;
         // padding: 0 10px 10px;
         padding: 3px 10px 10px;
-        border: 5px solid #333333;
+        // border-bottom: 2px solid #6f6f6f;
+        border: 5px double $primary-color-web;
         border-top: none;
-        // border-radius: 0 0 10px 10px;
         border-radius: 0 0 20px 20px;
         margin: 0 0 7px;
         // ::-webkit-scrollbar {

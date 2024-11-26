@@ -200,6 +200,7 @@ onMounted(() => {
     &.grid {
         display: grid;
         grid-template-rows: 0px 2fr 250px 0fr 4fr;
+        // grid-template-rows: 2fr 250px 0fr 4fr;
         grid-gap: 15px;
         transition: grid-template-rows .4s ease;
         &.active {

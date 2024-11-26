@@ -1,14 +1,12 @@
 <script setup>
-import { ref } from 'vue'
 import SelectorOption from './SelectorOption.vue'
 import backArrow from '@/assets/icon/backarrow.svg?raw'
+import home from '@/assets/icon/home.svg?raw'
 
 const props = defineProps({
   selectorActive: String,
   selectorActiveClass: String,
 })
-
-const selectorBackButton = ref(null)
 
 const emit = defineEmits(['selectorClick', 'backButtonClick'])
 
@@ -27,13 +25,11 @@ function backButtonClick() {
 <template>
     <!-- <div :class="`selector-wrapper ${selectorActiveClass}`"> -->
     <div class="selector-wrapper">
-        <!-- <div ref="selectorHomeButton"
-            @click="() => selectorClick(null)" v-html="backArrow"
-            :class="`selector-back-button ${selectorActiveClass}`"
-        ></div> -->
-        <div ref="selectorBackButton"
+        <div :class="`selector-back-button home ${selectorActiveClass}`" :style="{ padding:'4px'}"
+            @click="selectorClick(null)" v-html="home"
+        ></div>
+        <div :class="`selector-back-button ${selectorActiveClass}`"
             @click="backButtonClick" v-html="backArrow"
-            :class="`selector-back-button ${selectorActiveClass}`"
         ></div>
         <div ref="selectorGrid" :class="`selector-grid ${selectorActiveClass}`">
             <SelectorOption v-for="(option, i) in selector" 
@@ -84,6 +80,9 @@ function backButtonClick() {
         transition: $selector-transitions;
         background-color: $primary-black;
         &.active {
+            &.home {
+                left: 55px;
+            }
             left: 0;
             opacity: 1;
             pointer-events: all;

@@ -16,7 +16,7 @@
 <template>
     <Card>
         <template v-slot:preview>
-            <MediaItem :mediaSrc="getS3Object('work', previewImg)" />
+            <MediaItem :mediaSrc="getS3Object(previewImg)" />
         </template>
         <template v-slot:description>
             <h4>{{ title }}</h4>

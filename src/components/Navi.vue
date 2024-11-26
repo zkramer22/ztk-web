@@ -36,7 +36,7 @@ function selectorClick(option) {
                 :class="`grow-animation ${scrolledClass}`" 
                 src="@/assets/img/ztk-logo.png"
             />
-        <!-- <h1 :class="`site-title-text small ${scrolledClass}`"><span>ztk</span> <span style="font-weight: 500">web</span></h1> -->
+            <h5 :class="`nav-title ${scrolledClass}`"><span>ztk</span> <span style="font-weight: 500">web</span></h5>
         </div>
         <div class="slide-from-top menu-list">
             <div :class="`nav-button icon menu ${scrolledClass}`" @click="expandAccordion">
@@ -76,6 +76,7 @@ function selectorClick(option) {
         padding: 10px;
         display: grid;
         grid-template-rows: 0px 2fr 250px 0fr 4fr;
+        // grid-template-rows: 2fr 250px 0fr 4fr;
         grid-gap: 15px;
         grid-template-columns: 75px auto 75px;
         align-items: start;
@@ -83,21 +84,21 @@ function selectorClick(option) {
         &.active {
             grid-template-rows: 0px 2fr 250px 4fr 0fr;
         }
-        .site-title-text {
-            &.small {
-                font-size: 34px;
-                margin: 0 0 0 15px;
-                top: -100px;
-                transition: top .2s ease;
-            }
+        .nav-title {
+            position: relative;
+            font-size: 24px;
+            margin: 0 0 0 15px;
+            // top: -100px;
+            // top: -100px;
+            transition: top .2s ease;
             &.scrolled {
-                top: 0px;
+                // top: 0px;
             }
         }
     }
     
     .logo-wrapper {
-        grid-column: 1 / 1;
+        grid-column: 1 / 3;
         grid-row: 1 / 1;
         display: flex;
         justify-content: start;
@@ -105,16 +106,16 @@ function selectorClick(option) {
     }
     #monologo {
         pointer-events: auto;
-        width: 70px;
-        height: 70px;
-        padding: 3px;
+        width: 45px;
+        height: 45px;
+        padding: 2px;
         background-color: white;
         border-radius: 5px;
         transition: scale .1s linear, width .2s linear, height .2s linear, padding .2s linear;
         &.scrolled {
-            width: 45px;
-            height: 45px;
-            padding: 2px;
+            // width: 45px;
+            // height: 45px;
+            // padding: 2px;
         }
         @media(hover:hover) {
             &:hover {
@@ -163,14 +164,14 @@ function selectorClick(option) {
             transition: scale .4s ease, transform .1s ease;
         }
         &.icon {
-            padding: 10px;
-            width: 70px;
-            height: 70px;
-            &.scrolled {
-                width: 45px;
-                height: 45px;
-                padding: 3px;
-            }
+            padding: 5px;
+            width: 45px;
+            height: 45px;
+            // &.scrolled {
+            //     width: 45px;
+            //     height: 45px;
+            //     padding: 3px;
+            // }
         }
         &.black {
             background-color: $primary-gray;

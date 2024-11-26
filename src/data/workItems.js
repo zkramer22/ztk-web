@@ -2,36 +2,72 @@ export const workBlocks = {
     'enterprise-dev': {
         title: "enterprise web development",
         short: "E-commerce sites, advanced search & filtering, internal business solutions, Google Maps integrations",
-        previewImg: 'branded-sites/dupont_safespec-hero.png',
+        previewImg: 'work/branded-sites/dupont_safespec-hero.png',
         items: [
             {
                 name: "Ford Pro Commercial Vehicle Center",
                 description: "allow users to search for Ford dealers, upgrade their vehicles, track their membership rewards, and more.",
                 images: [
-                    'branded-sites/ford-1.png',
-                    'branded-sites/ford-ffn-4.png',
-                    'branded-sites/ford-ffn-5.png',
-                    'branded-sites/ford-ffn-6.png',
-                    'branded-sites/ford-upfit-2.png',
+                    { 
+                        path: 'work/branded-sites/ford-1.png',
+                        caption: 'Hero image for Ford Pro Commercial Vehicle Center',
+                    },
+                    { 
+                        path: 'work/branded-sites/ford-ffn-4.png',
+                        caption: '',
+                    },
+                    { 
+                        path: 'work/branded-sites/ford-ffn-5.png',
+                        caption: '',
+                    },
+                    { 
+                        path: 'work/branded-sites/ford-ffn-6.png',
+                        caption: '',
+                    },
+                    { 
+                        path: 'work/branded-sites/ford-upfit-2.png',
+                        caption: '',
+                    },
                 ],
             },
             {
                 name: "DuPont SafeSPEC",
                 description: "provide a multi-faceted search function for chemical manufacturers to find safety products",
                 images: [
-                    'branded-sites/dupont_safespec-hero.png',
-                    'branded-sites/dupont_list-filtered-1.png',
-                    'branded-sites/dupont_list-filtered-2.png',
-                    'branded-sites/dupont_search-bar.png',
-                    'branded-sites/dupont_search-guide.png',
-                    'branded-sites/dupont_search-hazard.png',
+                    {
+                        path: 'work/branded-sites/dupont_safespec-hero.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/branded-sites/dupont_list-filtered-1.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/branded-sites/dupont_list-filtered-2.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/branded-sites/dupont_search-bar.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/branded-sites/dupont_search-guide.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/branded-sites/dupont_search-hazard.png',
+                        caption: '',
+                    },
                 ],
             },
             {
                 name: "KitchenAid & Whirpool ",
                 description: "deliver smooth UI experience for online shoppers seeking home appliances & cookware",
                 images: [
-                    '',
+                    {
+                        path: '',
+                        caption: '',
+                    },
                 ],
             },
         ]
@@ -39,58 +75,161 @@ export const workBlocks = {
     'marketing-adtech': {
         title: "marketing + ad tech",
         short: "Custom company websites, landing pages, animated advertisements, interactive info panels",
-        previewImg: 'health-panels/panel01.jpg',  // try the .exe for clips
+        previewImg: 'work/health-panels/panel01.jpg',  // try the .exe for clips
         items: [
+            {
+                name: "Landing Pages",
+                description: "An assortment of pages built for the oncology marketing sector. These were an excellent opportunity to get unnecessarily fancy with CSS and JavaScript.",
+                images: [
+                    {
+                        path: 'work/health-sites/aml-site-audio.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/health-sites/unithroid-2.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/health-sites/unithroid-3.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/health-sites/xiaflex-1.png',
+                        caption: '',
+                    },
+                ]
+            },
+            {
+                name: "Legend Biotech",
+                description: "I built a custom website for a global oncology biotech company – complete with responsive & interactive displays of scientific information about clinical trials.",
+                images: [
+                    {
+                        path: 'work/health-sites/legend-home.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/health-sites/legend-diagram.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/health-sites/legend-3.png',
+                        caption: '',
+                    } 
+                ],
+            },
             {
                 name: "Endo Men's Health Info Panels",
                 description: "engage healthcare professionals with interactive touch screen displays",
                 images: [
-                    'health-panels/panel02.jpg',
-                    'health-panels/panel05.jpg',
-                    'health-panels/panel08.jpg',
-                    'health-panels/panel09.jpg',
+                    {
+                        path: 'work/health-panels/panel01.jpg',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/health-panels/panel02.jpg',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/health-panels/panel05.jpg',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/health-panels/panel08.jpg',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/health-panels/panel09.jpg',
+                        caption: '',
+                    },
                 ],
             },
-            // {
-            //     name: "Legend Biotech",
-            //     description: "I built a custom website for a global oncology biotech company – complete with responsive & interactive displays of scientific information about clinical trials.",
-            //     images: [
-            //         'health-sites/legend-home.png',  // maybe get localhost shots of this site
-            //         'health-sites/legend-diagram.png',  // trim
-            //         'health-sites/legend-3.png',  // get movile shots                 
-            //     ],
-            // },
-            // {
-            //     name: "Animated Advertisements",
-            //     description: "Eye-catching, animated ad assets of various sizes, primarily for pharmaceutical products.",
-            //     images: [
-            //         'animated-ads/ad_r-squared_square.mov',
-            //         'animated-ads/ad_r-squared_rect.mov',
-            //         'animated-ads/aml-ad-square.mov',
-            //         'animated-ads/aml-rect.mov',
-            //     ]
-            // },
-            // {
-            //     name: "Landing Pages",
-            //     description: "An assortment of pages built for the oncology marketing sector. These were an excellent opportunity to get unnecessarily fancy with CSS and JavaScript.",
-            //     images: [
-            //         'health-sites/aml-site-audio.png',
-            //         'health-sites/unithroid-2.png',
-            //         'health-sites/unithroid-3.png',
-            //         'health-sites/xiaflex-1.png',  // get mobile site                
-            //     ]
-            // }
+            {
+                name: "Animated Advertisements",
+                description: "Eye-catching, animated ad assets of various sizes, primarily for pharmaceutical products.",
+                images: [
+                    {
+                        path: 'work/animated-ads/ad_r-squared_square.mov',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/animated-ads/ad_r-squared_rect.mov',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/animated-ads/aml-ad-square.mov',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/animated-ads/aml-rect.mov',
+                        caption: '',
+                    },
+                ]
+            },
         ],
     },
     'design': {
         title: "design",
         short: "UI design for web apps, components, SVG icons & drawings",
-        previewImg: 'figma-design/app-design-1.png',
+        previewImg: 'work/figma-design/app-design-1.png',
+        items: [
+            {
+                name: "Lead UX Designer",
+                description: "I was lead designer and frontend developer for an early-stage startup. I used Figma to mock up data visualization dashboards, notification centers, settings panels, navigation UI, and much more.",
+                images: [
+                    {
+                        path: 'work/figma-design/app-design-1.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/figma-design/app-design-2.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/figma-design/app-design-3.png',
+                        caption: '',
+                    },
+                    {
+                        path: 'work/figma-design/app-design-4.png',
+                        caption: '',
+                    },
+                ]
+            },
+            {
+                name: "Vector Drawings",
+                description: "Tattoo designs, icons for my own projects, etc.",
+                images: [
+                    {
+                        path: 'work/figma-design/tattoo-1.png',
+                        caption: '',
+                    },
+                ]
+            },
+            {
+                name: "3D Design",
+                description: "The humble beginning of my experience designing 3D objects & spaces. So far, I've learned on my own using TinkerCAD.",
+                images: [
+                    {
+                        path: 'work/figma-design/tattoo-1.png',
+                        caption: '',
+                    },
+                ]
+            },
+            {
+                name: "Fun / Random",
+                description: "Everything else.",
+                images: [
+                    {
+                        path: 'work/figma-design/tattoo-1.png',
+                        caption: '',
+                    },
+                ]
+            },
+        ]
 
     },
     'web-apps': {
-        title: "web applications",
-        short: "Vue & React projects, data visualization, user authentication, web analytics",
+        title: "web apps & data viz",
+        short: "Frontend framework (Vue, React, Svelte) web apps, data visualization, user authentication, web analytics",
         previewImg: '',
         items: [
 
@@ -98,7 +237,7 @@ export const workBlocks = {
     },
     'components': {
         title: "components",
-        short: "",
+        short: "Reusable components built using Vue, React, Svelte, or just plain, vanilla JS",
         items: [
 
         ],
@@ -120,66 +259,66 @@ export const workBlocks = {
 }
 
 const imgs = [
-    'animated-ads/ad_r-squared_rect.mov',
-    'animated-ads/ad_r-squared_square.mov',
-    'animated-ads/aml-ad-square.mov',
-    'animated-ads/aml-rect.mov',
+    'work/animated-ads/ad_r-squared_rect.mov',
+    'work/animated-ads/ad_r-squared_square.mov',
+    'work/animated-ads/aml-ad-square.mov',
+    'work/animated-ads/aml-rect.mov',
 
-    'branded-sites/dupont_safespec-hero.png',
-    'branded-sites/dupont_list-filtered-1.png',
-    'branded-sites/dupont_list-filtered-2.png',
-    'branded-sites/dupont_search-bar.png',
-    'branded-sites/dupont_search-guide.png',
-    'branded-sites/dupont_search-hazard.png',
+    'work/branded-sites/dupont_safespec-hero.png',
+    'work/branded-sites/dupont_list-filtered-1.png',
+    'work/branded-sites/dupont_list-filtered-2.png',
+    'work/branded-sites/dupont_search-bar.png',
+    'work/branded-sites/dupont_search-guide.png',
+    'work/branded-sites/dupont_search-hazard.png',
 
-    'branded-sites/ford-1.png',
+    'work/branded-sites/ford-1.png',
 
-    'branded-sites/ford-ffn-2-modal.mov',
+    'work/branded-sites/ford-ffn-2-modal.mov',
 
-    'branded-sites/ford-ffn-4.png',
-    'branded-sites/ford-ffn-5.png',
-    'branded-sites/ford-ffn-6.png',
+    'work/branded-sites/ford-ffn-4.png',
+    'work/branded-sites/ford-ffn-5.png',
+    'work/branded-sites/ford-ffn-6.png',
 
-    'branded-sites/ford-search-1.mov',
-    'branded-sites/ford-search-2.mov',
-    'branded-sites/ford-search-3.mov',
-    'branded-sites/ford-upfit-1.mov',
+    'work/branded-sites/ford-search-1.mov',
+    'work/branded-sites/ford-search-2.mov',
+    'work/branded-sites/ford-search-3.mov',
+    'work/branded-sites/ford-upfit-1.mov',
     
-    'branded-sites/ford-upfit-2.png',
+    'work/branded-sites/ford-upfit-2.png',
 
-    // 'health-sites/aml-site-1.mov',
-    'health-sites/aml-site-audio.png',
-    'health-sites/legend-home.png',  // maybe get localhost shots of this site
-    'health-sites/legend-diagram.png',  // trim
-    'health-sites/legend-3.png',  // get mobile shots 
-    // 'health-sites/loxo-site-1.png',  // get nav bar animation and mobile
-    // 'health-sites/loxo-site-2.png',
-    // 'health-sites/loxo-site-3.png',
-    'health-sites/unithroid-load.mov',
-    // 'health-sites/unithroid-1.png',  // get mobile shot of this site
-    'health-sites/unithroid-2.png',
-    'health-sites/unithroid-3.png',
-    // 'health-sites/unithroid-5.png',
-    'health-sites/xiaflex-1.png',  // get mobile site
-    // 'health-sites/xiaflex-2.png',
-    // 'health-sites/xiaflex-3.png',
+    // 'work/health-sites/aml-site-1.mov',
+    'work/health-sites/aml-site-audio.png',
+    'work/health-sites/legend-home.png',  // maybe get localhost shots of this site
+    'work/health-sites/legend-diagram.png',  // trim
+    'work/health-sites/legend-3.png',  // get mobile shots 
+    // 'work/health-sites/loxo-site-1.png',  // get nav bar animation and mobile
+    // 'work/health-sites/loxo-site-2.png',
+    // 'work/health-sites/loxo-site-3.png',
+    'work/health-sites/unithroid-load.mov',
+    // 'work/health-sites/unithroid-1.png',  // get mobile shot of this site
+    'work/health-sites/unithroid-2.png',
+    'work/health-sites/unithroid-3.png',
+    // 'work/health-sites/unithroid-5.png',
+    'work/health-sites/xiaflex-1.png',  // get mobile site
+    // 'work/health-sites/xiaflex-2.png',
+    // 'work/health-sites/xiaflex-3.png',
 
-    'health-panels/panel01.jpg',
-    'health-panels/panel02.jpg',
-    'health-panels/panel05.jpg',
-    'health-panels/panel08.jpg',
-    'health-panels/panel09.jpg',
+    'work/health-panels/panel01.jpg',
+    'work/health-panels/panel02.jpg',
+    'work/health-panels/panel05.jpg',
+    'work/health-panels/panel08.jpg',
+    'work/health-panels/panel09.jpg',
 
     'data-viz/stream-data-demo.png',
-    'branded-sites/ford-ffn-1.png',
-    'branded-sites/ford-ffn-2.png',
-    'branded-sites/ford-ffn-3.png',
+    'work/branded-sites/ford-ffn-1.png',
+    'work/branded-sites/ford-ffn-2.png',
+    'work/branded-sites/ford-ffn-3.png',
 
-    'figma-design/app-design-1.png',
-    'figma-design/app-design-2.png',
-    'figma-design/app-design-3.png',
-    'figma-design/app-design-4.png',
-    'figma-design/tattoo-1.png',
+    'work/figma-design/app-design-1.png',
+    'work/figma-design/app-design-2.png',
+    'work/figma-design/app-design-3.png',
+    'work/figma-design/app-design-4.png',
+    'work/figma-design/tattoo-1.png',
 ]
 
 export const chips = [

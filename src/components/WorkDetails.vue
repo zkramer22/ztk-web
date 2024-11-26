@@ -30,7 +30,7 @@ const state = reactive({
                 :getS3Object
             >
                 <template v-slot:preview>
-                    <MediaItem :mediaSrc="getS3Object('work', images[0])"/>
+                    <MediaItem :mediaSrc="getS3Object(images[0].path)"/>
                 </template>
                 <template v-slot:description>
                     <h4>{{ name }}</h4>
