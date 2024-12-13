@@ -6,67 +6,150 @@ export const workBlocks = {
         items: [
             {
                 name: "Ford Pro Commercial Vehicle Center",
-                description: "allow users to search for Ford dealers, upgrade their vehicles, track their membership rewards, and more.",
+                description: "This web application allows users to search for Ford dealerships, track their membership rewards, and more. Some screenshots are from early design / development phase.",
+                links: [
+                    {
+                        url: 'https://www.fordpro.com/en-us/dealer-locate/',
+                        text: 'FordPro.com',
+                    },
+                ],
                 images: [
                     { 
                         path: 'work/branded-sites/ford-1.png',
-                        caption: 'Hero image for Ford Pro Commercial Vehicle Center',
+                        alt: 'Ford Pro Commercial Vehicle Center: Home page hero image',
+                    },
+                    { 
+                        path: 'work/branded-sites/ford-find-dealer.mov',
+                        alt: 'Google Maps custom integration allowing users to find a dealer fitting their specified requirements',
+                    },
+                    { 
+                        path: 'work/branded-sites/ford-find-charger.mov',
+                        alt: 'Google Maps custom integration allowing users to find an EV charger nearby a specified location',
                     },
                     { 
                         path: 'work/branded-sites/ford-ffn-4.png',
-                        caption: '',
+                        alt: 'Ford Fleet Network web app: Login screen',
                     },
                     { 
                         path: 'work/branded-sites/ford-ffn-5.png',
-                        caption: '',
+                        alt: 'Ford Fleet Network web app: Enrollment screen',
                     },
                     { 
                         path: 'work/branded-sites/ford-ffn-6.png',
-                        caption: '',
+                        alt: 'Ford Fleet Network web app: Reports main menu',
                     },
                     { 
                         path: 'work/branded-sites/ford-upfit-2.png',
-                        caption: '',
+                        alt: 'Ford Fleet Network web app: Manage user profiles and settings regarding Upfitters (companies licensed to upgrade Ford Vehicles). This view was specifically designed for iPad.',
                     },
+                    
                 ],
             },
             {
                 name: "DuPont SafeSPEC",
-                description: "provide a multi-faceted search function for chemical manufacturers to find safety products",
+                description: "The SafeSPEC site functions as a smart catalog for DuPont's protective apparel for hazardous materials. Three different selector tools are provided to guide customers to the gear they need in different situations.",
+                links: [
+                    {
+                        url: 'https://www.dupont.com/safespec.html',
+                        text: 'DuPont.com/safeSPEC',
+                    }
+                ],
                 images: [
                     {
                         path: 'work/branded-sites/dupont_safespec-hero.png',
-                        caption: '',
+                        alt: 'SafeSPEC homepage hero section – image carousel',
                     },
                     {
                         path: 'work/branded-sites/dupont_list-filtered-1.png',
-                        caption: '',
+                        alt: 'SafeSPEC product list page – filters applied',
                     },
                     {
                         path: 'work/branded-sites/dupont_list-filtered-2.png',
-                        caption: '',
+                        alt: 'SafeSPEC product list page – more filters applied',
                     },
                     {
                         path: 'work/branded-sites/dupont_search-bar.png',
-                        caption: '',
+                        alt: 'SafeSPEC product list page – search bar for all safety products',
                     },
                     {
                         path: 'work/branded-sites/dupont_search-guide.png',
-                        caption: '',
+                        alt: 'SafeSPEC selector tools – Search By Guide',
                     },
                     {
                         path: 'work/branded-sites/dupont_search-hazard.png',
-                        caption: '',
+                        alt: 'SafeSPEC selector tools – Search By Hazard',
                     },
                 ],
             },
             {
                 name: "KitchenAid & Whirpool ",
-                description: "deliver smooth UI experience for online shoppers seeking home appliances & cookware",
-                images: [
+                description: "deliver smooth UI experience for online shoppers seeking cookware, home appliances, and more",
+                links: [
                     {
-                        path: '',
-                        caption: '',
+                        url: 'https://www.kitchenaid.com',
+                        text: 'KitchenAid.com',
+                    },
+                    {
+                        url: 'https://www.whirlpool.com',
+                        text: 'Whirlpool.com',
+                    }
+                ],
+                images: [
+                    { 
+                        path: 'work/branded-sites/kitchenaid-home2.png',
+                        alt: 'KitchenAid Espresso products page – image carousel',
+                    },
+                    { 
+                        path: 'work/branded-sites/kitchenaid-home1.png',
+                        alt: 'KitchenAid homepage hero section – Holiday Savings CTA',
+                    },
+                    { 
+                        path: 'work/branded-sites/kitchenaid-product1.png',
+                        alt: 'KitchenAid product list page – extended filtering & sorting',
+                    },
+                    { 
+                        path: 'work/branded-sites/kitchenaid-compare1.png',
+                        alt: 'KitchenAid product list page – selecting products to compare',
+                    },
+                    { 
+                        path: 'work/branded-sites/kitchenaid-compare2.png',
+                        alt: 'KitchenAid Compare Appliances page',
+                    },
+                    { 
+                        path: 'work/branded-sites/kitchenaid-mixers.mov',
+                        alt: 'KitchenAid product list page – filtering and shopping interactions',
+                    },
+                    { 
+                        path: 'work/branded-sites/kitchenaid-offers.png',
+                        alt: 'KitchenAid drawer component for Sales & Offers',
+                    },
+                    { 
+                        path: 'work/branded-sites/kitchenaid-scroll-anim.mov',
+                        alt: 'KitchenAid scroll-animated product feature section',
+                    },
+                    { 
+                        path: 'work/branded-sites/whirlpool-explore.png',
+                        alt: 'Whirlpool cooktop explore page',
+                    },
+                    { 
+                        path: 'work/branded-sites/whirlpool-hero.png',
+                        alt: 'Whirlpool homepage hero section – Cyber Sale',
+                    },
+                    { 
+                        path: 'work/branded-sites/whirlpool-item-detail.png',
+                        alt: 'Whirlpool product detail page',
+                    },
+                    { 
+                        path: 'work/branded-sites/whirlpool-modal.mov',
+                        alt: 'Whirlpool laundry appliances – interactive modal',
+                    },
+                    { 
+                        path: 'work/branded-sites/whirlpool-modal2.mov',
+                        alt: 'Whirlpool kitchen appliancew – interactive modal',
+                    },
+                    { 
+                        path: 'work/branded-sites/whirlpool-products1.png',
+                        alt: 'Whirlpool product list page – extended filtering & sorting',
                     },
                 ],
             },
@@ -79,67 +162,89 @@ export const workBlocks = {
         items: [
             {
                 name: "Landing Pages",
-                description: "An assortment of pages built for the oncology marketing sector. These were an excellent opportunity to get unnecessarily fancy with CSS and JavaScript.",
+                description: "An assortment of pages built for the healthcare marketing industry. These were an excellent opportunity to get unnecessarily fancy with CSS and JavaScript.",
                 images: [
                     {
                         path: 'work/health-sites/aml-site-audio.png',
-                        caption: '',
+                        alt: 'Understanding AML Relpase: this site was built to educate healthcare professionals on acute myeloid leukemia topics. I had some fun with this one, creating custom audio controls & expanding accordions with vanilla JavaScript.',
                     },
                     {
                         path: 'work/health-sites/unithroid-2.png',
-                        caption: '',
-                    },
-                    {
-                        path: 'work/health-sites/unithroid-3.png',
-                        caption: '',
+                        alt: 'Unithroid: a responsive, content-rich webpage with hypothyroidism drug information',
                     },
                     {
                         path: 'work/health-sites/xiaflex-1.png',
-                        caption: '',
+                        alt: "Xiaflex: a responsive, content-rich webpage with information about the drug and Peyronie's Disease",
+                    },
+                    {
+                        path: 'work/health-sites/unithroid-load.mov',
+                        alt: 'Unithroid ordered a particularly flashy intro animation for their drug info landing page. The animated lady is a bit much, IMO.',
+                    },
+                    {
+                        path: 'work/health-sites/loxo-site-1.png',
+                        alt: 'Focus on RET: Loxo (since acquired by Eli Lilly) ordered this site for educating healthcare professionals about the Rearranged during Transfection (RET) gene.',
                     },
                 ]
             },
             {
                 name: "Legend Biotech",
-                description: "I built a custom website for a global oncology biotech company – complete with responsive & interactive displays of scientific information about clinical trials.",
+                description: "I built a custom website for a global oncology biotech company – complete with interactive displays of their clinical trial & research information.",
+                links: [
+                    {
+                        url: 'https://legendbiotech.com/',
+                        text: 'LegendBiotech.com',
+                    }
+                ],
                 images: [
                     {
                         path: 'work/health-sites/legend-home.png',
-                        caption: '',
+                        alt: 'Legend Biotech: homepage hero section (original site build)',
                     },
                     {
                         path: 'work/health-sites/legend-diagram.png',
-                        caption: '',
+                        alt: 'Interactive display – each turquoise dot reveals a different snippet of information.',
                     },
                     {
                         path: 'work/health-sites/legend-3.png',
-                        caption: '',
-                    } 
+                        alt: 'Responsive HTML display of clinical trial progress information',
+                    }
                 ],
             },
             {
                 name: "Endo Men's Health Info Panels",
-                description: "engage healthcare professionals with interactive touch screen displays",
+                description: "These Electron-container desktop apps were run on various touch screen displays at a healthcare professional conference. I focused on smooth animations / transitions, as well as timeouts for resetting the app, nudging users after inactivity, etc.",
                 images: [
                     {
                         path: 'work/health-panels/panel01.jpg',
-                        caption: '',
+                        alt: 'Home screen for touch screen info panel. App returns to this screen upon a period of inactivity',
                     },
                     {
                         path: 'work/health-panels/panel02.jpg',
-                        caption: '',
+                        alt: 'Informational panel for Aveed drug',
                     },
                     {
                         path: 'work/health-panels/panel05.jpg',
-                        caption: '',
+                        alt: 'Informational panel for Edex drug',
                     },
                     {
                         path: 'work/health-panels/panel08.jpg',
-                        caption: '',
+                        alt: 'Informational panel for Xiaflex drug',
                     },
                     {
                         path: 'work/health-panels/panel09.jpg',
-                        caption: '',
+                        alt: 'Informational panel for Testopel drug',
+                    },
+                    {
+                        path: 'work/health-panels/panel-how-common-home.png',
+                        alt: "Home screen for educational info panel about Peyronie's Disease",
+                    },
+                    {
+                        path: 'work/health-panels/panel-how-common-questions.png',
+                        alt: "Screen asking questions about Peyronie's Disease",
+                    },
+                    {
+                        path: 'work/health-panels/panel-how-common-answers.jpg',
+                        alt: "Screen revealing answers to questions about Peyronie's Disease",
                     },
                 ],
             },
@@ -148,20 +253,24 @@ export const workBlocks = {
                 description: "Eye-catching, animated ad assets of various sizes, primarily for pharmaceutical products.",
                 images: [
                     {
+                        path: 'work/animated-ads/r-squared.png',
+                        alt: '',
+                    },
+                    {
                         path: 'work/animated-ads/ad_r-squared_square.mov',
-                        caption: '',
+                        alt: 'Prescription drug ad using transparent GSAP animation library to reveal graphics ',
                     },
                     {
                         path: 'work/animated-ads/ad_r-squared_rect.mov',
-                        caption: '',
+                        alt: '',
                     },
                     {
                         path: 'work/animated-ads/aml-ad-square.mov',
-                        caption: '',
+                        alt: '',
                     },
                     {
                         path: 'work/animated-ads/aml-rect.mov',
-                        caption: '',
+                        alt: '',
                     },
                 ]
             },
@@ -170,27 +279,47 @@ export const workBlocks = {
     'design': {
         title: "design",
         short: "UI design for web apps, components, SVG icons & drawings",
-        previewImg: 'work/figma-design/app-design-1.png',
+        previewImg: 'work/figma-design/color-palette.jpg',
         items: [
             {
-                name: "Lead UX Designer",
-                description: "I was lead designer and frontend developer for an early-stage startup. I used Figma to mock up data visualization dashboards, notification centers, settings panels, navigation UI, and much more.",
+                name: "Lead UI / UX Designer",
+                description: "I was lead designer & frontend developer for an early-stage startup – Westcott Multimedia. Record labels & music distributors used our app to gain insights about their artist roster and manage ad campaigns. I used Figma to design the app's UI, although much of it was built without a design.",
                 images: [
                     {
-                        path: 'work/figma-design/app-design-1.png',
-                        caption: '',
+                        path: 'work/figma-design/notif-component.jpg',
+                        alt: "Final design choice for summarized artist insights, combining music streaming activity & ad campaign results",
                     },
                     {
-                        path: 'work/figma-design/app-design-2.png',
-                        caption: '',
+                        path: 'work/figma-design/notif-redesign.jpg',
+                        alt: "One of several design iterations on the Spike Notification – a super-compact view of details pertaining to a sudden increase in an artist's music streaming.",
                     },
                     {
-                        path: 'work/figma-design/app-design-3.png',
-                        caption: '',
+                        path: 'work/figma-design/color-palette.jpg',
+                        alt: "Selected colors for Westcott Multimedia's app.",
                     },
                     {
-                        path: 'work/figma-design/app-design-4.png',
-                        caption: '',
+                        path: 'work/figma-design/roster-filter-menu.jpg',
+                        alt: "Mockup for a filtering menu; these filters apply to a list of a record label's artists",
+                    },
+                    {
+                        path: 'work/figma-design/notif-bell-menu.jpg',
+                        alt: "Design for a summarized notification list – users click on the bell to reveal the popover menu.",
+                    },
+                    {
+                        path: 'work/figma-design/user-management.jpg',
+                        alt: "A relatively simple Users list, with a few actions related to data access / permissions.",
+                    },
+                    {
+                        path: 'work/figma-design/budget-controls.jpg',
+                        alt: "Budget Manager – a feature showing a list of Budget Controls, which are rulesets created by the user for the app's automatic ad campaigns",
+                    },
+                    {
+                        path: 'work/figma-design/ad-controls-modal.jpg',
+                        alt: "Design of a complex feature that allows users to set budget constraints & goals for their automatically launched ad campaigns.",
+                    },
+                    {
+                        path: 'work/figma-design/campaign-table.jpg',
+                        alt: "Design for a table containing data about an artist's spikes in attention, and the resulting ad campaigns that were launched.",
                     },
                 ]
             },
@@ -200,17 +329,17 @@ export const workBlocks = {
                 images: [
                     {
                         path: 'work/figma-design/tattoo-1.png',
-                        caption: '',
+                        alt: '',
                     },
                 ]
             },
             {
                 name: "3D Design",
-                description: "The humble beginning of my experience designing 3D objects & spaces. So far, I've learned on my own using TinkerCAD.",
+                description: "The humble beginning of my experience designing 3D objects & spaces. I recently created a mock-up design for a recording studio construction project.",
                 images: [
                     {
                         path: 'work/figma-design/tattoo-1.png',
-                        caption: '',
+                        alt: '',
                     },
                 ]
             },
@@ -220,42 +349,42 @@ export const workBlocks = {
                 images: [
                     {
                         path: 'work/figma-design/tattoo-1.png',
-                        caption: '',
+                        alt: '',
                     },
                 ]
             },
         ]
 
     },
-    'web-apps': {
-        title: "web apps & data viz",
-        short: "Frontend framework (Vue, React, Svelte) web apps, data visualization, user authentication, web analytics",
-        previewImg: '',
-        items: [
+    // 'web-apps': {
+    //     title: "web apps & data viz",
+    //     short: "Frontend framework (Vue, React, Svelte) web apps, data visualization, user authentication, web analytics",
+    //     previewImg: '',
+    //     items: [
 
-        ],
-    },
-    'components': {
-        title: "components",
-        short: "Reusable components built using Vue, React, Svelte, or just plain, vanilla JS",
-        items: [
+    //     ],
+    // },
+    // 'components': {
+    //     title: "components",
+    //     short: "Reusable components built using Vue, React, Svelte, or just plain, vanilla JS",
+    //     items: [
 
-        ],
-    },
-    'code': {
-        title: "code",
-        short: "interesting code snippets worth sharing",
-        items: [
+    //     ],
+    // },
+    // 'code': {
+    //     title: "code",
+    //     short: "interesting code snippets worth sharing",
+    //     items: [
 
-        ],
-    },
-    'games': {
-        title: "games",
-        short: "lil games I built to practice different javascript / css concepts",
-        items: [
+    //     ],
+    // },
+    // 'games': {
+    //     title: "games",
+    //     short: "lil games I built to practice different javascript / css concepts",
+    //     items: [
 
-        ],
-    },
+    //     ],
+    // },
 }
 
 const imgs = [
@@ -341,6 +470,3 @@ export const chips = [
     'ToneJS',
     'Wavesurfer',
 ]
-
-// body: "Over the years, I’ve built all kinds of things for the healthcare industry. Projects ranged from custom company websites, to animated advertisements, to interactive info panels on display at national conferences. While I had to work within strict stylistic constraints during design and development phases, I was able to expand my toolset and deepen my understanding along the way.",
-// body: "OneMagnify completed a series of branding jobs for Whirlpool, KitchenAid, Maytag, and other household names. My roles here ranged from creating email marketing content to developing features for the e-commerce experience across all the sites. Advanced filtering system, responsive design, and fast load times were imperative here.",

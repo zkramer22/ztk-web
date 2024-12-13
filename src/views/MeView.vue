@@ -55,8 +55,9 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
 
     @media screen and (min-width: 768px) {
         .container {
-            grid-row: 2 / 5;
-            margin-top: 0;
+            grid-row: 1 / 4;
+            // grid-row: 2 / 5;
+            // margin-top: 0;
             max-width: 1000px;
         }
         .img-text-grid {

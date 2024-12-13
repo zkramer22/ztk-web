@@ -25,7 +25,7 @@ function backButtonClick() {
 <template>
     <!-- <div :class="`selector-wrapper ${selectorActiveClass}`"> -->
     <div class="selector-wrapper">
-        <div :class="`selector-back-button home ${selectorActiveClass}`" :style="{ padding:'4px'}"
+        <div :class="`selector-back-button home ${selectorActiveClass}`"            
             @click="selectorClick(null)" v-html="home"
         ></div>
         <div :class="`selector-back-button ${selectorActiveClass}`"
@@ -49,6 +49,7 @@ function backButtonClick() {
         position: relative;
         height: min-content;
         grid-row: -2 / -1;
+        // grid-row: 2 / 3;
         grid-column: 1 / -1;
         transition: $selector-transitions;
         animation: fadein 1s linear, translateFromRight 1s ease;
@@ -77,15 +78,35 @@ function backButtonClick() {
         border: 2px solid;
         border-radius: 10px;
         opacity: 0;
-        transition: $selector-transitions;
+        transition: $selector-transitions, scale .1s linear;
+        scale: 1;
+        align-items: center;
+        justify-items: center;
+        align-content: center center;
         background-color: $primary-black;
         &.active {
             &.home {
-                left: 55px;
+                // left: 55px;
+                bottom: 55px;
+                svg {
+                    width: 80%;
+                    height: 100%;
+                    aspect-ratio: 1;
+                    margin: 0 auto;
+                }
+                @media screen and (min-width: 500px) {
+                    bottom: 0;
+                    left: 55px;
+                }
             }
             left: 0;
             opacity: 1;
             pointer-events: all;
+        }
+        @media (hover:hover) {
+            &:hover {
+                scale: 1.1;
+            }
         }
     }
 

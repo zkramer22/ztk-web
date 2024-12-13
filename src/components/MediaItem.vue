@@ -5,6 +5,7 @@ const props = defineProps({
     mediaSrc: String,
     rounded: Boolean,
     fullscreenAble: Boolean,
+    controls: Boolean,
 })
 
 const imgRef = ref(null)
@@ -24,7 +25,7 @@ const isVideo = computed(() => {
 <template>
     <video v-if="isVideo" ref="videoRef" :src="mediaSrc"
         :class="`media ${roundedClass}`"
-        autoplay loop playsinline controls 
+        autoplay loop playsinline :controls="controls" 
         controlslist="nodownload" 
         oncontextmenu="return false" />
     

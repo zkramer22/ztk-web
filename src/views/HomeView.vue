@@ -38,7 +38,15 @@ import design from '@/assets/icon/design.svg?raw'
 
 .container {
     grid-row: 3 / 4;
+    margin-top: 0;
+    // grid-row: 2 / 3;
     align-content: center;
+}
+
+.site-title-text {
+    position: relative;
+    text-align: center;
+    animation: fadein 1s linear, slideFromLeft 1s ease;
 }
 
 #welcome-text {

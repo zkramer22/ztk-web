@@ -5,7 +5,7 @@
 
     //////////////////// methods //////////////////////
     function scrollTop() {
-        window.scrollTo({ top: 0 })
+        window.scrollTo({ top: 0, behavior: 'instant' })
     }
 
 </script>
@@ -18,7 +18,8 @@
         <h4>Projects By Type:</h4>
         <div class="work-view">
             <RouterLink v-for="({ previewImg, title, short, chips }, key) in workBlocks"
-                :to="`/work/${key}`" @click.native="scrollTop()"
+                :to="`/work/${key}`" 
+                @click.native="scrollTop()"
             >
                 <WorkBlock
                     :key="`work-${key}`"

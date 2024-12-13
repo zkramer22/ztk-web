@@ -73,7 +73,8 @@ function selectorClick(option) {
         right: 0;
         bottom: 0;
         left: 0;
-        padding: 10px;
+        // padding: 10px;
+        padding: 16px;  // match mainView
         display: grid;
         grid-template-rows: 0px 2fr 250px 0fr 4fr;
         // grid-template-rows: 2fr 250px 0fr 4fr;
@@ -83,6 +84,7 @@ function selectorClick(option) {
         transition: grid-template-rows .4s ease;
         &.active {
             grid-template-rows: 0px 2fr 250px 4fr 0fr;
+            // grid-template-rows: 2fr 250px 4fr 0fr;
         }
         .nav-title {
             position: relative;

@@ -1,8 +1,10 @@
 <script setup>
 
     const props = defineProps({
-        chip: String,
+        iconText: String,
+        text: String,
         icon: String,
+        url: String,
     })
 
     function getS3Path(name) {
@@ -11,31 +13,49 @@
 </script>
 
 <template>
-    <div class="chip-wrapper">
-        <div class="chip-icon svg" v-if="icon" v-html="icon"></div>
-        <div class="chip-icon" v-else>
-            <img :src="getS3Path(chip)" alt="">
+    <a v-if="url" :href="url" target="_blank" @click="(e) => e.stopPropagation()">
+        <div class="chip-wrapper">
+            <div class="chip-icon svg" v-if="icon" v-html="icon"></div>
+            <div class="chip-icon" v-else-if="iconText">
+                <img :src="getS3Path(iconText)" alt="">
+            </div>
+            <div class="chip-text">
+                {{ text }}
+            </div>
         </div>
-        <div class="chip-text">
-            {{ chip }}
-        </div>
-    </div>
+    </a>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import '@/assets/variables.scss';
+    a {
+        display: block;
+        width: min-content;
+        white-space: nowrap;
+        @media (hover:hover) {
+            &:hover {
+                .chip-wrapper {
+                    // background-color: #666666;
+                    background-color: #9490c9;
+                }
+            }
+        }
+    }
+    
     .chip-wrapper {
-        background-color: $primary-gray;
+        // background-color: $primary-gray;
+        background-color: $primary-color-audio;
         display: flex;
         justify-content: center;
         align-items: center;
+        width: fit-content;
         height: 50px;
+        // margin: 4px;
+        margin: 4px 4px 4px 0;
         padding: 10px 15px;
         border-radius: 50px;
-        margin: 4px;
         user-select: none;
         pointer-events: none;
-        width: fit-content;
         .chip-icon {
             margin-right: 10px;
             display: flex;

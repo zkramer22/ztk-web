@@ -59,7 +59,7 @@ const activeClass = computed(() => props.isActive ? 'active' : '')
         z-index: 1;
         @media (hover:hover) {
             &:hover {
-                scale:1.05;
+                scale:1.1;
             }
         }
         &:active {
