@@ -2,98 +2,72 @@
 import x from '@/assets/icon/x.svg?raw'
 import chevron from '@/assets/icon/chevron.svg?raw'
 
-import { computed, onMounted, reactive } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import MediaItem from './MediaItem.vue';
-// import Chip from './Chip.vue'
 
-    const props = defineProps({
-        long: Boolean,
-        animation: Boolean,
-        drawer: Boolean,
-        images: Array[Object],
-        getS3Object: Function,
-    })
-    const state = reactive({
-        drawerOpen: false,
-        fullscreenImage: null,
-        // loadedImages: [],
-    })
-    const longClass = computed(() => props.long ? 'long' : '')
-    const animationClass = computed(() => props.animation ? 'animation' : '')
-    const drawerOpenClass = computed(() => state.drawerOpen ? 'open' : '')
-    const fullscreenClass = computed(() => state.fullscreenImage !== null ? 'active' : '')
+const props = defineProps({
+    long: Boolean,
+    animation: Boolean,
+    drawer: Boolean,
+    images: Array[Object],
+    getS3Object: Function,
+    component: Object,
+})
+const state = reactive({
+    drawerOpen: false,
+    fullscreenImage: null,
+    fullscreenControls: true,
+})
+const longClass = computed(() => props.long ? 'long' : '')
+const animationClass = computed(() => props.animation ? 'animation' : '')
+const drawerOpenClass = computed(() => state.drawerOpen ? 'open' : '')
+const fullscreenControlsClass = computed(() => state.fullscreenControls ? 'active' : '')
 
-    const fullscreenImageSrc = computed(() => {
-        return state.fullscreenImage !== null 
-            ? props.getS3Object(props.images[state.fullscreenImage].path)
-            : ''
-    })
+function handleCardClick(e) {
+    if (props.drawer) toggleDrawer()
+}
+function handleFullscreenClick(e) {
+    if (e.target.src) toggleFullscreenControls()
+}
+function toggleFullscreenControls() {
+    state.fullscreenControls = !state.fullscreenControls
+}
+function toggleDrawer() {
+    state.drawerOpen = !state.drawerOpen
+}
+function fullscreenHandler(index) {
+    state.fullscreenImage = index
+    toggleKeys()
+    toggleScroll()
+}
+function switchFullscreenImage(dir) {
+    let newIndex = state.fullscreenImage + dir
+    if (newIndex >= props.images.length) newIndex = 0
+    else if (newIndex < 0) newIndex = props.images.length - 1
+    state.fullscreenImage = newIndex
+}
+function disableScroll(e) { 
+    // use e.ctrlKey to detect zoom
+    e.preventDefault()   
+}
+function enableKeys(e) {
+    if (e.metaKey || e.shiftKey || e.altKey || e.code === 'Space' || e.code === 'Tab') e.preventDefault()
+    if (e.code === 'Escape' || e.code === 'Backspace') fullscreenHandler(null)
+    else if (e.code.search('Arrow') + 1) {
+        e.preventDefault()
+        if (e.code === 'ArrowLeft') switchFullscreenImage(-1)
+        else if (e.code === 'ArrowRight') switchFullscreenImage(1)
+    }
+}
+function toggleKeys() {
+    if (state.fullscreenImage !== null) document.body.addEventListener('keydown', enableKeys)
+    else document.body.removeEventListener('keydown', enableKeys)
+}
+function toggleScroll() {
+    if (state.fullscreenImage !== null) document.body.addEventListener('wheel', disableScroll, { passive: false })
+    else document.body.removeEventListener('wheel', disableScroll)
+}
 
-    function handleCardClick(e) {
-        if (props.drawer) toggleDrawer()
-
-    }
-    function toggleDrawer() {
-        state.drawerOpen = !state.drawerOpen
-    }
-
-    function fullscreenHandler(index) {
-        state.fullscreenImage = index
-        toggleKeys()
-        toggleScroll()
-    }
-    function switchFullscreenImage(dir) {
-        let newIndex = state.fullscreenImage + dir
-        // if (newIndex >= state.loadedImages.length) newIndex = 0
-        // else if (newIndex < 0) newIndex = state.loadedImages.length - 1
-        if (newIndex >= props.images.length) newIndex = 0
-        else if (newIndex < 0) newIndex = props.images.length - 1
-        state.fullscreenImage = newIndex
-    }
-
-    function disableScroll(e) { 
-        // use e.ctrlKey to detect zoom
-        e.preventDefault()   
-    }
-    function enableKeys(e) {
-        if (e.metaKey || e.shiftKey || e.altKey || e.code === 'Space' || e.code === 'Tab') e.preventDefault()
-        if (e.code === 'Escape' || e.code === 'Backspace') fullscreenHandler(null)
-        else if (e.code.search('Arrow') + 1) {
-            e.preventDefault()
-            if (e.code === 'ArrowLeft') switchFullscreenImage(-1)
-            else if (e.code === 'ArrowRight') switchFullscreenImage(1)
-        }
-    }
-    function toggleKeys() {
-        if (state.fullscreenImage !== null) document.body.addEventListener('keydown', enableKeys)
-        else document.body.removeEventListener('keydown', enableKeys)
-    }
-    function toggleScroll() {
-        if (state.fullscreenImage !== null) document.body.addEventListener('wheel', disableScroll, { passive: false })
-        else document.body.removeEventListener('wheel', disableScroll)
-    }
-
-    onMounted(() => {
-        // if (!props.images) return
-        // props.images.map((img, i) => {
-        //     let imageObj
-        //     if (img.path.split('.')[1] === 'mov') {
-        //         imageObj = {
-        //             alt: img.alt,
-        //             src: props.getS3Object(img.path)
-        //         }
-        //         state.loadedImages.push(imageObj)
-        //     }
-        //     else {
-        //         imageObj = new Image()
-        //         imageObj.onload = () => {
-        //             state.loadedImages.push(imageObj)
-        //         }
-        //         imageObj.alt = img.alt
-        //         imageObj.src = props.getS3Object(img.path)
-        //     }
-        // })
-    })
 </script>
 
 <template>
@@ -114,35 +88,37 @@ import MediaItem from './MediaItem.vue';
     <Transition v-if="drawer" name="expandDrawer">
         <div class="drawer-wrapper" v-show="state.drawerOpen">
             <div class="drawer">
-                <!-- <MediaItem v-for="(image, index) in state.loadedImages" :key="image" 
-                    @click="fullscreenHandler(index)"
-                    :mediaSrc="image.src" 
-                    :index
-                    fullscreenAble rounded
-                /> -->
-                <MediaItem v-for="(image, index) in images" :key="image" 
+                <MediaItem v-if="images" v-for="(image, index) in images" :key="image" 
                     @click="fullscreenHandler(index)"
                     :mediaSrc="props.getS3Object(image.path)" 
                     :index
                     fullscreenAble rounded
                 />
+                <component v-if="component" :is="component"></component>
             </div>
         </div>
     </Transition>
 
-    <div :class="`modal fullscreen ${fullscreenClass}`">
-        <!-- <MediaItem :mediaSrc="state.loadedImages[state.fullscreenImage].src"
+    <div v-if="state.fullscreenImage !== null" class="modal fullscreen" @click="handleFullscreenClick">
+        <MediaItem :mediaSrc="props.getS3Object(images[state.fullscreenImage].path)"
             :class="`img`"
         />
-        <p v-if="state.loadedImages[state.fullscreenImage].alt" class="caption">{{ state.loadedImages[state.fullscreenImage].alt }}</p> -->
-        <MediaItem :mediaSrc="fullscreenImageSrc"
-            :class="`img`"
-        />
-        <p v-if="state.fullscreenImage !== null && images[state.fullscreenImage].alt" class="caption">{{ images[state.fullscreenImage].alt }}</p>
-        <div class="modal-button x" v-html="x" @click="fullscreenHandler(null)"></div>
+        
+        <p v-if="images[state.fullscreenImage].alt" :class="`caption controls ${fullscreenControlsClass}`">
+            {{ images[state.fullscreenImage].alt }}
+        </p>
+
+        <div :class="`modal-button x controls ${fullscreenControlsClass}`" @click="fullscreenHandler(null)"
+            v-html="x">
+        </div>
+        <div @click="switchFullscreenImage(-1)" :class="`modal-button prev controls ${fullscreenControlsClass}`" 
+            v-html="chevron">
+        </div>
+        <div @click="switchFullscreenImage(1)" :class="`modal-button next controls ${fullscreenControlsClass}`" 
+            v-html="chevron">
+        </div>
+
         <div class="bg"></div>
-        <div @click="switchFullscreenImage(-1)" class="modal-button prev" v-html="chevron"></div>
-        <div @click="switchFullscreenImage(1)" class="modal-button next" v-html="chevron"></div>
     </div>
 </template>
 
@@ -208,6 +184,16 @@ import MediaItem from './MediaItem.vue';
         bottom: unset;
         svg {
             position: relative;
+        }
+    }
+
+    .controls {
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity .4s ease;
+        &.active {
+            opacity: 1;
+            pointer-events: all;
         }
     }
     
@@ -312,7 +298,6 @@ import MediaItem from './MediaItem.vue';
         animation: fadein .4s linear, slideFromBottom .4s ease;
         position: fixed;
         z-index: 1000;
-        opacity: 0;
     }
     .fullscreen {
         position: fixed;
@@ -347,7 +332,8 @@ import MediaItem from './MediaItem.vue';
             &.long {
                 display: grid;
                 grid-template-columns: 1fr 2fr;
-                grid-auto-rows: minmax(180px, auto);
+                grid-auto-rows: minmax(180px, grid-auto-rows);
+                max-height: 300px;
             }
             .preview {
                 img {

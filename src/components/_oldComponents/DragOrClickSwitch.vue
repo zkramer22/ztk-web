@@ -1,10 +1,15 @@
 <script setup>
 import { reactive, watch, computed } from 'vue'
-import { state, stateMethods } from '../store.js'
-const { switchPageType, resetSelector } = stateMethods
 /////////////////////////// variables /////////////////////////////
 const props = defineProps({
-    small: Boolean,
+    states: {
+        type: Array,
+        default: () => ['off', 'on'],
+    },
+    small: {
+        type: Boolean,
+        default: false,
+    }
 })
 
 const switchState = reactive({
@@ -15,6 +20,7 @@ const switchState = reactive({
   leftBound: null,
   rightBound: null,
   posX: null,
+  state: 0,  // 0 or 1, lines up with props.states
 })
 
 const scale = props.small ? 0.8 : 1
@@ -28,7 +34,7 @@ function setDefaultSwitchProps() {
   switchState.clientX = null
   switchState.leftBound = null
   switchState.rightBound = null
-  switchState.posX = state.pageType === 'audio' ? 0 : 68
+  switchState.posX = switchState.state === 0 ? 0 : 68
 }
 function captureClick(e) {
   e.stopPropagation()

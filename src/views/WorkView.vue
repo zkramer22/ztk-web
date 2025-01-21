@@ -16,6 +16,7 @@
         <RouterView></RouterView>
 
         <h4>Projects By Type:</h4>
+        
         <div class="work-view">
             <RouterLink v-for="({ previewImg, title, short, chips }, key) in workBlocks"
                 :to="`/work/${key}`" 

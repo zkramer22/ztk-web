@@ -37,7 +37,8 @@ const isVideo = computed(() => {
 <style lang="scss">
     .media {
         position: relative;
-        object-fit: cover;
+        // object-fit: cover;
+        object-fit: contain;
         &.rounded {
             border-radius: 10px;
         }

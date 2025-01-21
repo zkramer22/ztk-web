@@ -1,3 +1,5 @@
+import SmoothSwitch from '../components/SmoothSwitch.vue'
+
 export const workBlocks = {
     'enterprise-dev': {
         title: "enterprise web development",
@@ -283,7 +285,7 @@ export const workBlocks = {
         items: [
             {
                 name: "Lead UI / UX Designer",
-                description: "I was lead designer & frontend developer for an early-stage startup – Westcott Multimedia. Record labels & music distributors used our app to gain insights about their artist roster and manage ad campaigns. I used Figma to design the app's UI, although much of it was built without a design.",
+                description: "I was lead designer & frontend developer for an early-stage startup – Westcott Multimedia. Record labels & music distributors used our app to gain insights about their artist roster and manage ad campaigns. I used Figma to design the app's UI, although parts of it were built without a design.",
                 images: [
                     {
                         path: 'work/figma-design/notif-component.jpg',
@@ -291,7 +293,7 @@ export const workBlocks = {
                     },
                     {
                         path: 'work/figma-design/notif-redesign.jpg',
-                        alt: "One of several design iterations on the Spike Notification – a super-compact view of details pertaining to a sudden increase in an artist's music streaming.",
+                        alt: "One of several design iterations on the Spike Notification – a super-compact view of details related to a sudden increase in an artist's music streaming.",
                     },
                     {
                         path: 'work/figma-design/color-palette.jpg',
@@ -328,18 +330,127 @@ export const workBlocks = {
                 description: "Tattoo designs, icons for my own projects, etc.",
                 images: [
                     {
-                        path: 'work/figma-design/tattoo-1.png',
-                        alt: '',
+                        path: 'work/figma-design/mario-stuff-1.jpg',
+                        alt: "Various items from Super Mario. Clockwise from top: Super Mushroom, Feather, POW Block, Ice Flower, Starman.",
+                    },
+                    {
+                        path: 'work/figma-design/mario-stuff-2.jpg',
+                        alt: "Various items from Super Mario. Clockwise from top: Spiky Blue Shell, Bob-omb, Piranha, Boo, Podoboo.",
+
+                    },
+                    {
+                        path: 'work/figma-design/mario-stuff-3.jpg',
+                        alt: "Various items from Super Mario. Three versions of a Thwomp Block.",
+                    },
+                    {
+                        path: 'work/figma-design/mario-stuff-4.jpg',
+                        alt: "Various items from Super Mario. ? Block, Coin, Yoshi Egg.",
+                    },
+                    {
+                        path: 'work/figma-design/sheikah-eye.jpg',
+                        alt: "Original drawing including the Sheikah Eye from The Legend of Zelda.",
+                    },
+                    {
+                        path: 'work/figma-design/gears.jpg',
+                        alt: "Some gears.",
+                    },
+                    {
+                        path: 'work/figma-design/mahjong-dragons.jpg',
+                        alt: "Mahjong tiles. These are the 3 Dragons: white, red, and green.",
+                    },
+                    {
+                        path: 'work/figma-design/mahjong-winds.jpg',
+                        alt: "Mahjong tiles. These are the 4 Winds: North, East, South, West.",
+                    },
+                    {
+                        path: 'work/figma-design/frames.jpg',
+                        alt: "Some cool patterns I converted from JPG, to SVG, to CAD 3D model. These are wooden frames that sit on the front edge of acoustic panels, sold by GIK Acoustics.",
+                    },
+                    {
+                        path: 'work/figma-design/sound-icons.jpg',
+                        alt: "A collection of sound-related icons for custom audio player components I've built.",
                     },
                 ]
             },
             {
                 name: "3D Design",
-                description: "The humble beginning of my experience designing 3D objects & spaces. I recently created a mock-up design for a recording studio construction project.",
+                description: "The humble beginning of my experience designing 3D objects & spaces. Featured: a CAD 3D design mock-up for a recording studio construction project.",
                 images: [
                     {
-                        path: 'work/figma-design/tattoo-1.png',
-                        alt: '',
+                        path: 'work/3d-design/14 overview 1.jpg',
+                        alt: 'Screenshots of recording studio design: overview, angled perspective.',
+                    },
+                    {
+                        path: 'work/3d-design/15 overview 2.jpg',
+                        alt: 'Screenshots of recording studio design: overview, top-down perspective.',
+                    },
+                    {
+                        path: 'work/3d-design/1 entry.jpg',
+                        alt: 'Screenshots of recording studio design: entryway door.',
+                    },
+                    {
+                        path: 'work/3d-design/2 rear.jpg',
+                        alt: 'Screenshots of recording studio design: sitting area, instruments.',
+                    },
+                    {
+                        path: 'work/3d-design/3 rear.jpg',
+                        alt: 'Screenshots of recording studio design: sitting area, acoustic panels, windows & doors.',
+                    },
+                    {
+                        path: 'work/3d-design/4 ceiling.jpg',
+                        alt: 'Screenshots of recording studio design: ceiling acoustic panels.',
+                    },
+                    {
+                        path: 'work/3d-design/5 control desk.jpg',
+                        alt: 'Screenshots of recording studio design: audio workstation desk.',
+                    },
+                    {
+                        path: 'work/3d-design/6 mixing area L.jpg',
+                        alt: 'Screenshots of recording studio design: view of vocal booth door.',
+                    },
+                    {
+                        path: 'work/3d-design/7 mixing area R.jpg',
+                        alt: 'Screenshots of recording studio design: view of drum tracking room door.',
+                    },
+                    {
+                        path: 'work/3d-design/8 vocal booth 1.jpg',
+                        alt: 'Screenshots of recording studio design: inside vocal booth – rear.',
+                    },
+                    {
+                        path: 'work/3d-design/9 vocal booth 2.jpg',
+                        alt: 'Screenshots of recording studio design: inside vocal booth – front.',
+                    },
+                    {
+                        path: 'work/3d-design/10 vocal booth ceiling.jpg',
+                        alt: 'Screenshots of recording studio design: inside vocal booth – ceiling, with skylight & track lights.',
+                    },
+                    {
+                        path: 'work/3d-design/11 drum room 1.jpg',
+                        alt: 'Screenshots of recording studio design: inside drum room – rear.',
+                    },
+                    {
+                        path: 'work/3d-design/12 drum room 2.jpg',
+                        alt: 'Screenshots of recording studio design: inside drum room – front.',
+                    },
+                    {
+                        path: 'work/3d-design/13 drum room ceiling.jpg',
+                        alt: 'Screenshots of recording studio design: inside drum room – ceiling with acoustic panels, track lighting, recessed lighting.',
+                    },
+                    {
+                        path: 'work/3d-design/13.5 storage closet.jpg',
+                        alt: 'Screenshots of recording studio design: storage closet.',
+                    },
+                    {
+                        path: 'work/3d-design/16 patio 1.jpg',
+                        alt: 'Screenshots of recording studio design: exterior – patio & staircase.',
+                    },
+                    {
+                        path: 'work/3d-design/17 exterior 1.jpg',
+                        alt: 'Screenshots of recording studio design: exterior – roof on drum tracking room side.',
+                    },
+                    {
+                        path: 'work/3d-design/18 exterior 2.jpg',
+                        alt: 'Screenshots of recording studio design: exterior – roof on vocal booth side.',
                     },
                 ]
             },
@@ -348,29 +459,67 @@ export const workBlocks = {
                 description: "Everything else.",
                 images: [
                     {
-                        path: 'work/figma-design/tattoo-1.png',
-                        alt: '',
+                        path: 'work/figma-design/SDMJ-flyer_otaku-fest.jpg',
+                        alt: "A flyer I designed in Figma for my San Diego Riichi Mahjong club! We co-hosted an exhibition at Balboa Park Japanese Garden, where festival attendees could come learn and play Mahjong on our fancy automatic-tile-dealing tables. ",
                     },
                 ]
             },
         ]
 
     },
-    // 'web-apps': {
-    //     title: "web apps & data viz",
-    //     short: "Frontend framework (Vue, React, Svelte) web apps, data visualization, user authentication, web analytics",
-    //     previewImg: '',
-    //     items: [
-
-    //     ],
-    // },
-    // 'components': {
-    //     title: "components",
-    //     short: "Reusable components built using Vue, React, Svelte, or just plain, vanilla JS",
-    //     items: [
-
-    //     ],
-    // },
+    'personal-projects': {
+        title: "apps & components",
+        short: "Web applications & reusable components I've built using frontend frameworks like Vue, Svelte, and React",
+        previewImg: 'work/personal/superTileMatch-1.png',
+        items: [
+            {
+                name: "SmoothSwitch",
+                description: "Essentially an ON / OFF switch that you can update by clicking, tapping, or dragging. Very smooth and satisfying.",
+                // images: [],
+                component: SmoothSwitch,
+            },
+            {
+                name: "SynthDojo",
+                description: "SynthDojo is a fun Svelte-based web app that lets you make music in your browser. Using the Tone.js library, I've built an experience that lets visitors interact with synthesizers, sound effects processors, amplitude envelopes, and realtime audio visualizers. I plan to add functionality for both recording audio/video and receiving input from external devices.",
+                links: [
+                    {
+                        url: 'https://zkramer22.github.io/synthdojo/',
+                        text: 'demo site',
+                    }
+                ],
+                images: [
+                    {
+                        path: 'work/personal/synthDojo-1.png',
+                        alt: ".",
+                    },
+                    {
+                        path: 'work/personal/synthDojo-2.png',
+                        alt: ".",
+                    },
+                ],
+            },
+            {
+                name: "Memory Tile Game",
+                description: "Can you tell I'm a Super Mario fan? I made a simple memory tile game, using React components and fun CSS animations. I included music, sound effects, and my original SVG drawings of Super Mario objects.",
+                links: [
+                    {
+                        url: 'https://zkramer22.github.io/memory-game/',
+                        text: 'demo site',
+                    }
+                ],
+                images: [
+                    {
+                        path: 'work/personal/superTileMatch-1.png',
+                        alt: "My superTileMatch game. Player successfully matched one pair of tiles, but then they flipped over two mismatched tiles.",
+                    },
+                    {
+                        path: 'work/personal/superTileMatch-2.png',
+                        alt: "My superTileMatch game. Player has completed the game, and is shown a high score board.",
+                    },
+                ],
+            },
+        ],
+    },
     // 'code': {
     //     title: "code",
     //     short: "interesting code snippets worth sharing",

@@ -15,7 +15,7 @@ export const expItems = [
         img: 'onemag-landing.jpg',
     },
     {
-        title: "The TRICON Group",
+        title: "TRICON Group",
         body: "This was my first ever role at a software company, back in 2016. As an eager apprentice, Filemaker was my introduction into the world of database management and UI design, all under one hood. I built a few solutions for TRICON, including a liquor inventory tracking system for local bars and restaurants, and a web app that served as a small-scale sports betting interface – weekly football picks and a Survivor pool. After a short while, I became curious enough about software development to take a leap and enroll in a software development bootcamp in NYC.",
         img: 'tricon-landing.jpg',
     },
