@@ -39,7 +39,6 @@ body, html {
     font-weight: normal;
     color: white;
     height: 100%;
-    // overflow-x: hidden;
 }
 
 .boldish-underline {
@@ -69,11 +68,6 @@ h3 {
 h4 {
     font-size: 1.5rem;
     font-size: clamp(1rem, 10vw, 1.5rem);
-}
-
-h5 {
-    // font-size: 2rem;
-    // align-content: center;
 }
 
 p {

@@ -117,9 +117,6 @@ onMounted(() => {
         <h4>Oops. The window is too small!</h4>
         <h4>Please resize to improve viewing experience.</h4>
     </div>
-    <!-- <div id="noMobileLandscape">
-        <h4>It'll be much better</h4>
-    </div> -->
 </template>
 
 <style lang="scss">
@@ -152,9 +149,6 @@ onMounted(() => {
         mix-blend-mode: difference;
         transition: transform .2s;
     }
-}
-#mainView {
-    // display: initial;
 }
 #windowSmall {
     display: none;
@@ -201,12 +195,10 @@ onMounted(() => {
     &.grid {
         display: grid;
         grid-template-rows: 0px 2fr 250px 0fr 4fr;
-        // grid-template-rows: 2fr 250px 0fr 4fr;
         grid-gap: 15px;
         transition: grid-template-rows .4s ease;
         &.active {
             grid-template-rows: 0px 2fr 250px 4fr 0fr;
-            // grid-template-rows: 2fr 250px 4fr 0fr;
         }
     }
 }
@@ -247,11 +239,9 @@ p {
 @media screen and (max-height: 500px) {
     .fullscreen-wrapper.grid {
         grid-template-rows: 0px 1fr 150px 0fr 3fr;
-        // grid-template-rows: 1fr 150px 0fr 3fr;
     }
     nav {
         grid-template-rows: 0px 1fr 150px 0fr 3fr;
-        // grid-template-rows: 1fr 150px 0fr 3fr;
     }
 }
 
@@ -284,9 +274,6 @@ h4 {
 }
 
 @media screen and (min-width: 768px) {
-    h4 {
-        // font-size: 1.75rem;
-    }
     p {
         font-size: 18px;
     }
@@ -296,9 +283,6 @@ h4 {
 }
 
 @media screen and (min-width: 1440px) {
-    h4 {
-        // font-size: 2rem;
-    }
     p {
         font-size: 22px;
     }

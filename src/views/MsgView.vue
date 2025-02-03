@@ -1,12 +1,8 @@
-
 <script setup>
-
 </script>
 
-<template>
-    <div>yo</div>
+<template>    
 </template>
 
 <style>
-
 </style>

@@ -11,7 +11,7 @@ const props = defineProps({
     drawer: Boolean,
     images: Array[Object],
     getS3Object: Function,
-    component: Object,
+    isComponent: Boolean,
 })
 const state = reactive({
     drawerOpen: false,
@@ -22,6 +22,7 @@ const longClass = computed(() => props.long ? 'long' : '')
 const animationClass = computed(() => props.animation ? 'animation' : '')
 const drawerOpenClass = computed(() => state.drawerOpen ? 'open' : '')
 const fullscreenControlsClass = computed(() => state.fullscreenControls ? 'active' : '')
+const isComponentClass = computed(() => props.isComponent ? 'component' : '')
 
 function handleCardClick(e) {
     if (props.drawer) toggleDrawer()
@@ -71,7 +72,7 @@ function toggleScroll() {
 </script>
 
 <template>
-    <div :class="`card ${longClass} ${animationClass}`" @click="handleCardClick">
+    <div :class="`card ${longClass} ${animationClass} ${isComponentClass}`" @click="handleCardClick">
         <div class="preview">
             <slot name="preview"></slot>
         </div>
@@ -94,7 +95,6 @@ function toggleScroll() {
                     :index
                     fullscreenAble rounded
                 />
-                <component v-if="component" :is="component"></component>
             </div>
         </div>
     </Transition>
@@ -239,7 +239,9 @@ function toggleScroll() {
         }
         @media (hover:hover) {
             &:hover {
-                background-color: #3b3b3b;
+                &:not(.component) {
+                    background-color: #3b3b3b;
+                }
                 .preview {
                     img, video {
                         scale: 1.1;

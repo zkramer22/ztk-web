@@ -4,6 +4,7 @@ import MeView from '../views/MeView.vue'
 import ExpView from '../views/ExpView.vue'
 import WorkView from '../views/WorkView.vue'
 import WorkDetails from '../components/WorkDetails.vue'
+import MsgView from '../views/MsgView.vue'
 
 import { state } from '../store.js'
 
@@ -22,6 +23,10 @@ const router = createRouter({
         {
             path: '/exp',
             component: ExpView,
+        },
+        {
+            path: '/msg',
+            component: MsgView,
         },
         {
             path: '/work',

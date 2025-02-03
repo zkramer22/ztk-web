@@ -11,8 +11,7 @@
   "dependencies": {
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "vue3-lazyload": "^0.3.8",
-    "wavesurfer.js": "^7.7.7"
+    "vue3-lazyload": "^0.3.8"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

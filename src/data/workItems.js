@@ -1,4 +1,4 @@
-import SmoothSwitch from '../components/SmoothSwitch.vue'
+// import SmoothSwitch from '../components/_oldComponents/SmoothSwitch.vue'
 
 export const workBlocks = {
     'enterprise-dev': {
@@ -467,24 +467,72 @@ export const workBlocks = {
         ]
 
     },
-    'personal-projects': {
+    'apps-components': {
         title: "apps & components",
         short: "Web applications & reusable components I've built using frontend frameworks like Vue, Svelte, and React",
         previewImg: 'work/personal/superTileMatch-1.png',
         items: [
             {
-                name: "SmoothSwitch",
-                description: "Essentially an ON / OFF switch that you can update by clicking, tapping, or dragging. Very smooth and satisfying.",
-                // images: [],
-                component: SmoothSwitch,
+                name: "VueAudioPlayer",
+                isComponent: true,
+                description: "A slick audio player component to use with your Vue3 app. Features include adding labeled timestamps, showing / hiding the waveform, and keyboard control.",
+                images: [
+                    {
+                        path: 'work/personal/vue-audio-player-page.png',
+                        alt: ".",
+                    },
+                ],
+                links: [
+                    {
+                        url: 'https://github.com/zkramer22/vue-audio-player',
+                        text: 'github'
+                    },
+                    {
+                        url: 'https://www.npmjs.com/package/@zkramer22/vue-audio-player',
+                        text: 'npm'
+                    },
+                    {
+                        url: 'https://zkramer22.github.io/vue-audio-player',
+                        text: 'demo'
+                    },
+                ]
+            },
+            {
+                name: "VueToggleSwitch",
+                isComponent: true,
+                description: "an ON / OFF switch built for Vue3. You can click, tap, or drag to flip the switch. Smooth, satisfying, and customizable.",
+                images: [
+                    {
+                        path: 'work/personal/vue-toggle-switch-page.png',
+                        alt: ".",
+                    },
+                ],
+                links: [
+                    {
+                        url: 'https://github.com/zkramer22/vue-toggle-switch',
+                        text: 'github'
+                    },
+                    {
+                        url: 'https://www.npmjs.com/package/@zkramer22/vue-toggle-switch',
+                        text: 'npm'
+                    },
+                    {
+                        url: 'https://zkramer22.github.io/vue-toggle-switch',
+                        text: 'demo'
+                    },
+                ]
             },
             {
                 name: "SynthDojo",
-                description: "SynthDojo is a fun Svelte-based web app that lets you make music in your browser. Using the Tone.js library, I've built an experience that lets visitors interact with synthesizers, sound effects processors, amplitude envelopes, and realtime audio visualizers. I plan to add functionality for both recording audio/video and receiving input from external devices.",
+                description: "SynthDojo is a fun Svelte-based web app that lets you make music in your browser. Using the Tone.js library, I've built an experience that lets visitors interact with synthesizers, sound effects processors, amplitude envelopes, and realtime audio visualizers. I'm currently working on features for screen capture, audio recording, and receiving MIDI input from external devices.",
                 links: [
                     {
+                        url: 'https://github.com/zkramer22/synthdojo',
+                        text: 'github',
+                    },
+                    {
                         url: 'https://zkramer22.github.io/synthdojo/',
-                        text: 'demo site',
+                        text: 'demo',
                     }
                 ],
                 images: [
@@ -503,8 +551,12 @@ export const workBlocks = {
                 description: "Can you tell I'm a Super Mario fan? I made a simple memory tile game, using React components and fun CSS animations. I included music, sound effects, and my original SVG drawings of Super Mario objects.",
                 links: [
                     {
+                        url: 'https://github.com/zkramer22/memory-game',
+                        text: 'github',
+                    },
+                    {
                         url: 'https://zkramer22.github.io/memory-game/',
-                        text: 'demo site',
+                        text: 'demo',
                     }
                 ],
                 images: [
@@ -515,6 +567,10 @@ export const workBlocks = {
                     {
                         path: 'work/personal/superTileMatch-2.png',
                         alt: "My superTileMatch game. Player has completed the game, and is shown a high score board.",
+                    },
+                    {
+                        path: 'work/personal/superTileMatch.mov',
+                        alt: "Video of gameplay.",
                     },
                 ],
             },

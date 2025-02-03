@@ -73,29 +73,21 @@ function selectorClick(option) {
         right: 0;
         bottom: 0;
         left: 0;
-        // padding: 10px;
         padding: 16px;  // match mainView
         display: grid;
         grid-template-rows: 0px 2fr 250px 0fr 4fr;
-        // grid-template-rows: 2fr 250px 0fr 4fr;
         grid-gap: 15px;
         grid-template-columns: 75px auto 75px;
         align-items: start;
         transition: grid-template-rows .4s ease;
         &.active {
             grid-template-rows: 0px 2fr 250px 4fr 0fr;
-            // grid-template-rows: 2fr 250px 4fr 0fr;
         }
         .nav-title {
             position: relative;
             font-size: 24px;
             margin: 0 0 0 15px;
-            // top: -100px;
-            // top: -100px;
             transition: top .2s ease;
-            &.scrolled {
-                // top: 0px;
-            }
         }
     }
     
@@ -114,11 +106,6 @@ function selectorClick(option) {
         background-color: white;
         border-radius: 5px;
         transition: scale .1s linear, width .2s linear, height .2s linear, padding .2s linear;
-        &.scrolled {
-            // width: 45px;
-            // height: 45px;
-            // padding: 2px;
-        }
         @media(hover:hover) {
             &:hover {
                 scale: 1.1;
@@ -169,11 +156,6 @@ function selectorClick(option) {
             padding: 5px;
             width: 45px;
             height: 45px;
-            // &.scrolled {
-            //     width: 45px;
-            //     height: 45px;
-            //     padding: 3px;
-            // }
         }
         &.black {
             background-color: $primary-gray;

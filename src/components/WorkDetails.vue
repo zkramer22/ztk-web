@@ -23,17 +23,16 @@ const state = reactive({
         <h3 class="text-center">{{ state.workObj.title }}</h3>
 
         <div class="grid">
-            <Card v-for="({ name, description, images, links, component }, i) in state.workObj.items" :key="name"
+            <Card v-for="({ name, description, images, links, isComponent }, i) in state.workObj.items" :key="name"
                 animation 
-                long 
-                drawer
+                long
+                :drawer="images.length > 1"
+                :isComponent
                 :images
-                :component
                 :getS3Object
             >
                 <template v-slot:preview>
-                    <MediaItem v-if="images" :mediaSrc="getS3Object(images[0]?.path)" />
-                    <div class="flex-centered height-100 component-preview" v-else>{{ "< " }}component{{ " >" }}</div>
+                    <MediaItem v-if="images" :mediaSrc="getS3Object(images[0].path)" />
                 </template>
                 <template v-slot:description>
                     <h4>{{ name }}</h4>
@@ -74,7 +73,6 @@ const state = reactive({
         grid-gap: 0;
     }
     h3 {
-        // font-size: 2rem;
         margin-bottom: 50px;
     }
 
