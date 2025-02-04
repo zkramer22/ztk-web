@@ -1,16 +1,18 @@
 <script setup>
+import { computed, reactive, ref } from 'vue';
+
 import x from '@/assets/icon/x.svg?raw'
 import chevron from '@/assets/icon/chevron.svg?raw'
 
-import { computed, reactive, ref } from 'vue';
 import MediaItem from './MediaItem.vue';
+import { loaderMethods } from '../store.js'
+const { getS3Object } = loaderMethods
 
 const props = defineProps({
     long: Boolean,
     animation: Boolean,
     drawer: Boolean,
     images: Array[Object],
-    getS3Object: Function,
     isComponent: Boolean,
 })
 const state = reactive({
@@ -91,7 +93,7 @@ function toggleScroll() {
             <div class="drawer">
                 <MediaItem v-if="images" v-for="(image, index) in images" :key="image" 
                     @click="fullscreenHandler(index)"
-                    :mediaSrc="props.getS3Object(image.path)" 
+                    :mediaSrc="getS3Object(image.path)" 
                     :index
                     fullscreenAble rounded
                 />
@@ -100,7 +102,7 @@ function toggleScroll() {
     </Transition>
 
     <div v-if="state.fullscreenImage !== null" class="modal fullscreen" @click="handleFullscreenClick">
-        <MediaItem :mediaSrc="props.getS3Object(images[state.fullscreenImage].path)"
+        <MediaItem :mediaSrc="getS3Object(images[state.fullscreenImage].path)"
             :class="`img`"
         />
         

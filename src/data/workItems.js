@@ -459,8 +459,12 @@ export const workBlocks = {
                 description: "Everything else.",
                 images: [
                     {
+                        path: 'work/figma-design/SDMJ-flyer_general-invite.png',
+                        alt: "A flyer I designed in Figma for my San Diego Riichi Mahjong club!",
+                    },
+                    {
                         path: 'work/figma-design/SDMJ-flyer_otaku-fest.jpg',
-                        alt: "A flyer I designed in Figma for my San Diego Riichi Mahjong club! We co-hosted an exhibition at Balboa Park Japanese Garden, where festival attendees could come learn and play Mahjong on our fancy automatic-tile-dealing tables. ",
+                        alt: "A flyer I designed in Figma for my San Diego Riichi Mahjong club! We ran an exhibition at the Balboa Park Japanese Garden, where attendees at Otaku Smash Festival could come learn and play Mahjong on a fancy automatic tile-dealing table. ",
                     },
                 ]
             },

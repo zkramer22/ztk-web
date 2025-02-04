@@ -1,10 +1,13 @@
 <script setup>
+import { computed, ref } from 'vue'
+
 import menu from '@/assets/icon/menu.svg?raw'
 import x from '@/assets/icon/x.svg?raw'
 import phone from '@/assets/icon/phone.svg?raw'
 import email from '@/assets/icon/email.svg?raw'
 import calendar from '@/assets/icon/calendar.svg?raw'
-import { computed, ref } from 'vue'
+import download from '@/assets/icon/download.svg?raw'
+
 /////////////////////////// variables /////////////////////////////
 const props = defineProps({
   scrolledClass: String,
@@ -18,7 +21,7 @@ const accordionWrapper = ref(null)
 const emit = defineEmits(['selectorClick'])
 
 const top = document.getElementById('top')
-const navActive = computed(() => navOpen.value ? 'active' : '')
+const contactActive = computed(() => navOpen.value ? 'active' : '')
 /////////////////////////// methods /////////////////////////////
 function expandAccordion() {
     navOpen.value = !navOpen.value
@@ -36,27 +39,35 @@ function selectorClick(option) {
                 :class="`grow-animation ${scrolledClass}`" 
                 src="@/assets/img/ztk-logo.png"
             />
-            <h5 :class="`nav-title ${scrolledClass}`"><span>ztk</span> <span style="font-weight: 500">web</span></h5>
+            <h5 :class="`nav-title ${scrolledClass}`">
+                <span>ztk</span> 
+                <span style="font-weight: 500">
+                    web
+                </span>
+            </h5>
         </div>
+        
         <div class="slide-from-top menu-list">
             <div :class="`nav-button icon menu ${scrolledClass}`" @click="expandAccordion">
                 <div v-if="navOpen" class="button-icon-svg" v-html="x"></div>
                 <div v-else class="button-icon-svg" v-html="menu"></div>
             </div>
-            <div :class="`button-text-2 ${navActive}`">contact</div>
+            <div :class="`button-text-2 ${contactActive}`">contact</div>
+            <!-- <div :class="`button-text-2 ${contactActive}`">menu</div> -->
             <div ref="accordion" class="accordion">
-                <div :class="`nav-button icon option web ${navActive} ${scrolledClass}`">
-                    <!-- <div class="button-text web">calendar</div> -->
+                <a :class="`nav-button icon option web ${contactActive} ${scrolledClass}`" href="#">
+                    <!-- <div class="button-text web">meeting</div> -->
                     <div class="button-icon-svg" v-html="calendar"></div>
-                </div>
-                <div :class="`nav-button icon option audio ${navActive} ${scrolledClass}`">
+                </a>
+                <a :class="`nav-button icon option audio ${contactActive} ${scrolledClass}`" href="tel:2677603054">
                     <!-- <div class="button-text audio">call</div> -->
                     <div class="button-icon-svg" v-html="phone"></div>
-                </div>
-                <div :class="`nav-button icon option black ${navActive} ${scrolledClass}`">
+                </a>
+                <a :class="`nav-button icon option black ${contactActive} ${scrolledClass}`" href="mailto:zkramer22@gmail.com" target="_blank">
                     <!-- <div class="button-text black">email</div> -->
                     <div class="button-icon-svg" v-html="email"></div>
-                </div>
+                </a>
+                
             </div>
         </div>
         <slot></slot>
@@ -75,7 +86,10 @@ function selectorClick(option) {
         left: 0;
         padding: 16px;  // match mainView
         display: grid;
-        grid-template-rows: 0px 2fr 250px 0fr 4fr;
+
+        // grid-template-rows: 0px 2fr 250px 0fr 4fr;
+        grid-template-rows: 0px 2fr 250px 0fr 2fr;
+
         grid-gap: 15px;
         grid-template-columns: 75px auto 75px;
         align-items: start;
@@ -88,6 +102,7 @@ function selectorClick(option) {
             font-size: 24px;
             margin: 0 0 0 15px;
             transition: top .2s ease;
+            animation: fadein 1s linear, slideFromTop 1s ease;
         }
     }
     
@@ -109,6 +124,30 @@ function selectorClick(option) {
         @media(hover:hover) {
             &:hover {
                 scale: 1.1;
+            }
+        }
+    }
+    #resume {
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            background-color: $primary-gray;
+            white-space: nowrap;
+            padding: 5px 10px;
+            border: 1px solid;
+            border-radius: 40px;
+            .text {
+                margin-left: 6px;
+                font-size: 1.2rem;
+            }
+            .icon {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                svg {
+                    width: 100%;
+                    height: 100%;
+                }
             }
         }
     }
@@ -194,7 +233,6 @@ function selectorClick(option) {
         top: 45px;
         text-align: center;
         width: auto;
-        right: 0;
         scale: 1;
         z-index: -1;
         transition: top .2s ease .4s, scale .2s ease .4s;
@@ -223,5 +261,11 @@ function selectorClick(option) {
         height: auto;
         max-width: 70%;
         margin: 0 auto;
+    }
+
+    @media screen and (min-width: 768px) {
+        nav {
+            grid-template-rows: 0px 2fr 250px 0fr 4fr;
+        }
     }
 </style>

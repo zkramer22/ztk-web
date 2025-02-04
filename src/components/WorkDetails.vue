@@ -4,8 +4,8 @@ import MediaItem from './MediaItem.vue'
 import Card from './Card.vue'
 import Chip from './Chip.vue'
 
-import { workBlocks } from '@/data/workItems.js'
-import { loaderMethods } from '@/store.js';
+import { workBlocks } from '../data/workItems.js'
+import { loaderMethods } from '../store.js';
 const { getS3Object } = loaderMethods
 
 const props = defineProps({
@@ -29,7 +29,6 @@ const state = reactive({
                 :drawer="images.length > 1"
                 :isComponent
                 :images
-                :getS3Object
             >
                 <template v-slot:preview>
                     <MediaItem v-if="images" :mediaSrc="getS3Object(images[0].path)" />

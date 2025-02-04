@@ -1,19 +1,19 @@
 <script setup>
 
-    const props = defineProps({
-        iconText: String,
-        text: String,
-        icon: String,
-        url: String,
-    })
+const props = defineProps({
+    iconText: String,
+    text: String,
+    icon: String,
+    url: String,
+})
 
-    function getS3Path(name) {
-        return `https://ztk-web.s3.us-west-1.amazonaws.com/chips/${name.toLowerCase()}.png`
-    }
+function getS3Path(text) {
+    return `https://ztk-web.s3.us-west-1.amazonaws.com/chips/${text.toLowerCase()}.png`
+}
 </script>
 
 <template>
-    <a v-if="url" :href="url" target="_blank" @click="(e) => e.stopPropagation()">
+    <a :href="url" target="_blank" @click="(e) => e.stopPropagation()">
         <div class="chip-wrapper">
             <div class="chip-icon svg" v-if="icon" v-html="icon"></div>
             <div class="chip-icon" v-else-if="iconText">

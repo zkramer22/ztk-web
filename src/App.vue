@@ -94,11 +94,11 @@ onMounted(() => {
 </script>
 
 <template>
-    <div id="top"></div>
     <div :class="`shade-overlay ${state.selectorActiveClass}`"></div>
     <img :src="bgImgPath" alt="closeup view of coding text editor"
         class="bgImg"/>
     <div ref="cursor" id="invertedcursor"></div>
+    
     <div id="mainView" :class="`fullscreen-wrapper grid ${state.selectorActiveClass}`">
         <Navi @selector-click="selectorClick"
             :scrolledClass="scrolledClass" 
@@ -113,6 +113,7 @@ onMounted(() => {
         
         <RouterView />
     </div>
+
     <div id="windowSmall">
         <h4>Oops. The window is too small!</h4>
         <h4>Please resize to improve viewing experience.</h4>
@@ -195,6 +196,9 @@ onMounted(() => {
     &.grid {
         display: grid;
         grid-template-rows: 0px 2fr 250px 0fr 4fr;
+
+        // grid-template-rows: 50px 1fr 0fr 1fr;
+        
         grid-gap: 15px;
         transition: grid-template-rows .4s ease;
         &.active {
@@ -202,6 +206,10 @@ onMounted(() => {
         }
     }
 }
+
+// @media screen and (aspect-ratio > .667) {
+
+// }
 
 .bgImg {
   position: fixed;
@@ -227,7 +235,7 @@ p {
     }
 }
 
-@media screen and (max-width: 500px) and (max-height: 500px) {
+@media screen and (max-width: 500px) and (max-height: 499px) {
     #mainView {
         display: none;
     }
@@ -236,36 +244,12 @@ p {
     }
 }
 
-@media screen and (max-height: 500px) {
+@media screen and (max-height: 499px) {
     .fullscreen-wrapper.grid {
         grid-template-rows: 0px 1fr 150px 0fr 3fr;
     }
     nav {
         grid-template-rows: 0px 1fr 150px 0fr 3fr;
-    }
-}
-
-@media (min-width: 768px) and (min-height: 500px) {
-    #home-grid {
-        display: grid;
-        grid-template-columns: 10fr 2fr 10fr;
-        align-items: center;
-    }
-    .site-title-text {
-        text-align: right;
-    }
-    #home-divider {
-        height: 100%;
-        max-height: 300px;
-        width: 4px;
-        border-radius: 5px;
-        background-color: white;
-        justify-self: center;
-        position: relative;
-        animation: fadein 1s linear, slideFromTop 1s ease;
-    }
-    #welcome-text {
-        text-align: left;
     }
 }
 
