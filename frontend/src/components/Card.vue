@@ -142,7 +142,7 @@ function toggleScroll() {
         justify-content: center;
         text-align: center;
         align-content: center;
-        background-color: #222222;
+        background-color: $primary-black;
         padding: 15px;
         transition: scale .1s ease;
         @media (hover:hover) {
@@ -217,7 +217,7 @@ function toggleScroll() {
     
     .card {
         position: relative;
-        background-color: #222222;
+        background-color: $primary-black;
         border-radius: 10px;
         overflow: hidden;
         animation: fadein .5s linear forwards;
