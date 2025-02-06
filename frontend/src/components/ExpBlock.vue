@@ -66,7 +66,6 @@
             &:nth-of-type(2n - 1) {
                 .img-container {
                     grid-column: 1 / 2;
-                    // margin: 0 0 0 auto;
                 }
                 p, h3 {
                     grid-column: 2 / 3;

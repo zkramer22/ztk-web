@@ -185,6 +185,9 @@ function selectorClick(option) {
                 filter: brightness(1.2);
                 scale: 1.1;
             }
+            &:active {
+                scale: 1;
+            }
         }
         &.menu {
             z-index: 1;

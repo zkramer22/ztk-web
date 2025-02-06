@@ -108,6 +108,9 @@ function backButtonClick() {
             &:hover {
                 scale: 1.1;
             }
+            &:active {
+                scale: 1;
+            }
         }
     }
 
