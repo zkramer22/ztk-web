@@ -53,23 +53,24 @@ function selectorClick(option) {
                 <div v-else class="button-icon-svg" v-html="menu"></div>
             </div>
             <div :class="`button-text-2 ${contactActive}`">contact</div>
-            <!-- <div :class="`button-text-2 ${contactActive}`">menu</div> -->
+            
             <div ref="accordion" class="accordion">
-                <a :class="`nav-button icon option web ${contactActive} ${scrolledClass}`" href="#">
+                <a tabindex="-1" :class="`nav-button icon option web ${contactActive} ${scrolledClass}`" href="#">
                     <!-- <div class="button-text web">meeting</div> -->
                     <div class="button-icon-svg" v-html="calendar"></div>
                 </a>
-                <a :class="`nav-button icon option audio ${contactActive} ${scrolledClass}`" href="tel:2677603054">
+                <a tabindex="-1" :class="`nav-button icon option audio ${contactActive} ${scrolledClass}`" href="tel:2677603054">
                     <!-- <div class="button-text audio">call</div> -->
                     <div class="button-icon-svg" v-html="phone"></div>
                 </a>
-                <a :class="`nav-button icon option black ${contactActive} ${scrolledClass}`" href="mailto:zkramer22@gmail.com" target="_blank">
+                <a tabindex="-1" :class="`nav-button icon option black ${contactActive} ${scrolledClass}`" href="mailto:zkramer22@gmail.com" target="_blank">
                     <!-- <div class="button-text black">email</div> -->
                     <div class="button-icon-svg" v-html="email"></div>
                 </a>
                 
             </div>
         </div>
+
         <slot></slot>
     </nav>
 </template>
@@ -84,12 +85,9 @@ function selectorClick(option) {
         right: 0;
         bottom: 0;
         left: 0;
-        padding: 16px;  // match mainView
+        padding: 16px;
         display: grid;
-
-        // grid-template-rows: 0px 2fr 250px 0fr 4fr;
         grid-template-rows: 0px 2fr 250px 0fr 2fr;
-
         grid-gap: 15px;
         grid-template-columns: 75px auto 75px;
         align-items: start;
@@ -120,11 +118,14 @@ function selectorClick(option) {
         padding: 2px;
         background-color: white;
         border-radius: 5px;
-        transition: scale .1s linear, width .2s linear, height .2s linear, padding .2s linear;
+        transition: scale .1s ease, width .2s linear, height .2s linear, padding .2s linear;
         @media(hover:hover) {
             &:hover {
                 scale: 1.1;
             }
+        }
+        &:active {
+            scale: 1;
         }
     }
     #resume {
@@ -175,16 +176,19 @@ function selectorClick(option) {
         padding: 7px 10px;
         height: 45px;
         background-color: #eeeeee;
+        transition: scale .1s ease;
         &:active {
             filter: brightness(1.3);
         }
         @media (hover:hover) {
             &:hover {
                 filter: brightness(1.2);
+                scale: 1.1;
             }
         }
         &.menu {
-            z-index: 1;     
+            z-index: 1;
+            mix-blend-mode: difference;
         }
         &.option {
             pointer-events: none;

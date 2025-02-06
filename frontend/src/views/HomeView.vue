@@ -44,9 +44,6 @@ import download from '@/assets/icon/download.svg?raw'
 .container {
     grid-row: 3 / 4;
 
-    // grid-row: 2 / 3;
-    // align-self: end;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,10 +106,20 @@ import download from '@/assets/icon/download.svg?raw'
     bottom: 0;
     padding: 10px 20px;
     margin: 30px auto 0;
-    border: 2px solid;
+    border: none;
     border-radius: 10px;
+    transition: scale .1s ease;
     .text {
         margin: 0 5px;
+    }
+    @media (hover:hover) {
+        &:hover {
+            scale: 1.1;
+        }
+    }
+    &:active {
+        filter: brightness(.9);
+        scale: 1;
     }
 }
 

@@ -1,6 +1,116 @@
 // import SmoothSwitch from '../components/_oldComponents/SmoothSwitch.vue'
 
 export const workBlocks = {
+    'apps-components': {
+        title: "apps & components",
+        short: "Web applications & reusable components I've built using frontend frameworks like Vue, Svelte, and React",
+        previewImg: 'work/personal/superTileMatch-1.png',
+        items: [
+            {
+                name: "VueAudioPlayer",
+                isComponent: true,
+                description: "A slick audio player component to use with your Vue3 app. Features include adding labeled timestamps, showing / hiding the waveform, and keyboard control.",
+                images: [
+                    {
+                        path: 'work/personal/vue-audio-player-page.png',
+                        alt: ".",
+                    },
+                ],
+                links: [
+                    {
+                        url: 'https://github.com/zkramer22/vue-audio-player',
+                        text: 'github'
+                    },
+                    {
+                        url: 'https://www.npmjs.com/package/@zkramer22/vue-audio-player',
+                        text: 'npm'
+                    },
+                    {
+                        url: 'https://zkramer22.github.io/vue-audio-player',
+                        text: 'demo'
+                    },
+                ]
+            },
+            {
+                name: "VueToggleSwitch",
+                isComponent: true,
+                description: "an ON / OFF switch built for Vue3. You can click, tap, or drag to flip the switch. Smooth, satisfying, and customizable.",
+                images: [
+                    {
+                        path: 'work/personal/vue-toggle-switch-page.png',
+                        alt: ".",
+                    },
+                ],
+                links: [
+                    {
+                        url: 'https://github.com/zkramer22/vue-toggle-switch',
+                        text: 'github'
+                    },
+                    {
+                        url: 'https://www.npmjs.com/package/@zkramer22/vue-toggle-switch',
+                        text: 'npm'
+                    },
+                    {
+                        url: 'https://zkramer22.github.io/vue-toggle-switch',
+                        text: 'demo'
+                    },
+                ]
+            },
+            {
+                name: "SynthDojo",
+                description: "SynthDojo is a fun Svelte-based web app that lets you make music in your browser. Using the Tone.js library, I've built an experience that lets visitors interact with synthesizers, sound effects processors, amplitude envelopes, and realtime audio visualizers. I'm currently working on features for screen capture, audio recording, and receiving MIDI input from external devices.",
+                links: [
+                    {
+                        url: 'https://github.com/zkramer22/synthdojo',
+                        text: 'github',
+                    },
+                    {
+                        url: 'https://zkramer22.github.io/synthdojo/',
+                        text: 'demo',
+                    }
+                ],
+                images: [
+                    {
+                        path: 'work/personal/synthDojo-1.png',
+                        alt: ".",
+                    },
+                    {
+                        path: 'work/personal/synthDojo-2.png',
+                        alt: ".",
+                    },
+                ],
+            },
+            {
+                name: "Memory Tile Game",
+                description: "Can you tell I'm a Super Mario fan? I made a simple memory tile game, using React components and fun CSS animations. I included music, sound effects, and my original SVG drawings of Super Mario objects.",
+                links: [
+                    {
+                        url: 'https://github.com/zkramer22/memory-game',
+                        text: 'github',
+                    },
+                    {
+                        url: 'https://zkramer22.github.io/memory-game/',
+                        text: 'demo',
+                    }
+                ],
+                images: [
+                    {
+                        path: 'work/personal/superTileMatch-1.png',
+                        alt: "My superTileMatch game. Player successfully matched one pair of tiles, but then they flipped over two mismatched tiles.",
+                    },
+                    {
+                        path: 'work/personal/superTileMatch-2.png',
+                        alt: "My superTileMatch game. Player has completed the game, and is shown a high score board.",
+                    },
+                    {
+                        path: 'work/personal/superTileMatch.mov',
+                        alt: "Video of gameplay.",
+                    },
+                ],
+            },
+        ],
+    },
+
     'enterprise-dev': {
         title: "enterprise web development",
         short: "E-commerce sites, advanced search & filtering, internal business solutions, Google Maps integrations",
@@ -157,6 +267,7 @@ export const workBlocks = {
             },
         ]
     },
+    
     'marketing-adtech': {
         title: "marketing + ad tech",
         short: "Custom company websites, landing pages, animated advertisements, interactive info panels",
@@ -278,6 +389,7 @@ export const workBlocks = {
             },
         ],
     },
+
     'design': {
         title: "design",
         short: "UI design for web apps, components, SVG icons & drawings",
@@ -470,115 +582,6 @@ export const workBlocks = {
             },
         ]
 
-    },
-    'apps-components': {
-        title: "apps & components",
-        short: "Web applications & reusable components I've built using frontend frameworks like Vue, Svelte, and React",
-        previewImg: 'work/personal/superTileMatch-1.png',
-        items: [
-            {
-                name: "VueAudioPlayer",
-                isComponent: true,
-                description: "A slick audio player component to use with your Vue3 app. Features include adding labeled timestamps, showing / hiding the waveform, and keyboard control.",
-                images: [
-                    {
-                        path: 'work/personal/vue-audio-player-page.png',
-                        alt: ".",
-                    },
-                ],
-                links: [
-                    {
-                        url: 'https://github.com/zkramer22/vue-audio-player',
-                        text: 'github'
-                    },
-                    {
-                        url: 'https://www.npmjs.com/package/@zkramer22/vue-audio-player',
-                        text: 'npm'
-                    },
-                    {
-                        url: 'https://zkramer22.github.io/vue-audio-player',
-                        text: 'demo'
-                    },
-                ]
-            },
-            {
-                name: "VueToggleSwitch",
-                isComponent: true,
-                description: "an ON / OFF switch built for Vue3. You can click, tap, or drag to flip the switch. Smooth, satisfying, and customizable.",
-                images: [
-                    {
-                        path: 'work/personal/vue-toggle-switch-page.png',
-                        alt: ".",
-                    },
-                ],
-                links: [
-                    {
-                        url: 'https://github.com/zkramer22/vue-toggle-switch',
-                        text: 'github'
-                    },
-                    {
-                        url: 'https://www.npmjs.com/package/@zkramer22/vue-toggle-switch',
-                        text: 'npm'
-                    },
-                    {
-                        url: 'https://zkramer22.github.io/vue-toggle-switch',
-                        text: 'demo'
-                    },
-                ]
-            },
-            {
-                name: "SynthDojo",
-                description: "SynthDojo is a fun Svelte-based web app that lets you make music in your browser. Using the Tone.js library, I've built an experience that lets visitors interact with synthesizers, sound effects processors, amplitude envelopes, and realtime audio visualizers. I'm currently working on features for screen capture, audio recording, and receiving MIDI input from external devices.",
-                links: [
-                    {
-                        url: 'https://github.com/zkramer22/synthdojo',
-                        text: 'github',
-                    },
-                    {
-                        url: 'https://zkramer22.github.io/synthdojo/',
-                        text: 'demo',
-                    }
-                ],
-                images: [
-                    {
-                        path: 'work/personal/synthDojo-1.png',
-                        alt: ".",
-                    },
-                    {
-                        path: 'work/personal/synthDojo-2.png',
-                        alt: ".",
-                    },
-                ],
-            },
-            {
-                name: "Memory Tile Game",
-                description: "Can you tell I'm a Super Mario fan? I made a simple memory tile game, using React components and fun CSS animations. I included music, sound effects, and my original SVG drawings of Super Mario objects.",
-                links: [
-                    {
-                        url: 'https://github.com/zkramer22/memory-game',
-                        text: 'github',
-                    },
-                    {
-                        url: 'https://zkramer22.github.io/memory-game/',
-                        text: 'demo',
-                    }
-                ],
-                images: [
-                    {
-                        path: 'work/personal/superTileMatch-1.png',
-                        alt: "My superTileMatch game. Player successfully matched one pair of tiles, but then they flipped over two mismatched tiles.",
-                    },
-                    {
-                        path: 'work/personal/superTileMatch-2.png',
-                        alt: "My superTileMatch game. Player has completed the game, and is shown a high score board.",
-                    },
-                    {
-                        path: 'work/personal/superTileMatch.mov',
-                        alt: "Video of gameplay.",
-                    },
-                ],
-            },
-        ],
     },
     // 'code': {
     //     title: "code",

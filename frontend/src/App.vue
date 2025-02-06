@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRoute, useRouter, RouterView } from 'vue-router'
 import Navi from './components/Navi.vue'
 import Selector from './components/Selector.vue'
@@ -25,6 +25,8 @@ function disableMouseEvents() {
 function enableMouseEvents() {
     document.onmousemove = mouseMove
     document.onscroll = mouseScroll
+    document.onmousedown = mouseDown
+    document.onmouseup = mouseUp
 }
 function selectorClick(option) {
     if (option === state.selectorActive) window.scrollTo({ top: 0 })
@@ -41,6 +43,12 @@ function selectorClick(option) {
 function updateMouse() {
     cursor.value.style.left = `${cursorX.value}px`
     cursor.value.style.top = `${cursorY.value}px`
+}
+function mouseDown() {
+    cursor.value.classList.add('mousedown')
+}
+function mouseUp() {
+    cursor.value.classList.remove('mousedown')
 }
 function mouseMove(e) {
     cursorX.value = e.clientX
@@ -89,6 +97,10 @@ function backButtonClick() {
 onMounted(() => {
     enableMouseEvents()
     watchScreenOrientation()
+})
+
+onUnmounted(() => {
+    disableMouseEvents()
 })
 
 </script>
@@ -148,7 +160,12 @@ onMounted(() => {
         transform: translate(-50%, -50%);
         z-index: 100;
         mix-blend-mode: difference;
-        transition: transform .2s;
+        transition: transform .2s, width .2s ease, height .2s ease;
+        &.mousedown {
+            width: 20px;
+            height: 20px;
+            transition: width .05s ease, height .05s ease;
+        }
     }
 }
 #windowSmall {

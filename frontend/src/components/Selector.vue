@@ -86,7 +86,7 @@ function backButtonClick() {
         background-color: $primary-black;
         &.active {
             &.home {
-                // left: 55px;
+                display: none;
                 bottom: 55px;
                 svg {
                     width: 80%;
@@ -95,6 +95,7 @@ function backButtonClick() {
                     margin: 0 auto;
                 }
                 @media screen and (min-width: 500px) {
+                    display: block;
                     bottom: 0;
                     left: 55px;
                 }
