@@ -43,23 +43,18 @@ const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headsho
             margin: 0 auto;
             justify-self: center;
             max-width: 200px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
     }
 
     @media screen and (min-width: 768px) {
         .container {
             grid-row: 1 / 4;
-            max-width: 1000px;
+            max-width: 600px;
         }
         .img-text-grid {
-            display: flex;
-            gap: 0 25px;
-            align-items: center;
             .img-container {
-                justify-self: end;
-                align-self: center;
-                max-width: 350px;
+                max-width: 300px;
             }
         }
     }
