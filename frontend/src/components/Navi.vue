@@ -188,7 +188,6 @@ function selectorClick(option) {
         }
         &.menu {
             z-index: 1;
-            mix-blend-mode: difference;
         }
         &.option {
             pointer-events: none;
