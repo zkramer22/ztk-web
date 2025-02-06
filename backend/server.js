@@ -61,12 +61,6 @@ app.post("/api/send-message", async (req, res) => {
                         </td>
                     </tr>
                 </table>
-
-                    vertical-align: middle;
-    background-color: #fff;
-    padding: 3px;
-    border-radius: 5px;
-    border: 3px solid #222222;
             `,
         });
 
