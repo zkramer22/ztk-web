@@ -2,7 +2,7 @@
 import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
 import axios from 'axios'
 
-let formData = reactive({
+const formData = reactive({
     name: '',
     email: '',
     subject: '',
@@ -30,6 +30,7 @@ async function sendMessage() {
         await axios.post("https://ztk-web-nodemailer.onrender.com/api/send-message", formData)
         success.value = true
         Object.assign(formData, { name: "", email: "", subject: "", message: "" })
+        Object.assign(validData, { name: null, email: null, message: null })
     } catch (error) {
         console.error("Error sending message:", error)
         success.value = false

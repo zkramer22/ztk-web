@@ -51,7 +51,7 @@ app.post("/api/send-message", async (req, res) => {
                 <p>
                     Zach Kramer<br>
                     Web Developer & Designer<br>
-                    <a href="mailto:zkramer22@gmail.com" style="display:block; text-decoration:none;">zkramer22@gmail.com</a><br>
+                    <a href="mailto:zkramer22@gmail.com" style="display:inline-block; text-decoration:none;">zkramer22@gmail.com</a><br>
                     267.760.3054
                 </p>
             `,
