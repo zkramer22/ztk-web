@@ -50,29 +50,23 @@ app.post("/api/send-message", async (req, res) => {
                 <p>--------------------------------------------</p>
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                     <tr>
-                        <td style="margin-right: 10px;">
-                            <img src="https://ztk-web.s3.us-west-1.amazonaws.com/icons/ztk-monogram.png" alt="Your Logo" width="46" style="vertical-align: middle; background-color: #fff; padding: 2px;">
+                        <td style="padding-right: 10px;">
+                            <img src="https://ztk-web.s3.us-west-1.amazonaws.com/icons/ztk-monogram.png" alt="Your Logo" width="62" style="vertical-align: middle; background-color: #fff; padding: 3px; border-radius: 5px; border: 3px solid #222222;">
                         </td>
 
                         <td style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #333;">
-                            <strong>Zach Kramer</strong>&nbsp;<i style="color:#00000080">(he, him)</i><br>
+                            <strong>Zach Kramer</strong>&nbsp;<i style="color:#00000080">(he / him)</i><br>
                             Web Developer & Designer<br>
-                            <a href="mailto:zkramer22@gmail.com" style="color: #6a66a3; text-decoration: none;">zkramer22@gmail.com</a><br>
                             <a href="tel:2677603054" style="color: #6a66a3; text-decoration: none;">267.760.3054</a>
                         </td>
                     </tr>
                 </table>
 
-                
-                
-                
-                <img src=""/>
-                <p>
-                    Zach Kramer<br>
-                    Web Developer & Designer<br>
-                    <a href="mailto:zkramer22@gmail.com" style="display:inline-block; text-decoration:none;">zkramer22@gmail.com</a><br>
-                    267.760.3054
-                </p>
+                    vertical-align: middle;
+    background-color: #fff;
+    padding: 3px;
+    border-radius: 5px;
+    border: 3px solid #222222;
             `,
         });
 
