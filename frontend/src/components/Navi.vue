@@ -7,6 +7,7 @@ import phone from '@/assets/icon/phone.svg?raw'
 import email from '@/assets/icon/email.svg?raw'
 import calendar from '@/assets/icon/calendar.svg?raw'
 import download from '@/assets/icon/download.svg?raw'
+import ztk from '@/assets/icon/ztk.svg?raw'
 
 /////////////////////////// variables /////////////////////////////
 const props = defineProps({
@@ -35,10 +36,10 @@ function selectorClick(option) {
 <template>
     <nav :class="selectorActiveClass">
         <div class="flex-centered relative logo-wrapper">
-            <img id="monologo" @click="selectorClick(null)"
-                :class="`grow-animation ${scrolledClass}`" 
-                src="@/assets/img/ztk-logo.png"
-            />
+            <div id="monologo" @click="selectorClick(null)" 
+                 :class="`grow-animation ${scrolledClass}`" v-html="ztk">
+            </div>
+
             <h5 :class="`nav-title ${scrolledClass}`">
                 <span>ztk</span> 
                 <span style="font-weight: 500">
@@ -115,9 +116,6 @@ function selectorClick(option) {
         pointer-events: auto;
         width: 45px;
         height: 45px;
-        padding: 2px;
-        background-color: white;
-        border-radius: 5px;
         transition: scale .1s ease, width .2s linear, height .2s linear, padding .2s linear;
         @media(hover:hover) {
             &:hover {
