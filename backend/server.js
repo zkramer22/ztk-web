@@ -42,12 +42,31 @@ app.post("/api/send-message", async (req, res) => {
             html: `
                 <p>Hi there, <strong>${name}</strong>!</p>
                 <p>Thank you for reaching out. Here’s a copy of your message:</p>
-                <blockquote style="border-left: 4px solid #6a66a3; padding-left: 10px; margin-left: 0;">
+                <blockquote style="border-left: 4px solid #6a66a3; padding: 10px; margin-left: 0;background-color: #eeeeee;">
                     ${message}
                 </blockquote>
                 <p>I’ll get back to you as soon as I can. Have a great day!</p>
                 <p>–Z</p>
                 <p>--------------------------------------------</p>
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td style="margin-right: 10px;">
+                            <img src="https://ztk-web.s3.us-west-1.amazonaws.com/icons/ztk-monogram.png" alt="Your Logo" width="46" style="vertical-align: middle; background-color: #fff; padding: 2px;">
+                        </td>
+
+                        <td style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #333;">
+                            <strong>Zach Kramer</strong>&nbsp;<i style="color:#00000080">(he, him)</i><br>
+                            Web Developer & Designer<br>
+                            <a href="mailto:zkramer22@gmail.com" style="color: #6a66a3; text-decoration: none;">zkramer22@gmail.com</a><br>
+                            <a href="tel:2677603054" style="color: #6a66a3; text-decoration: none;">267.760.3054</a>
+                        </td>
+                    </tr>
+                </table>
+
+                
+                
+                
+                <img src=""/>
                 <p>
                     Zach Kramer<br>
                     Web Developer & Designer<br>
