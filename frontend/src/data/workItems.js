@@ -1,5 +1,3 @@
-// import SmoothSwitch from '../components/_oldComponents/SmoothSwitch.vue'
-
 export const workBlocks = {
     'apps-components': {
         title: "apps & components",
@@ -265,13 +263,13 @@ export const workBlocks = {
                     },
                 ],
             },
-        ]
+        ],
     },
     
     'marketing-adtech': {
         title: "marketing + ad tech",
         short: "Custom company websites, landing pages, animated advertisements, interactive info panels",
-        previewImg: 'work/health-panels/panel01.jpg',  // try the .exe for clips
+        previewImg: 'work/health-panels/panel01.jpg',
         items: [
             {
                 name: "Landing Pages",
@@ -580,105 +578,6 @@ export const workBlocks = {
                     },
                 ]
             },
-        ]
-
+        ],
     },
-    // 'code': {
-    //     title: "code",
-    //     short: "interesting code snippets worth sharing",
-    //     items: [
-
-    //     ],
-    // },
-    // 'games': {
-    //     title: "games",
-    //     short: "lil games I built to practice different javascript / css concepts",
-    //     items: [
-
-    //     ],
-    // },
 }
-
-const imgs = [
-    'work/animated-ads/ad_r-squared_rect.mov',
-    'work/animated-ads/ad_r-squared_square.mov',
-    'work/animated-ads/aml-ad-square.mov',
-    'work/animated-ads/aml-rect.mov',
-
-    'work/branded-sites/dupont_safespec-hero.png',
-    'work/branded-sites/dupont_list-filtered-1.png',
-    'work/branded-sites/dupont_list-filtered-2.png',
-    'work/branded-sites/dupont_search-bar.png',
-    'work/branded-sites/dupont_search-guide.png',
-    'work/branded-sites/dupont_search-hazard.png',
-
-    'work/branded-sites/ford-1.png',
-
-    'work/branded-sites/ford-ffn-2-modal.mov',
-
-    'work/branded-sites/ford-ffn-4.png',
-    'work/branded-sites/ford-ffn-5.png',
-    'work/branded-sites/ford-ffn-6.png',
-
-    'work/branded-sites/ford-search-1.mov',
-    'work/branded-sites/ford-search-2.mov',
-    'work/branded-sites/ford-search-3.mov',
-    'work/branded-sites/ford-upfit-1.mov',
-    
-    'work/branded-sites/ford-upfit-2.png',
-
-    // 'work/health-sites/aml-site-1.mov',
-    'work/health-sites/aml-site-audio.png',
-    'work/health-sites/legend-home.png',  // maybe get localhost shots of this site
-    'work/health-sites/legend-diagram.png',  // trim
-    'work/health-sites/legend-3.png',  // get mobile shots 
-    // 'work/health-sites/loxo-site-1.png',  // get nav bar animation and mobile
-    // 'work/health-sites/loxo-site-2.png',
-    // 'work/health-sites/loxo-site-3.png',
-    'work/health-sites/unithroid-load.mov',
-    // 'work/health-sites/unithroid-1.png',  // get mobile shot of this site
-    'work/health-sites/unithroid-2.png',
-    'work/health-sites/unithroid-3.png',
-    // 'work/health-sites/unithroid-5.png',
-    'work/health-sites/xiaflex-1.png',  // get mobile site
-    // 'work/health-sites/xiaflex-2.png',
-    // 'work/health-sites/xiaflex-3.png',
-
-    'work/health-panels/panel01.jpg',
-    'work/health-panels/panel02.jpg',
-    'work/health-panels/panel05.jpg',
-    'work/health-panels/panel08.jpg',
-    'work/health-panels/panel09.jpg',
-
-    'data-viz/stream-data-demo.png',
-    'work/branded-sites/ford-ffn-1.png',
-    'work/branded-sites/ford-ffn-2.png',
-    'work/branded-sites/ford-ffn-3.png',
-
-    'work/figma-design/app-design-1.png',
-    'work/figma-design/app-design-2.png',
-    'work/figma-design/app-design-3.png',
-    'work/figma-design/app-design-4.png',
-    'work/figma-design/tattoo-1.png',
-]
-
-export const chips = [
-    'JavaScript',
-    'HTML', 
-    'CSS', 
-    'Sass',
-    'Vue',
-    'React',
-    'Svelte',
-    'Python',
-    'Node',
-    'Ruby',
-    'AWS',
-    'GSAP',
-    'ScrollMagic',
-    'Gatsby',
-    'Electron',
-    'WordPress',
-    'ToneJS',
-    'Wavesurfer',
-]
