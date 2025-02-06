@@ -35,6 +35,28 @@ app.post("/api/send-message", async (req, res) => {
             text: `${message}`
         });
 
+        await transporter.sendMail({
+            from: `"Zach Kramer" <${process.env.EMAIL_USER}>`, // Use your email as sender
+            to: email, // Send to the person who filled out the form
+            subject: "~ I've received your message ~",
+            html: `
+                <p>Hi there, <strong>${name}</strong>!</p>
+                <p>Thank you for reaching out. Here’s a copy of your message:</p>
+                <blockquote style="border-left: 4px solid #6a66a3; padding-left: 10px; margin-left: 0;">
+                    ${message}
+                </blockquote>
+                <p>I’ll get back to you as soon as I can. Have a great day!</p>
+                <p>–Z</p>
+                <p>--------------------------------------------</p>
+                <p>
+                    Zach Kramer<br>
+                    Web Developer & Designer<br>
+                    <a href="mailto:zkramer22@gmail.com" style="display:block; text-decoration:none;">zkramer22@gmail.com</a><br>
+                    267.760.3054
+                </p>
+            `,
+        });
+
         res.status(200).json({ success: true, message: "Message sent successfully!" });
     } catch (error) {
         console.error("Error sending message:", error);
