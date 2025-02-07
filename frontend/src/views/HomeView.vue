@@ -1,7 +1,6 @@
 <script setup>
 import development from '@/assets/icon/development.svg?raw'
 import design from '@/assets/icon/design.svg?raw'
-
 import download from '@/assets/icon/download.svg?raw'
 
 </script>

@@ -5,8 +5,8 @@ import menu from '@/assets/icon/menu.svg?raw'
 import x from '@/assets/icon/x.svg?raw'
 import phone from '@/assets/icon/phone.svg?raw'
 import email from '@/assets/icon/email.svg?raw'
+import text from '@/assets/icon/text.svg?raw'
 import calendar from '@/assets/icon/calendar.svg?raw'
-import download from '@/assets/icon/download.svg?raw'
 import ztk from '@/assets/icon/ztk.svg?raw'
 
 /////////////////////////// variables /////////////////////////////
@@ -56,17 +56,21 @@ function selectorClick(option) {
             <div :class="`button-text-2 ${contactActive}`">contact</div>
             
             <div ref="accordion" class="accordion">
-                <a tabindex="-1" :class="`nav-button icon option web ${contactActive} ${scrolledClass}`" href="#">
-                    <!-- <div class="button-text web">meeting</div> -->
+                <a tabindex="-1" :class="`nav-button icon option purple2 ${contactActive} ${scrolledClass}`" href="https://calendar.app.google/FUNjeUv5JkLDPYES8" target="_blank">
+                    <!-- <div class="button-text purple2">meeting</div> -->
                     <div class="button-icon-svg" v-html="calendar"></div>
                 </a>
-                <a tabindex="-1" :class="`nav-button icon option audio ${contactActive} ${scrolledClass}`" href="tel:2677603054">
-                    <!-- <div class="button-text audio">call</div> -->
+                <a tabindex="-1" :class="`nav-button icon option purple1 ${contactActive} ${scrolledClass}`" href="tel:2677603054">
+                    <!-- <div class="button-text purple1">call</div> -->
                     <div class="button-icon-svg" v-html="phone"></div>
                 </a>
-                <a tabindex="-1" :class="`nav-button icon option black ${contactActive} ${scrolledClass}`" href="mailto:zkramer22@gmail.com" target="_blank">
+                <a tabindex="-1" :class="`nav-button icon option gray2 ${contactActive} ${scrolledClass}`" href="mailto:zkramer22@gmail.com" target="_blank">
                     <!-- <div class="button-text black">email</div> -->
                     <div class="button-icon-svg" v-html="email"></div>
+                </a>
+                <a tabindex="-1" :class="`nav-button icon option gray1 ${contactActive} ${scrolledClass}`" href="sms:+12677603054">
+                    <!-- <div class="button-text black">text</div> -->
+                    <div class="button-icon-svg" v-html="text"></div>
                 </a>
                 
             </div>
@@ -200,14 +204,17 @@ function selectorClick(option) {
             width: 45px;
             height: 45px;
         }
-        &.black {
+        &.gray2 {
+            background-color: $secondary-gray;
+        }
+        &.gray1 {
             background-color: $primary-gray;
         }
-        &.audio {
+        &.purple1 {
             background-color: $primary-color-audio;
         }
-        &.web {
-            background-color: $primary-color-web;
+        &.purple2 {
+            background-color: $secondary-color-audio;
         }
         &.active {
             &.option {
@@ -221,11 +228,11 @@ function selectorClick(option) {
             right: calc(100% + 10px);
             padding: 2px 7px;
             border-radius: 20px;
-            &.audio {
+            &.purple1 {
                 background-color: $primary-color-audio;
             }
-            &.web {
-                background-color: $primary-color-web;
+            &.purple2 {
+                background-color: $secondary-color-audio;
             }
             &.black {
                 background-color: $primary-gray;
@@ -239,7 +246,7 @@ function selectorClick(option) {
         width: auto;
         scale: 1;
         z-index: -1;
-        transition: top .2s ease .4s, scale .2s ease .4s;
+        transition: top .2s ease .55s, scale .2s ease .6s;
         &.active {
             top: 20px;
             transition-delay: 0s;
@@ -247,11 +254,11 @@ function selectorClick(option) {
             transition: top .2s ease, scale .2s ease;
         }
     }
-    @for $i from 0 through 2 {
+    @for $i from 0 through 3 {
         .nav-button.option.active:nth-of-type(#{$i + 1}) {
             transition-delay: #{$i * 0.15}s;
         }
-        .nav-button.option:nth-of-type(#{3 - $i}) {
+        .nav-button.option:nth-of-type(#{4 - $i}) {
             transition-delay: #{$i * 0.15}s;
         }
     }
