@@ -30,7 +30,7 @@ import download from '@/assets/icon/download.svg?raw'
             </div>
         </div>
         
-        <a id="resume" class="chip" download href="/download/Resume_2025.pdf">
+        <a id="resume" class="chip" download href="/downloads/Resume_2025.pdf">
             <span class="icon" v-html="download"></span>
             <span class="text">resume</span>
         </a>
