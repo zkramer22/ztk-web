@@ -48,16 +48,24 @@ app.post("/api/send-message", async (req, res) => {
                 <p>I’ll get back to you as soon as I can. Have a great day!</p>
                 <p>–Z</p>
                 <p>--------------------------------------------</p>
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                
+                <table role="presentation" cellspacing="0" cellpadding="0" style="font-family: Arial, Helvetica, sans-serif !important;">
                     <tr>
                         <td style="padding-right: 10px;">
-                            <img src="https://ztk-web.s3.us-west-1.amazonaws.com/icons/ztk-monogram.png" alt="Your Logo" width="62" style="vertical-align: middle; background-color: #fff; padding: 3px; border-radius: 5px; border: 3px solid #222222;">
+                            <a href="https://ztkweb.com" target="_blank">
+                                <img src="https://ztk-web.s3.us-west-1.amazonaws.com/icons/ztk-monogram.png" alt="Your Logo" width="62" style="vertical-align: middle; background-color: #fff; padding: 3px; border-radius: 5px; border: 3px solid #222222;">
+                            </a>
                         </td>
 
                         <td style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #333;">
                             <strong>Zach Kramer</strong>&nbsp;<i style="color:#00000080">(he / him)</i><br>
                             Web Developer & Designer<br>
-                            <a href="tel:2677603054" style="color: #6a66a3; text-decoration: none;">267.760.3054</a>
+                            <a href="tel:2677603054" style="color: #6a66a3; text-decoration: none;">267.760.3054</a><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 10px; padding-top: 5px;">
+                            <a href="https://ztkweb.com" style="color: #6a66a3; display: block; width: 100%; text-align: center; text-decoration: none; font-size: .8rem;">ztkweb.com</a>
                         </td>
                     </tr>
                 </table>
