@@ -209,13 +209,10 @@ onUnmounted(() => {
     height: 100%;
     position: relative;
     z-index: 1;
-    padding: 10px;
+    padding: 16px;
     &.grid {
         display: grid;
         grid-template-rows: 0px 2fr 250px 0fr 4fr;
-
-        // grid-template-rows: 50px 1fr 0fr 1fr;
-        
         grid-gap: 15px;
         transition: grid-template-rows .4s ease;
         &.active {
@@ -223,10 +220,6 @@ onUnmounted(() => {
         }
     }
 }
-
-// @media screen and (aspect-ratio > .667) {
-
-// }
 
 .bgImg {
   position: fixed;
@@ -241,8 +234,6 @@ p {
     font-size: 16px;
 }
 
-
-// @media screen and (aspect-ratio > 9 / 16) and (max-height: 500px) {
 @media screen and (max-height: 300px) {
     #mainView {
         display: none;
