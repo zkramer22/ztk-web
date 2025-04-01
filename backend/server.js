@@ -1,13 +1,13 @@
-import express from "express";
-import cors from "cors";
-import nodemailer from "nodemailer";
-import dotenv from "dotenv";
+import express from "express"
+import cors from "cors"
+import nodemailer from "nodemailer"
+import dotenv from "dotenv"
 
-dotenv.config();  // Load environment variables
+dotenv.config()  // Load environment variables
 
-const app = express();
-app.use(cors());
-app.use(express.json());  // Allow JSON requests
+const app = express()
+app.use(cors())
+app.use(express.json())  // Allow JSON requests
 
 // Nodemailer Transporter
 const transporter = nodemailer.createTransport({
@@ -16,14 +16,14 @@ const transporter = nodemailer.createTransport({
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     }
-});
+})
 
 // API Route to Handle Contact Form Submissions
 app.post("/api/send-message", async (req, res) => {
-    const { name, email, subject, message } = req.body;
+    const { name, email, subject, message } = req.body
 
     if (!name || !email || !message) {
-        return res.status(400).json({ error: "All fields are required." });
+        return res.status(400).json({ error: "All fields are required." })
     }
 
     try {
@@ -33,7 +33,7 @@ app.post("/api/send-message", async (req, res) => {
             to: process.env.EMAIL_USER,  
             subject: subject ? `${subject}` : `ztk-web message from ${name}`,
             text: `${message}`
-        });
+        })
 
         await transporter.sendMail({
             from: `"Zach Kramer" <${process.env.EMAIL_USER}>`, // Use your email as sender
@@ -70,14 +70,20 @@ app.post("/api/send-message", async (req, res) => {
                     </tr>
                 </table>
             `,
-        });
+        })
 
-        res.status(200).json({ success: true, message: "Message sent successfully!" });
+        res.status(200).json({ success: true, message: "Message sent successfully!" })
     } catch (error) {
-        console.error("Error sending message:", error);
-        res.status(500).json({ success: false, error: "Failed to send message." });
+        console.error("Error sending message:", error)
+        res.status(500).json({ success: false, error: "Failed to send message." })
     }
-});
+})
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.use('/ping', (req, res) => {
+    res.status(200);
+    if (req.method === 'HEAD') res.end()
+    else res.send('pong')
+})
+
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
