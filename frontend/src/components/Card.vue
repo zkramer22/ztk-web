@@ -5,8 +5,8 @@ import x from '@/assets/icon/x.svg?raw'
 import chevron from '@/assets/icon/chevron.svg?raw'
 
 import MediaItem from './MediaItem.vue';
-import { loaderMethods } from '../store.js'
-const { getS3Object } = loaderMethods
+// import { loaderMethods } from '../store.js'
+// const { getS3Object } = loaderMethods
 
 const props = defineProps({
     long: Boolean,
@@ -126,7 +126,7 @@ function toggleScroll() {
 
 
 <style lang="scss">
-    @import '@/assets/variables.scss';
+
 
     .modal-button {
         position: absolute;

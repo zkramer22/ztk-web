@@ -3,9 +3,13 @@ import { reactive, computed } from 'vue'
 
 /////////////////////////////// reactives //////////////////////////////////
 export const state = reactive({
-    scrolled1: false,
     selectorActive: null,
     selectorActiveClass: computed(() => state.selectorActive ? 'active' : ''),
+
+    about: null,
+    exp: null,
+    projects: null,
+    projectsObj: null,
 })
 
 export const formatMethods = {
@@ -14,11 +18,4 @@ export const formatMethods = {
             .filter(key => condition(obj[key]))
             .reduce((res, key) => (res[key] = obj[key], res), {})
     },
-}
-
-export const loaderMethods = {
-    getS3Object(path) {
-        const fullPath = `https://ztk-web.s3.us-west-1.amazonaws.com/${path}`
-        return fullPath
-    }
 }

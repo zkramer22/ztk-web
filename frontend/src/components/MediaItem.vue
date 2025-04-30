@@ -1,62 +1,102 @@
-<script async setup>
-import { ref, computed } from 'vue';
+<script setup>
+import { ref, computed } from 'vue'
 
 const props = defineProps({
-    mediaSrc: String,
-    rounded: Boolean,
-    fullscreenAble: Boolean,
-    controls: Boolean,
+    media: {
+        type: Object,
+        required: true,
+    },
+    rounded: {
+        type: Boolean,
+        default: false,
+    },
+    fullscreenAble: {
+        type: Boolean,
+        default: false,
+    },
+    tailwind: {
+        type: String,
+    },
+    aspectRatio: {
+        type: Number,
+    },
 })
 
-const imgRef = ref(null)
-const videoRef = ref(null)
-const videoWrapper = ref(null)
+const loaded = ref(false)
+const isVideo = computed(() => props.media?.type === 'video')
 
-const fullscreenAbleClass = computed(() => props.fullscreenAble ? 'fullscreen-able' : '')
 const roundedClass = computed(() => props.rounded ? 'rounded' : '')
+const fullscreenAbleClass = computed(() => props.fullscreenAble ? 'fullscreenAble' : '')
+const computedStyles = computed(() => (
+    { 
+        aspectRatio: props.aspectRatio,
+    }
+))
 
-const isVideo = computed(() => {
-    const split = props.mediaSrc.split('.')
-    return split[split.length - 1] === 'mov'
-})
-
+function onLoad() {
+    loaded.value = true
+}
 </script>
 
 <template>
-    <video v-if="isVideo" ref="videoRef" :src="mediaSrc"
-        :class="`media ${roundedClass}`"
-        autoplay loop playsinline :controls="controls" 
-        controlslist="nodownload" 
-        oncontextmenu="return false" />
-    
-    <img v-else ref="imgRef" :src="mediaSrc"
-        :class="`media ${roundedClass} ${fullscreenAbleClass}`"
-        oncontextmenu="return false" draggable="false" />
+    <div class="media-wrapper" 
+        :class="tailwind"
+        :style="computedStyles"
+    >
+        <video v-if="isVideo"
+            autoplay loop playsinline
+            controls controlslist="nodownload"
+            oncontextmenu="return false"
+            class="media">
+            <source v-if="media.webm?.asset?.url" :src="media.webm.asset.url" type="video/webm" />
+            <source v-if="media.mp4?.asset?.url" :src="media.mp4.asset.url" type="video/mp4" />
+        </video>
+
+        <picture v-else>
+            <source v-if="media.avif?.asset?.url" :srcset="media.avif.asset.url" type="image/avif" />
+            <source v-if="media.webp?.asset?.url" :srcset="media.webp.asset.url" type="image/webp" />
+            <img v-if="media.webp?.asset?.url"
+                :src="media.webp.asset.url"
+                :alt="media.alt"
+                :class="{ loaded }"
+                class="media"
+                draggable="false"
+                oncontextmenu="return false"
+                @load="onLoad"
+            />
+        </picture>
+    </div>
 </template>
 
-<style lang="scss">
-    .media {
-        position: relative;
-        // object-fit: cover;
-        object-fit: contain;
-        &.rounded {
-            border-radius: 10px;
-        }
-        @media (hover:hover) {
-            &.fullscreen-able {
-                &:hover {
-                    filter:brightness(.7);
-                }
-            }
-            &.fullscreen.img {
-                &:hover {
-                    filter: none;
-                }
-            }
-        }
+<style scoped lang="scss">
+.media-wrapper {
+    overflow: hidden;
+    object-fit: cover;
+    position: relative;
+    user-select: none;
+    &.fullHeight {
+        height: 100%;
     }
-    
-    .media-item {
-        user-select: none;
+}
+.media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 0%;
+    opacity: 0;
+    transition: opacity .2s linear;
+    transition-delay: .2s;
+    &.loaded {
+        opacity: 1;
     }
+}
+
+.rounded {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.fullscreenAble {
+    cursor: zoom-in;
+}
 </style>

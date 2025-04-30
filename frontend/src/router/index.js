@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import MeView from '../views/MeView.vue'
 import ExpView from '../views/ExpView.vue'
 import WorkView from '../views/WorkView.vue'
@@ -7,6 +6,7 @@ import WorkDetails from '../components/WorkDetails.vue'
 import MsgView from '../views/MsgView.vue'
 
 import { state } from '../store.js'
+import { render } from 'vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,30 +14,33 @@ const router = createRouter({
         {
             name: 'home',
             path: '/',
-            component: HomeView,
         },
         {
+            name: 'me',
             path: '/me',
             component: MeView,
         },
         {
+            name: 'exp',
             path: '/exp',
             component: ExpView,
         },
         {
-            path: '/msg',
-            component: MsgView,
-        },
-        {
+            name: 'work',
             path: '/work',
             component: WorkView,
             children: [
                 { 
-                    path: ':category', 
+                    path: ':project', 
                     component: WorkDetails, 
                     props: true,
                 }
             ],
+        },
+        {
+            name: 'msg',
+            path: '/msg',
+            component: MsgView,
         },
     ],
 })

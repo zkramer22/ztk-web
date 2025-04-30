@@ -23,7 +23,6 @@ function backButtonClick() {
 </script>
 
 <template>
-    <!-- <div :class="`selector-wrapper ${selectorActiveClass}`"> -->
     <div class="selector-wrapper">
         <div :class="`selector-back-button home ${selectorActiveClass}`"            
             @click="selectorClick(null)" v-html="home"
@@ -44,14 +43,14 @@ function backButtonClick() {
 </template>
 
 <style lang="scss">
-@import '@/assets/variables.scss';
     .selector-wrapper {
+        user-select: none;
         position: relative;
         height: min-content;
         grid-row: -2 / -1;
         // grid-row: 2 / 3;
         grid-column: 1 / -1;
-        transition: $selector-transitions;
+        transition: var(--selector-transitions);
         animation: fadein 1s linear, translateFromRight 1s ease;
     }
 
@@ -61,7 +60,7 @@ function backButtonClick() {
         margin: auto;
         width: 100%;
         max-width: 400px;
-        transition: $selector-transitions;
+        transition: var(--selector-transitions);
         &.active {
             width: 220px;
             grid-gap: 5px;
@@ -78,12 +77,12 @@ function backButtonClick() {
         border: 2px solid;
         border-radius: 10px;
         opacity: 0;
-        transition: $selector-transitions, scale .1s linear;
+        transition: var(--selector-transitions), scale .1s linear;
         scale: 1;
         align-items: center;
         justify-items: center;
         align-content: center center;
-        background-color: $primary-black;
+        background-color: var(--color-darkest);
         &.active {
             &.home {
                 display: none;

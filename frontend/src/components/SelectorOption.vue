@@ -23,7 +23,7 @@ const activeClass = computed(() => props.isActive ? 'active' : '')
 </template>
 
 <style lang="scss">
-    @import '@/assets/variables.scss';
+
     .selector-grid.active {
         .button-selector-icon {
             bottom: 0;
@@ -55,7 +55,7 @@ const activeClass = computed(() => props.isActive ? 'active' : '')
         overflow: hidden;
         line-height: 1;
         transition: scale .1s linear, background-color .4s linear;
-        background-color: $primary-black;
+        background-color: var(--color-darkest);
         z-index: 1;
         @media (hover:hover) {
             &:hover {
@@ -67,7 +67,7 @@ const activeClass = computed(() => props.isActive ? 'active' : '')
         }
         &.active {
             background-color: white;
-            color: $primary-black;
+            color: var(--color-darkest);
         }
         p {
             margin: 0 auto;
@@ -83,7 +83,7 @@ const activeClass = computed(() => props.isActive ? 'active' : '')
         bottom: 25%;
         width: 100%;
         font-size: 2.4rem;
-        transition: $selector-transitions;
+        transition: var(--selector-transitions);
     }
     p.option-text {
         position: absolute;
@@ -95,7 +95,7 @@ const activeClass = computed(() => props.isActive ? 'active' : '')
         width: 100%;
         scale: 1;
         font-size: 1.5rem;
-        transition: $selector-transitions;
+        transition: var(--selector-transitions);
     }
     p.option-selected {
         position: absolute;
@@ -109,11 +109,11 @@ const activeClass = computed(() => props.isActive ? 'active' : '')
         font-weight: 500;
         width: min-content;
         padding: 0 7px 2px;
-        color: $primary-black;
+        color: var(--color-darkest);
         background-color: white;
-        border: 2px solid $primary-black;
+        border: 2px solid var(--color-darkest);
         border-radius: 15px;
-        transition: $selector-transitions;
+        transition: var(--selector-transitions);
         &.active {
             opacity: 1;
             bottom: calc(100% + 2px);

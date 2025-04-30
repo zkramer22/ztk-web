@@ -80,7 +80,7 @@ onUnmounted(() => {
 </script>
 
 <template>    
-    <div class="container">
+    <section class="container fade-slide-from-bottom">
         <div class="message-notif" v-if="success === true">✅ Message sent successfully!</div>
         <div class="message-notif" v-if="success === false">❌ Failed to send message.</div>
 
@@ -137,11 +137,11 @@ onUnmounted(() => {
         </form>
 
         <div class="spacer"></div>
-    </div>
+    </section>
 </template>
 
 <style lang="scss">
-@import '@/assets/variables.scss'; 
+
 
 form {
     padding: 0 30px 30px;
@@ -178,8 +178,8 @@ form {
             display: flex;
             align-items: center;
             position: relative;
-            background-color: $primary-black;
-            border: 2px solid $primary-gray;
+            background-color: var(--color-darkest);
+            border: 2px solid var(--color-dark);
             border-radius: 10px;
             z-index: 1;
             font-size: 1.3rem;
@@ -201,8 +201,8 @@ form {
         textarea {
             display: block;
             position: relative;
-            background-color: $primary-black;
-            border: 2px solid $primary-gray;
+            background-color: var(--color-darkest);
+            border: 2px solid var(--color-dark);
             border-radius: 10px;
             z-index: 1;
             font-size: 1.3rem;
@@ -227,10 +227,10 @@ form {
         }
     }
     button {
-        background-color: $primary-color-audio;
+        background-color: var(--color-1-vibrant);
         border-radius: 7px;
         padding: 10px;
-        border: 2px solid $primary-color-audio;
+        border: 2px solid var(--color-1-vibrant);
         transition: border-color .3s ease, filter .3s ease;
         &.disabled {
             filter: grayscale(.9);
@@ -251,7 +251,7 @@ form {
     max-width: 100%;
     margin: 0 auto;
     padding: 20px;
-    background-color: $primary-gray;
+    background-color: var(--color-dark);
     border-radius: 40px;
     animation: fadein 1s ease, slideFromTop 1s ease, fadeout 1s ease 4s forwards;
     pointer-events: none;

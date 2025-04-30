@@ -27,7 +27,7 @@ function getS3Path(text) {
 </template>
 
 <style lang="scss" scoped>
-    @import '@/assets/variables.scss';
+
     a {
         display: block;
         width: min-content;
@@ -43,8 +43,8 @@ function getS3Path(text) {
     }
     
     .chip-wrapper {
-        // background-color: $primary-gray;
-        background-color: $primary-color-audio;
+        // background-color: var(--color-dark);
+        background-color: var(--color-1-vibrant);
         display: flex;
         justify-content: center;
         align-items: center;

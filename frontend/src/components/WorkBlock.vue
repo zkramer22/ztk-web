@@ -1,32 +1,30 @@
 <script setup>
-    import { loaderMethods } from '@/store.js'
-    const { getS3Object } = loaderMethods
-
     import Card from './Card.vue'
     import MediaItem from './MediaItem.vue'
 
     const props = defineProps({
         title: String,
-        short: String,
-        previewImg: String,
-        chips: Array,
+        description: String,
+        coverImage: Object,
+        tags: Array,
     })
 </script>
 
 <template>
-    <Card>
+    
+    
+    <!-- <Card>
         <template v-slot:preview>
-            <MediaItem :mediaSrc="getS3Object(previewImg)" />
+            <MediaItem :media="coverImage" :aspectRatio="1.6"/>
         </template>
         <template v-slot:description>
             <h4>{{ title }}</h4>
-            <p>{{ short }}</p>
         </template>
-    </Card>
+    </Card> -->
 </template>
 
 <style lang="scss" scoped>
-    @import '@/assets/variables.scss';
+
     
     .description {
         padding: 20px 15px;
@@ -101,7 +99,7 @@
         width: fit-content;
         border-radius: 35px;
         &.see-more {
-            background-color: $primary-gray;
+            background-color: var(--color-dark);
             padding: 10px 20px;
             font-size: 24px;
         }

@@ -1,24 +1,25 @@
 <script setup>
+import MediaItem from '@/components/MediaItem.vue'
 
-    const props = defineProps({
-        title: String,
-        body: String,
-        img: String,
-    })
+const props = defineProps({
+    title: String,
+    role: String,
+    description: String,
+    link: String,
+    media: Object,
+})
 
-    function getS3Img(path) {
-        return `https://ztk-web.s3.us-west-1.amazonaws.com/exp/${path}`
-    }
 </script>
 
 <template>
-    <div :class="`img-text-grid`">
-        <h3>{{ title }}</h3>
-        <div class="img-container screenshot rounded">
-            <img :src="getS3Img(img)" alt="wetscott multimedia landing page"/>
-        </div>
-        <p>{{ body }}</p>
+<div :class="`img-text-grid`">
+    <h3>{{ title }}</h3>
+    <h4>{{ role }}</h4>
+    <div class="img-container screenshot rounded">
+        <MediaItem :media />
     </div>
+    <p class="balance">{{ description }}</p>
+</div>
 </template>
 
 <style lang="scss" scoped>

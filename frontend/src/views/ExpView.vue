@@ -1,26 +1,40 @@
 <script setup>
-    import ExpBlock from '../components/ExpBlock.vue'
-    import { expItems } from '@/data/expItems.js'
+import { ref, onMounted } from 'vue'
+import ExpBlock from '../components/ExpBlock.vue'
+import { fetchDocuments } from '@/utils/sanity'
+
+import { state } from '@/store'
+
+const loaded = ref(false)
+
+onMounted(async() => {
+    if (!state.exp) {
+        const data = await fetchDocuments({ type: 'experience' })
+        state.exp = data
+    }
+    loaded.value = true
+})
+
 </script>
 
 <template>
-    <div class="container">
-        <h2 class="text-center">:: experience ::</h2>
-        <ExpBlock v-for="({ title, body, img }, i) in expItems"
+    <section class="container fade-slide-from-bottom">
+        <h2 class="font-accent">EXPERIENCE</h2>
+        <ExpBlock v-for="({ title, role, description, link, media }, i) of state.exp"
             :key="`exp-${i}`"
-            :title="title"
-            :body="body"
-            :img="img"
+            :title
+            :role
+            :description
+            :link
+            :media
         />
         <div class="spacer"></div>
-    </div>
+    </section>
 </template>
 
 
 <style lang="scss" scoped>
-    @media screen and (min-width: 1440px) {
-        .container {
-            max-width: 1260px;
-        }
+    .container {
+        // max-width: 1024px;
     }
 </style>

@@ -1,34 +1,37 @@
 <script setup>
-const headshotPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/headshot-1.jpeg'
+
+import { ref, onMounted } from 'vue'
+import { fetchSingleDocument } from '@/utils/sanity'
+import MediaItem from '@/components/MediaItem.vue'
+import { PortableText } from '@portabletext/vue'
+
+import { state } from '@/store'
+
+const loaded = ref(false)
+
+onMounted(async() => {
+    if (!state.about) {
+        const data = await fetchSingleDocument({ type: 'about' })
+        state.about = data
+    }
+    loaded.value = true
+})
+
 </script>
 
 <template>
-    <div class="container">
-        <h2 class="text-center">:: about me ::</h2>
+    <section class="container fade-slide-from-bottom">
+        <h2 class="font-accent">ME</h2>
         <div class="img-text-grid">
             <div class="img-container headshot">
-                <img :src="headshotPath" alt="photo of zach kramer"/>
+                <MediaItem v-if="state.about?.headshot" :media="state.about?.headshot" />
             </div>
             <div>
-                <p>
-                    I've been fascinated with computers ever since I first sat in front of my grandpa Tom's Apple Power Mac 6200 at the age of five. 
-                    I grew up in the heart of the dot-com bubble, and I remember the AOL dial up tone.
-                    I've jailbroken most of my gaming consoles & old phones, and my Macbook always has a Windows partition.
-                    I have a healthy relationship with my screens, and when I do occasionally browse social media...my algorithms are <i>tuned</i>. No junk.
-                </p>
-                <p>
-                    I've been building things for the web since 2018. While I've touched just about every part of the app deployment process, 
-                    the frontend is where I bring the most to the table through thoughtful design and development. Creativity is my strong suit, and I love finding ways 
-                    to make old patterns appear fresh & new.
-                </p>
-                <p>
-                    Outside of tech, I love being active outdoors. Skiing, snowboarding, and skating are my favorite forms of movement. 
-                    I'm a musician as well; I consider music my sincerest passion of all – especially the intersection between music & technology.
-                </p>
+                <PortableText :value="state.about?.bio" />
             </div>
         </div>
         <div class="spacer"></div>
-    </div>
+    </section>
 </template>
 
 
