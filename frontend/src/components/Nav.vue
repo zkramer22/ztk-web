@@ -125,7 +125,7 @@ watch(() => props.path, (newval) => {
 <style lang="scss">
 #home-section {
     grid-row: 3 / 4;
-    grid-column: 2 / -2;
+    grid-column: 1 / -1;
     justify-items: center;
 }
 
