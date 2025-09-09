@@ -1,82 +1,41 @@
 <script setup>
 import MediaItem from '@/components/MediaItem.vue'
+import { computed } from 'vue';
 
 const props = defineProps({
     title: String,
-    role: String,
-    description: String,
+    role: Array[String],
+    description: Array[String],
     link: String,
-    media: Object,
+    time: Array[String],
+    img: { type: [String, Object] },
 })
 
+const rolesAndTimes = computed(() => props.role.concat(props.time))
 </script>
 
 <template>
-<div :class="`img-text-grid`">
-    <h3>{{ title }}</h3>
-    <h4>{{ role }}</h4>
-    <div class="img-container screenshot rounded">
-        <MediaItem :media />
+<div class="bg-darkest card-item rounded">
+    <div class="img-container relative">
+        <MediaItem :item="img" :isSanityImage="false" :aspectRatio="22/9" />
     </div>
-    <p class="balance">{{ description }}</p>
+    <div class="job px-[1rem] pt-[1rem]">
+        <h3 class="title font-bold mb-3">{{ title }}</h3>
+        <div class="flex gap-2 flex-wrap">  
+            <div class="chip role font-accent lowercase" v-for="item of rolesAndTimes">{{ item }}</div>
+        </div>
+        <div class="h-[1px] bg-[var(--color-dark)] w-full my-[1rem]"></div>
+    </div>
+    <div class="description px-[1rem] pb-[1rem] text-lg lg:text-base">
+        <p v-for="description of description">
+            {{ description }}
+        </p>
+    </div>
 </div>
 </template>
 
 <style lang="scss" scoped>
-    h3 {
-        margin-bottom: 10px;
-    }
-    .img-container {
-        margin: 10px 0;
-    }
-
-    .img-text-grid {
-        margin: 20px 0;
-    }
-
-    @media screen and (min-width: 500px) {
-        .img-text-grid {
-            .img-container {
-                max-width: 50%;
-                float: right;
-                margin: 10px;
-            }
-        }
-    }
-
-    @media screen and (min-width: 768px) {
-        .img-text-grid {
-            display: grid;
-            grid-gap: 0 15px;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto 1fr;
-            grid-auto-flow: row dense;
-            .img-container {
-                float: none;
-                margin: 0;
-                max-width: unset;
-                grid-column: 2 / 3;
-                grid-row: 1 / 3;
-                align-self: start;
-            }
-            p {
-                grid-column: 1 / 2;
-                grid-row: 2 / 3;
-            }
-
-            &:nth-of-type(2n - 1) {
-                .img-container {
-                    grid-column: 1 / 2;
-                }
-                p, h3 {
-                    grid-column: 2 / 3;
-                }
-            }
-            &:nth-of-type(2n) {
-                p, h3 {
-                    text-align: right;
-                }
-            }
-        }
+    p:last-of-type {
+        margin-bottom: 0;
     }
 </style>

@@ -80,9 +80,10 @@ app.post("/api/send-message", async (req, res) => {
 })
 
 app.use('/ping', (req, res) => {
-    res.status(200);
-    if (req.method === 'HEAD') res.end()
-    else res.send('pong')
+    if (req.method === 'HEAD') {
+        return res.sendStatus(200)  // cleaner for HEAD
+    }
+    res.status(200).send('pong')
 })
 
 const PORT = process.env.PORT || 5000

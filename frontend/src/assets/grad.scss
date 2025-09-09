@@ -1,0 +1,208 @@
+:root {
+    --color-icon-1: rgb(153, 149, 193);
+    --color-icon-2: rgb(107, 102, 163);
+
+    --color1: 18, 113, 255;
+    --color2: 221, 74, 255;
+    --color3: 100, 220, 255;
+    --color4: 255, 184, 85;
+    --color5: 88, 239, 151;
+    --color-interactive: 140, 100, 255;
+
+    --color1-rgb: rgb(18, 113, 255);
+    --color2-rgb: rgb(221, 74, 255);
+    --color3-rgb: rgb(100, 220, 255);
+    --color4-rgb: rgb(255, 184, 85);
+    --color5-rgb: rgb(88, 239, 151);
+    --color-interactive-rgb: rgb(140, 100, 255);
+
+    --circle-size: 100%;
+
+    --goo-blur: 32px;
+    // --dot: clamp(220px, 35vmin, 520px);
+    --blending: hard-light;
+}
+
+@keyframes moveInCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes moveVertical {
+    0% {
+        transform: translateY(-50%);
+    }
+    50% {
+        transform: translateY(50%);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes moveHorizontal {
+    0% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+    50% {
+        transform: translateX(50%) translateY(10%);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+}
+
+.gradient-bg {
+    position: fixed;
+    inset: 0;
+    width: 100svw;
+    height: 100svh;
+    overflow: hidden;
+    z-index: -1;
+    svg {
+        position: fixed;
+        top:0;
+        left:0;
+        width: 0;
+        height: 0;
+    }
+    .gradients-container {
+        width: 100%;
+        height: 100%;
+        isolation: isolate;          // keep blends inside
+        contain: layout paint;       // confine paint invalidation
+        overflow: clip;
+    }
+    .goo {
+        width: 100%;
+        height: 100%;
+        filter: url(#goo) blur(var(--goo-blur));
+        // filter: blur(6px) contrast(18);   /* tune 5–8 / 10–18 */
+        will-change: filter;
+        contain: layout paint;       // the filtered subtree is isolated
+    }
+    .goo-scale {
+        position: absolute;
+        width: 60%;   /* try 60–70% */
+        height: 60%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%) scale(1.67); /* 1 / 0.60 ≈ 1.67 */
+        transform-origin: center;
+        will-change: transform;
+        /* The goo inside now processes ~36% as many pixels */
+    }
+    .g1 {
+        position: absolute;
+        z-index: 100000;
+        background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+        mix-blend-mode: var(--blending);
+
+        width: var(--circle-size);
+        height: var(--circle-size);
+        top: calc(50% - var(--circle-size) / 2);
+        left: calc(50% - var(--circle-size) / 2);
+
+        transform-origin: center center;
+        animation: moveVertical 30s ease infinite;
+
+        opacity: 1;
+    }
+    .g2 {
+        position: absolute;
+        z-index: 100000;
+        background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+        mix-blend-mode: var(--blending);
+
+        width: var(--circle-size);
+        height: var(--circle-size);
+        top: calc(50% - var(--circle-size) / 2);
+        left: calc(50% - var(--circle-size) / 2);
+
+        transform-origin: calc(50% - 400px);
+        animation: moveInCircle 20s reverse infinite;
+
+        opacity: 1;
+    }
+    .g3 {
+        position: absolute;
+        z-index: 100000;
+        background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+        mix-blend-mode: var(--blending);
+
+        width: var(--circle-size);
+        height: var(--circle-size);
+        top: calc(50% - var(--circle-size) / 2 + 200px);
+        left: calc(50% - var(--circle-size) / 2 - 500px);
+
+        transform-origin: calc(50% + 400px);
+        animation: moveInCircle 40s linear infinite;
+
+        opacity: 1;
+    }
+    .g4 {
+        position: absolute;
+        z-index: 100000;
+        background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+        mix-blend-mode: var(--blending);
+
+        width: var(--circle-size);
+        height: var(--circle-size);
+        top: calc(50% - var(--circle-size) / 2);
+        left: calc(50% - var(--circle-size) / 2);
+
+        transform-origin: calc(50% - 200px);
+        animation: moveHorizontal 40s ease infinite;
+
+        opacity: 1;
+    }
+    .g5 {
+        position: absolute;
+        z-index: 100000;
+        background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+        mix-blend-mode: var(--blending);
+
+        width: calc(var(--circle-size) * 2);
+        height: calc(var(--circle-size) * 2);
+        top: calc(50% - var(--circle-size));
+        left: calc(50% - var(--circle-size));
+
+        transform-origin: calc(50% - 800px) calc(50% + 200px);
+        animation: moveInCircle 20s ease infinite;
+
+        opacity: 1;
+    }
+
+    .interactive {
+        position: absolute;
+        z-index: 100000;
+        width: var(--circle-size);
+        height: var(--circle-size);
+        top: -50%;
+        left: -50%;
+        background: radial-gradient(circle at center,
+            rgba(var(--color-interactive), .8) 0,
+            rgba(var(--color-interactive), 0) 60%) no-repeat;
+        mix-blend-mode: var(--blending);
+        will-change: transform;
+        pointer-events: none;
+        contain: layout paint style;
+        opacity: 1;
+
+        transform: translate3d(var(--x, 50vw), var(--y, 50vh), 0) translate(-50%, -50%);
+
+    }
+}
+
+.fx-paused {
+    .gradient-bg {
+        .g1, .g2, .g3, .g4, .g5 { animation-play-state: paused }
+    }
+} 

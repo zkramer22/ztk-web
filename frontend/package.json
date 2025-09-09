@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.10",
     "@portabletext/vue": "^1.0.12",
     "@sanity/client": "^6.29.1",
+    "@sanity/image-url": "^1.1.0",
     "axios": "^1.7.9",
+    "prismjs": "^1.30.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vue3-lazyload": "^0.3.8"

@@ -3,13 +3,12 @@ import { reactive, computed } from 'vue'
 
 /////////////////////////////// reactives //////////////////////////////////
 export const state = reactive({
-    selectorActive: null,
-    selectorActiveClass: computed(() => state.selectorActive ? 'active' : ''),
+    projects: [],
+    projectDetails: {}
+})
 
-    about: null,
-    exp: null,
-    projects: null,
-    projectsObj: null,
+export const selector = reactive({
+    activeRoute: null
 })
 
 export const formatMethods = {

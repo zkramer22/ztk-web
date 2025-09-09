@@ -1,54 +1,94 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MeView from '../views/MeView.vue'
-import ExpView from '../views/ExpView.vue'
-import WorkView from '../views/WorkView.vue'
-import WorkDetails from '../components/WorkDetails.vue'
-import MsgView from '../views/MsgView.vue'
 
-import { state } from '../store.js'
-import { render } from 'vue'
+import { selector } from '../store.js'
+import { scrollTop } from '@/utils/scroll.js'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             name: 'home',
+            meta: {
+                nav: null,
+            },
             path: '/',
+            component: () => import('../views/Blank.vue'),
         },
         {
             name: 'me',
+            meta: {
+                nav: '[about me]',
+            },
             path: '/me',
-            component: MeView,
+            component: () => import('../views/MeView.vue'),
         },
         {
             name: 'exp',
+            meta: {
+                nav: '[experience]',
+            },
             path: '/exp',
-            component: ExpView,
+            component: () => import('../views/ExpView.vue'),
         },
         {
             name: 'work',
+            meta: {
+                nav: '[work]',
+            },
             path: '/work',
-            component: WorkView,
+            component: () => import('../views/WorkView.vue'),
             children: [
-                { 
-                    path: ':project', 
-                    component: WorkDetails, 
+                {
+                    name: 'workDetails',
+                    meta: {
+                        nav: '[work]',
+                    },
+                    path: ':slug',
+                    component: () => import('../views/WorkDetails.vue'),
                     props: true,
-                }
+                },
             ],
         },
         {
-            name: 'msg',
-            path: '/msg',
-            component: MsgView,
+            name: 'info',
+            meta: {
+                nav: '[info]',
+            },
+            path: '/info',
+            component: () => import('../views/InfoView.vue'),
         },
+        // {
+        //     path: '/404',
+        //     name: 'notFound',
+        //     component: () => import(/* webpackChunkName: "notFound" */ '../views/NotFoundView.vue'),
+        //     meta: { title: '404 Not Found' },
+        // },
+        // {
+        //     path: '/:pathMatch(.*)*',
+        //     redirect: '/404',
+        // },
     ],
 })
 
-router.beforeEach((to, from) => {
-    const basePath = to.fullPath.split('/')[1]
-    state.selectorActive = basePath
-    window.scrollTo({ top: 0, behavior: 'instant' })
+router.beforeEach((to, from, next) => {
+    if (router.currentRoute.value.path === to.path) return
+    
+    if (to.path === '/') selector.activeRoute = null
+    else selector.activeRoute = to.path
+
+    return next()
+})
+
+router.afterEach((to, from) => {
+    if (to.path === from.path) {
+        // console.log('repeat, after');
+    }
+
+    scrollTop({ 
+        behavior: 'instant', 
+        to: to.path, 
+        path: from.path 
+    })
 })
 
 export default router

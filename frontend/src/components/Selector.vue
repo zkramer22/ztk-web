@@ -1,57 +1,69 @@
 <script setup>
-import SelectorOption from './SelectorOption.vue'
-import backArrow from '@/assets/icon/backarrow.svg?raw'
-import home from '@/assets/icon/home.svg?raw'
+import { computed, h } from 'vue'
+import home from '@/assets/icon/home3.svg?raw'
+import me from '@/assets/icon/me3.svg?raw'
+import exp from '@/assets/icon/exp3.svg?raw'
+import work from '@/assets/icon/work3.svg?raw'
+import info from '@/assets/icon/info3.svg?raw'
 
-const props = defineProps({
-  selectorActive: String,
-  selectorActiveClass: String,
-})
+const selectorItems = [
+    { name: 'me', path: '/me', icon: me }, 
+    { name: 'exp', path: '/exp', icon: exp }, 
+    { name: 'work', path: '/work', icon: work }, 
+    { name: 'info', path: '/info', icon: info },
+]
 
-const emit = defineEmits(['selectorClick', 'backButtonClick'])
+import { selector } from '@/store'
+const selectorActive = computed(() => !!selector.activeRoute)
 
-/////////////////////////// variables /////////////////////////////
-const selector = ['me', 'exp', 'work', 'msg']
-
-////////////////////////// methods /////////////////////////////
-function selectorClick(option) {
-    emit('selectorClick', option)
-}
-function backButtonClick() {
-    emit('backButtonClick')
-}
 </script>
 
 <template>
-    <div class="selector-wrapper">
-        <div :class="`selector-back-button home ${selectorActiveClass}`"            
-            @click="selectorClick(null)" v-html="home"
-        ></div>
-        <div :class="`selector-back-button ${selectorActiveClass}`"
-            @click="backButtonClick" v-html="backArrow"
-        ></div>
-        <div ref="selectorGrid" :class="`selector-grid ${selectorActiveClass}`">
-            <SelectorOption v-for="(option, i) in selector" 
-                @click="selectorClick(option)"
-                :key="`opt-${i}`"
-                :option="option"
-                :num="i"
-                :isActive="selectorActive === option" 
-            />
+    <div class="selector-wrapper hidenav-trans" :class="[{ selectorActive }]" id="selector">
+        <div class="selector-grid">
+            <RouterLink v-for="({ name, path, icon }) of selectorItems" :to="path" :key="name"
+                class="selector-link selector-option" tabindex="10"
+            >
+                <div class="button-selector hover-grow grid gap-[5px] content-center">
+                    <div class="selector-icon" v-html="icon" />
+                    <div class="selector-text text-center">{{ name }}</div>
+                </div>
+            </RouterLink>
         </div>
     </div>
 </template>
 
 <style lang="scss">
+    #selector {
+        pointer-events: all;
+    }
+
+    .selector-icon {
+        width: 40%;
+        margin: 0 auto;
+    }
+
     .selector-wrapper {
         user-select: none;
         position: relative;
         height: min-content;
         grid-row: -2 / -1;
-        // grid-row: 2 / 3;
         grid-column: 1 / -1;
-        transition: var(--selector-transitions);
-        animation: fadein 1s linear, translateFromRight 1s ease;
+        // animation: fadein 1s ease, slideFromRight 1s ease;
+
+        &.selectorActive {
+            .selector-grid {
+                width: 15rem;
+                grid-gap: 5px;
+            } 
+            .back-buttons {
+                pointer-events: all;
+                transform: translateX(0);
+            }
+            .selector-text {
+                font-size: 1rem;
+            }
+        }
     }
 
     .selector-grid {
@@ -59,79 +71,67 @@ function backButtonClick() {
         grid-gap: 10px;
         margin: auto;
         width: 100%;
-        max-width: 400px;
+        max-width: 600px;
         transition: var(--selector-transitions);
-        &.active {
-            width: 220px;
-            grid-gap: 5px;
-        } 
     }
-    .selector-back-button {
+
+    .back-buttons {
         position: absolute;
+        aspect-ratio: 1;
         pointer-events: none;
-        z-index: 5;
-        aspect-ratio: 1 / 1;
+        transform: translateX(-50vw);
+        transition: transform var(--selector-trans-time) ease;
+    }
+
+    .selector-link {
+        display: block;
+        width: 25%;
+
+        &.router-link-active {
+            .button-selector {
+                background: transparent;
+                background: white;
+                color: var(--color-1-vibrant);
+                // border-color: var(--color-1-vibrant);
+            }
+        }
+    }
+
+    .selector-option {
+        pointer-events: all;
+        position: relative;
+        width: 25%;
         height: 100%;
-        left: -50vw;
-        bottom: 0;
-        border: 2px solid;
-        border-radius: 10px;
-        opacity: 0;
-        transition: var(--selector-transitions), scale .1s linear;
-        scale: 1;
+        aspect-ratio: 1;
+        z-index: 1;
+    }
+    .button-selector {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background: var(--color-black);
+        // background-image: var(--grad-complex-dark);
+        color: white;
+        // border: 2px solid var(--color-darker);
+        // border: 2px solid var(--color-dark);
+        border: 2px solid #eeeeee;
+        border-radius: var(--button-radius);
+        line-height: 1;
+        transition: scale .1s linear, background .4s linear;
+        p {
+            margin: 0 auto;
+        }
+    }
+
+    .selector-text {
+        display: flex;
+        justify-content: center;
         align-items: center;
-        justify-items: center;
-        align-content: center center;
-        background-color: var(--color-darkest);
-        &.active {
-            &.home {
-                display: none;
-                bottom: 55px;
-                svg {
-                    width: 80%;
-                    height: 100%;
-                    aspect-ratio: 1;
-                    margin: 0 auto;
-                }
-                @media screen and (min-width: 500px) {
-                    display: block;
-                    bottom: 0;
-                    left: 55px;
-                }
-            }
-            left: 0;
-            opacity: 1;
-            pointer-events: all;
-        }
-        @media (hover:hover) {
-            &:hover {
-                scale: 1.1;
-            }
-            &:active {
-                scale: 1;
-            }
-        }
+        font-size: 1.5rem;
+        transition: scale var(--selector-trans-time) ease;
     }
-
-    @media screen and (max-height: 415px) and (aspect-ratio >= 16 / 9) { // phone landscape
-
-    }
-
-    ////////////////////////////////
-    
-    @media screen and (min-width: 600px) and (min-height: 600px) {
-        .selector-grid {
-            max-width: 600px;
-        }
-    }
-
-    @media screen and (min-width: 1024px) and (min-height: 600px) {
-        .selector-grid {
-            max-width: 700px;
-        }
-    }
-
-    
 
     
 </style>

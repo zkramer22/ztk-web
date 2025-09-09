@@ -2,6 +2,23 @@
     0% { opacity: 0 }
     100% { opacity: 1 }
 }
+@keyframes fadeout {
+    0% { opacity: 1 }
+    100% { opacity: 0 }
+}
+@keyframes fadeBack {
+    0% { opacity: 1 }
+    100% { opacity: .9 }
+}
+@keyframes fadePartial {
+    0% { opacity: 0; }
+    100% { opacity: .9; }
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(0) }
+    100% { transform: translateY(-50px) }
+}
 @keyframes slideFromBottom {
     0% { transform: translateY(50px) }
     100% { transform: translateY(0) }
@@ -30,12 +47,28 @@
     0% { transform: rotate(0deg) }
     100% { transform: rotate(540deg) }
 }
+@keyframes fadeFromBlack {
+    0% { box-shadow: inset 0 0 0 7000px rgba(0,0,0,1) }
+    100% { box-shadow: inset 0 0 0 7000px rgba(0,0,0,0) }
+}
+@keyframes imgLoader {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 .fade-in { animation: fadein 1s ease forwards }
 .slide-from-bottom { animation: slideFromBottom 1s ease forwards }
 .slide-from-left { animation: slideFromLeft 1s ease forwards }
 .slide-from-right { animation: slideFromRight 1s ease forwards }
 .slide-from-top { animation: slideFromTop 1s ease forwards }
 .grow-from-zero { animation: growFromZero 1s ease forwards }
+
 .fade-slide-from-bottom {
     animation:
         fadein 1s ease forwards,
@@ -55,4 +88,14 @@
     animation:
         fadein 1s ease forwards,
         slideFromTop 1s ease forwards;
+}
+.fade-grow-from-zero {
+    position: relative;
+    animation: growFromZero 1s ease, fadein 1s linear;
+}
+
+.fullscreen-open .fade-slide-from-bottom,
+.fullscreen-open [style*="transform"] {
+    transform: none !important;
+    animation: none !important;
 }

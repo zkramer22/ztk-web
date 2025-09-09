@@ -1,56 +1,195 @@
 <script setup>
-    import { ref, onMounted } from 'vue'
-    import MediaItem from '@/components/MediaItem.vue'
-    import { fetchDocuments } from '@/utils/sanity'
-    import { state } from '@/store'
-    import { preloadMedia } from '@/utils/preloadMedia'
+import { computed, onMounted, ref } from 'vue'
+import MediaItem from '@/components/MediaItem.vue'
+import LoadingDots from '@/components/LoadingDots.vue'
+import LoadingBar from '@/components/LoadingBar.vue'
+import { useRoute, useRouter } from 'vue-router' 
+import { state } from '@/store'
 
-    const loaded = ref(false)
+// ------------------------------------------------- //
+// -------------------- router -------------------- //
+// ------------------------------------------------- //
+const route = useRoute()
+const router = useRouter()
 
-    function getObjFromArr(arr) {
-        return Object.fromEntries(arr.map(item => [item.slug.current, item]))
-    }
+function syncFiltersFromRoute() {
+    const { filter } = route.query
+    
+    if (Array.isArray(filter)) filterTags.value = [...filter]
+    else if (filter) filterTags.value = [filter]
+    else filterTags.value = []
+}
+function updateQueryFromTags() {
+    const query = { ...route.query }
 
-    onMounted(async () => {
-        if (!state.projects) {
-            const previews = await fetchDocuments({ type: 'project', mode: 'preview' })
-            state.projects = previews
-            state.projectsObj = getObjFromArr(previews)
-            setTimeout(() => preloadMedia(previews), 1000)
-        }
-        loaded.value = true
+    if (filterTags.value.length) query.filter = filterTags.value
+    else delete query.filter
+
+    router.replace({ query })
+}
+
+// ------------------------------------------------- //
+// -------------------- filters -------------------- //
+// ------------------------------------------------- //
+const filterTagOptions = {
+    type: [
+        'app',
+        'component',
+        'design',
+        'game',
+        'website',
+    ],
+    framework: [
+        'javascript',
+        'react',
+        'svelte',
+        'vue',
+    ],
+    features: [
+        'audio/video',
+        'cms',
+        'dashboard',
+        'data viz',
+        'e-commerce',
+        'forms',
+        'maps',
+    ],
+}
+// const filterTagOptions = [
+//     'app',
+//     'website',
+//     'component',
+//     'design',
+//     'game',
+
+//     'vue',
+//     'react',
+//     'svelte',
+//     'javascript',
+    
+//     'dashboard',
+//     'e-commerce',
+//     'cms',
+//     'maps',
+//     'forms',
+//     'data viz',
+//     'audio/video',
+// ]
+const filterTags = ref([])
+const filteredProjects = computed(() => {
+    if (!filterTags.value.length) return state.projects
+
+    const filterSet = new Set(filterTags.value)
+    
+    return state.projects.map((project, index) => {
+        const matchCount = project.tags.reduce((n, tag) => n + (filterSet.has(tag) ? 1 : 0), 0)
+        return { project, index, matchCount }
     })
+    .filter(item => item.matchCount > 0)
+    .sort((a, b) => (b.matchCount - a.matchCount) || (a.index - b.index))
+    .map(item => item.project)
+})
+async function toggleFilter(tag) {
+    console.log(route.name);
+    if (filterTags.value.includes(tag)) filterTags.value = filterTags.value.filter(t => t !== tag)
+    else filterTags.value = [...filterTags.value, tag]
+
+    updateQueryFromTags()
+}
+
+// ------------------------------------------------- //
+// -------------------- data fetch -------------------- //
+// ------------------------------------------------- //
+import { useSanityData } from '@/composables/sanityData'
+const query = `*[_type == "project" && show == true] | order(orderRank){
+    title,
+    slug,
+    tags,
+    client, 
+    employer,
+    tech,
+    "cover": images[0]{
+        ...,
+        asset->{
+            url,
+            metadata { lquip, dimensions }
+        }
+    }
+}`
+
+const { data, loading } = useSanityData({ 
+    query, 
+    stateProp: 'projects',
+    cache: true,
+    immediate: !state.projects.length
+})
+
+// ------------------------------------------------- //
+// -------------------- lifecycle ------------------ //
+// ------------------------------------------------- //
+onMounted(() => {
+    syncFiltersFromRoute()
+})
 
 </script>
 
 <template>
-    <section class="container fade-slide-from-bottom">
-        <h2 class="font-accent">WORK</h2>
+    <LoadingBar :loading />
+    
+    <section class="container mb-[100px]">
         
-        <RouterView />
+        <RouterView :key="route.path" />
         
-        <div id="work-view" class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-            
-            <template v-for="({ title, description, slug, coverImage, mediaItems, demoLinks, tags }, index) of state.projects"
-                :key="index"
-            >
-                <RouterLink :to="`/work/${slug.current}`" 
-                    class="font-bold card-item card-item-hover"
+        <h2 class="font-accent font-bold fade-slide-from-left my-4">[work]</h2>
+        <div :key="route.path" id="blurb" class="bg-darkest card-item border rounded p-4 fade-slide-from-bottom mb-4 inline-block text-lg">
+            <p>Here are some samples of my work from past and present employers, as well as projects of my own.</p>
+        </div>
+
+        <div :key="route.name" id="filter-controls" 
+            class="bg-darkest fade-slide-from-bottom p-4 mb-4 custom-scroll"
+        >
+            <div class="flex flex-wrap items-center gap-y-4 gap-x-2">
+                <template v-for="tags, group in filterTagOptions">
+                    <div v-for="tag of tags" class="filter-item hover chip text-sm md:text-xs flex items-center font-accent"
+                        @click="toggleFilter(tag)" :class="filterTags.includes(tag) ? 'active' : ''"
+                    >
+                        {{ tag }}
+                    </div>
+                </template>
+            </div>
+        </div>
+        
+        <div :key="route.name" id="project-list" class="grid gap-[1rem] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            <template v-if="loading">
+                <div class="loading-spacer flex items-center justify-center col-span-4">
+                    <LoadingDots :size="8" :gap="6" />
+                </div>
+            </template>
+            <template v-else-if="!loading && state.projects.length">
+                <RouterLink v-for="({ title, client, employer, cover, tags, slug }) of filteredProjects"
+                    :key="slug.current"
+                    :to="`/work/${slug.current}`" 
+                    class="card-item card-item-hover col-span-1 fade-slide-from-bottom work-item"
                 >
-                    <div class="flex flex-col">
-                        <MediaItem :media="coverImage" :alt="title" 
-                            :aspectRatio="1.67" 
+                    <div class="h-full bg-darkest">
+                        <MediaItem :item="cover.image"
+                            :alt="cover.alt || title"
+                            :aspectRatio="16/9"
+                            center
                         />
-                        <div class="p-[.7rem] card-item-title text-xl font-accent uppercase">
-                            <div class="mb-1.5">
+                        <div class="p-[.7rem] card-item-title sm:text-xl flex flex-col gap-2">
+                            <div class="text-3xl sm:text-xl md:text-2xl font-bold">
                                 {{ title }}
                             </div>
-                            <div class="flex gap-2">
-                                <!-- <div v-for="tag of tags" class="chip font-bold text-sm"
-                                    :class="`${tag} ${filterTags.includes(tag) ? 'filled' : ' '} `"
+                            <div class="text-xl mb-2">
+                                {{ client || employer }}
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <div v-for="tag of tags" class="filter-item chip font-accent text-base sm:text-sm"
+                                    :class="`${tag} ${filterTags.includes(tag) ? 'active' : ' '} `"
                                 >
                                     {{ tag }}
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -62,31 +201,52 @@
 
 
 <style lang="scss">
-.card-item {
-    box-shadow: 0 0 5px -3px black;
+.filter-group {
+    border-right: 2px solid;
+    padding: 0 1rem;
+}
+.work-item {
+    opacity: 0;
 }
 
-.card-item-title {
-    // color: var(--adept-dark);
-}
+$max-items: 100;
+$stagger: .08s;
+@for $i from 1 through $max-items {
+    $stagger: $stagger * .9;
 
-.card-item-hover {
-    position: relative;
-    cursor: pointer;
-    &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        // background-color: var(--adept-blue-vibrant);
-        z-index: 1;
-        opacity: 0;
-        transition: opacity .2s ease;
-        pointer-events: none;
+    .work-item:nth-child(#{$i}) {
+        animation-delay: $i * $stagger;
     }
-    @media (hover:hover) {
-        &:hover::after {
-            opacity: .2;
+}
+
+#filter-controls {
+    z-index: 5;
+    border: 2px solid var(--color-black);
+    border-radius: var(--button-radius);
+    width: max-content;
+    max-width: 100%;
+}
+.filter-item {
+    user-select: none;
+    position: relative;
+    transition: background .15s ease, color .15s ease;
+    &.hover {
+        @media (hover:hover) {
+            &:hover {
+                background-color: var(--color-dark);
+            }
+            &:active {
+                background-color: var(--color-darker);
+            }
+            &.active {
+                background-color: white;
+            }
         }
     }
+    &.active {
+        background-color: white;
+        color: var(--color-darkest);
+    }
 }
+
 </style>

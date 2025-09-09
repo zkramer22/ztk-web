@@ -1,5 +1,7 @@
 import './assets/main.css'
 import './assets/base.scss'
+import 'prismjs/themes/prism-tomorrow.css'
+
 
 import { createApp } from 'vue'
 import App from './App.vue'
