@@ -5,6 +5,8 @@ import Selector from './components/Selector.vue'
 import Home from './components/Home.vue'
 import gear from '@/assets/icon/gear.svg?raw'
 
+import { Analytics } from '@vercel/analytics/vue'
+
 const bgImgPath = 'https://ztk-web.s3.us-west-1.amazonaws.com/general/coding-screen-1.jpg'
 
 // import { useFollowMouse } from './composables/followMouse'
@@ -116,6 +118,8 @@ onUnmounted(() => {
     <main>
         <RouterView />
     </main>
+    
+    <Analytics />
 </template>
 
 <style lang="scss">
