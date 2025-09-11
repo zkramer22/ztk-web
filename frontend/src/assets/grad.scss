@@ -2,24 +2,23 @@
     --color-icon-1: rgb(153, 149, 193);
     --color-icon-2: rgb(107, 102, 163);
 
-    --color1: 18, 113, 255;
+    --color1: 140, 100, 255;
     --color2: 221, 74, 255;
     --color3: 100, 220, 255;
-    --color4: 255, 184, 85;
+    --color4: 239, 255, 134;
     --color5: 88, 239, 151;
     --color-interactive: 140, 100, 255;
 
     --color1-rgb: rgb(18, 113, 255);
+    --color1-rgb: rgb(140, 100, 255);
     --color2-rgb: rgb(221, 74, 255);
     --color3-rgb: rgb(100, 220, 255);
-    --color4-rgb: rgb(255, 184, 85);
+    --color4-rgb: rgb(239, 255, 134);
     --color5-rgb: rgb(88, 239, 151);
-    --color-interactive-rgb: rgb(140, 100, 255);
+    // --color-interactive-rgb: rgb(140, 100, 255);
 
     --circle-size: 100%;
-
     --goo-blur: 32px;
-    // --dot: clamp(220px, 35vmin, 520px);
     --blending: hard-light;
 }
 
@@ -84,7 +83,6 @@
         width: 100%;
         height: 100%;
         filter: url(#goo) blur(var(--goo-blur));
-        // filter: blur(6px) contrast(18);   /* tune 5–8 / 10–18 */
         will-change: filter;
         contain: layout paint;       // the filtered subtree is isolated
     }
@@ -97,7 +95,6 @@
         transform: translate(-50%,-50%) scale(1.67); /* 1 / 0.60 ≈ 1.67 */
         transform-origin: center;
         will-change: transform;
-        /* The goo inside now processes ~36% as many pixels */
     }
     .g1 {
         position: absolute;
@@ -111,7 +108,7 @@
         left: calc(50% - var(--circle-size) / 2);
 
         transform-origin: center center;
-        animation: moveVertical 30s ease infinite;
+        animation: moveVertical 20s ease infinite;
 
         opacity: 1;
     }
@@ -127,7 +124,7 @@
         left: calc(50% - var(--circle-size) / 2);
 
         transform-origin: calc(50% - 400px);
-        animation: moveInCircle 20s reverse infinite;
+        animation: moveInCircle 17s reverse infinite;
 
         opacity: 1;
     }
@@ -143,7 +140,7 @@
         left: calc(50% - var(--circle-size) / 2 - 500px);
 
         transform-origin: calc(50% + 400px);
-        animation: moveInCircle 40s linear infinite;
+        animation: moveInCircle 39s linear infinite;
 
         opacity: 1;
     }
@@ -159,7 +156,7 @@
         left: calc(50% - var(--circle-size) / 2);
 
         transform-origin: calc(50% - 200px);
-        animation: moveHorizontal 40s ease infinite;
+        animation: moveHorizontal 35s ease infinite;
 
         opacity: 1;
     }
@@ -175,7 +172,7 @@
         left: calc(50% - var(--circle-size));
 
         transform-origin: calc(50% - 800px) calc(50% + 200px);
-        animation: moveInCircle 20s ease infinite;
+        animation: moveInCircle 23s ease infinite;
 
         opacity: 1;
     }
@@ -194,10 +191,10 @@
         will-change: transform;
         pointer-events: none;
         contain: layout paint style;
-        opacity: 1;
-
+        
         transform: translate3d(var(--x, 50vw), var(--y, 50vh), 0) translate(-50%, -50%);
-
+        
+        opacity: 1;
     }
 }
 
@@ -206,3 +203,94 @@
         .g1, .g2, .g3, .g4, .g5 { animation-play-state: paused }
     }
 } 
+
+// .g1 {
+//     position: absolute;
+//     z-index: 100000;
+
+//     background: blue;
+//     // background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+//     // mix-blend-mode: var(--blending);
+
+//     width: var(--circle-size);
+//     height: var(--circle-size);
+//     top: calc(50% - var(--circle-size) / 2);
+//     left: calc(50% - var(--circle-size) / 2);
+
+//     transform-origin: center center;
+//     animation: moveHorizontal 20s ease infinite;
+
+//     opacity: 1;
+// }
+// .g2 {
+//     position: absolute;
+//     z-index: 100000;
+    
+//     background: red;
+//     // background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+//     // mix-blend-mode: var(--blending);
+
+//     width: var(--circle-size);
+//     height: var(--circle-size);
+//     top: calc(50% - var(--circle-size) / 2);
+//     left: calc(50% - var(--circle-size) / 2);
+
+//     transform-origin: calc(80% - 100px);
+//     animation: moveInCircle 30s reverse infinite;
+
+//     opacity: 1;
+// }
+// .g3 {
+//     position: absolute;
+//     z-index: 100000;
+    
+//     background: green;
+//     // background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+//     // mix-blend-mode: var(--blending);
+    
+//     width: var(--circle-size);
+//     height: var(--circle-size);
+//     top: calc(50% - var(--circle-size) / 2 + 200px);
+//     left: calc(50% - var(--circle-size) / 2 - 100px);
+
+//     transform-origin: calc(50% + 100px);
+//     animation: moveInCircle 25s linear infinite;
+
+//     opacity: 1;
+// }
+// .g4 {
+//     position: absolute;
+//     z-index: 100000;
+
+//     background: purple;
+//     // background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+//     // mix-blend-mode: var(--blending);
+
+//     width: var(--circle-size);
+//     height: var(--circle-size);
+//     top: calc(50% - var(--circle-size) / 2);
+//     left: calc(50% - var(--circle-size) / 2);
+
+//     transform-origin: calc(50% - 200px);
+//     animation: moveHorizontal 10s ease infinite;
+
+//     opacity: 1;
+// }
+// .g5 {
+//     position: absolute;
+//     z-index: 100000;
+
+//     background: orange;
+//     // background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+//     // mix-blend-mode: var(--blending);
+
+//     width: calc(var(--circle-size) * 2);
+//     height: calc(var(--circle-size) * 2);
+//     top: calc(50% - var(--circle-size));
+//     left: calc(50% - var(--circle-size));
+
+//     transform-origin: calc(50% - 200px) calc(50% + 200px);
+//     animation: moveInCircle 10s ease infinite;
+
+//     opacity: 1;
+// }

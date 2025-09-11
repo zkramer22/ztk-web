@@ -90,7 +90,7 @@ const filteredProjects = computed(() => {
     .map(item => item.project)
 })
 async function toggleFilter(tag) {
-    console.log(route.name);
+    // console.log(route.name);
     if (filterTags.value.includes(tag)) filterTags.value = filterTags.value.filter(t => t !== tag)
     else filterTags.value = [...filterTags.value, tag]
 

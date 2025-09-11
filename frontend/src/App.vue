@@ -68,10 +68,7 @@ function removeFocusListeners() {
 }
 
 onMounted(() => addFocusListeners())
-
-onUnmounted(() => {
-
-})
+onUnmounted(() => removeFocusListeners())
 </script>
 
 <template>

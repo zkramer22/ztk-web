@@ -28,7 +28,6 @@ export function preloadMedia(projects, delay = 300) {
 }
 
 function preloadFile(url) {
-    console.log('Preloading:', url)  // Add this
     if (url.endsWith('.webp') || url.endsWith('.avif')) {
         const img = new Image()
         img.src = url

@@ -6,7 +6,7 @@ export async function scrollTop({ behavior, to, path }) {
     
     // await nextTick()
     // await nextTick()
-    console.log(scrollBehavior);
+    // console.log(scrollBehavior);
     window.scrollTo({ top: 0, behavior: scrollBehavior })
 }
 
