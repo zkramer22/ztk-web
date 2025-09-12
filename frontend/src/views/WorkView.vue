@@ -162,7 +162,7 @@ onMounted(() => {
         <div :key="route.name" id="project-list" class="grid gap-[1rem] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             <template v-if="loading">
                 <div class="loading-spacer flex items-center justify-center col-span-4">
-                    <LoadingDots :size="8" :gap="6" />
+                    <LoadingDots :size="8" :gap="6" delay="1s" />
                 </div>
             </template>
             <template v-else-if="!loading && state.projects.length">

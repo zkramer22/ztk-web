@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
 import axios from 'axios'
+import LoadingDots from '@/components/LoadingDots.vue'
 
 // ----------- links ----------- //
 const contactLinks = [
@@ -320,9 +321,14 @@ onUnmounted(() => {
                 </div>
 
                 <button :tabindex="formValid ? '5' : '-1'" :class="buttonDisabledClass"
-                    class="hover-grow grad-complex-vibrant font-accent"
+                    class="hover-grow grad-complex-vibrant font-accent p-4"
                 >
-                    {{ isSending ? "Sending..." : "send it" }}
+                    <div v-if="isSending">
+                        <LoadingDots hideText />
+                    </div>
+                    <div v-else>
+                        <span>send it</span>
+                    </div>
                 </button>
 
             </form> 
@@ -440,7 +446,6 @@ form {
     button {
         width: 100%;
         margin: 0 auto;
-        padding: 10px;
         transition: all .1s ease;
         &.disabled {
             filter: grayscale(.9);

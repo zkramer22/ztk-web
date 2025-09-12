@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue';
+
 const props = defineProps({
     size: { type: [Number, String], default: 8 },         // px
     gap: { type: [Number, String], default: 8 },           // px between dots
@@ -6,6 +8,9 @@ const props = defineProps({
     duration: { type: [Number, String], default: 1500 },   // ms for full cycle
     gapMs: { type: [Number, String], default: 150 },        // ms between dot starts
     bounceHeight: { type: [Number, String], default: 10 }, // px vertical bounce
+    text: { type: String, default: 'loading' },
+    hideText: { type: Boolean, default: false },
+    delay: { type: String, default: '0s' }
 })
 
 const cssVars = {
@@ -16,11 +21,12 @@ const cssVars = {
     '--gap-ms': typeof props.gapMs === 'number' ? `${props.gapMs}ms` : String(props.gapMs),
     '--dot-y': typeof props.bounceHeight === 'number' ? `${props.bounceHeight}px` : String(props.bounceHeight),
 }
+
 </script>
 
 <template>
-    <div id="loading-dots-container" class="flex items-center">
-        <div class="text-3xl pr-2 pb-3 font-accent">loading</div>
+    <div id="loading-dots-container" class="flex items-center justify-center" :style="{ animationDelay: delay }">
+        <div v-if="!hideText" class="text-3xl pr-2 pb-3 font-accent">{{ text }}</div>
         <div class="dots" :style="cssVars" role="status" aria-live="polite" aria-label="Loading">
             <span class="dot" />
             <span class="dot" />
@@ -33,7 +39,6 @@ const cssVars = {
 #loading-dots-container {
     opacity: 0;
     animation: fadein 1s linear forwards;
-    animation-delay: 1s;
 }
 
 .dots {

@@ -108,7 +108,7 @@ const proj = computed(() => state.projectDetails[slug])
     
     <template v-if="loading">
         <div class="loading-spacer flex items-center justify-center col-span-4">
-            <LoadingDots :size="8" :gap="6" />
+            <LoadingDots :size="8" :gap="6" delay="1s" />
         </div>
     </template>
 
