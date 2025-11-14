@@ -69,8 +69,7 @@ onUnmounted(() => {
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start fade-slide-from-bottom">
             <div id="blurb" class="bg-darkest card-item border rounded p-4 text-lg">
                 <p>
-                    I've been fortunate enough to meet and work with some incredible people over the years. 
-                    Whether full-time or freelance, I've put my heart, mind, and soul into the boundless world of technology.
+                     I’ve had the privilege of working with incredible teams over the years. Here are the companies that shaped my journey as a developer.
                 </p>
             </div>
                 
