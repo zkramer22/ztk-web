@@ -131,6 +131,7 @@ watch(() => [imgSrc.value, JSON.stringify(videoSources.value)], () => {
 <template>
     <div class="media-wrapper" :class="{ fullHeight, rounded }" :style="computedStyles">
         <div v-if="!loaded" :style="computedStyles" class="loading-shimmer w-full h-full" />
+        <!-- <div v-if="loaded" :style="computedStyles" class="loading-shimmer w-full h-full" /> -->
 
         <!-- Image -->
         <img v-if="!isVideo"
@@ -182,29 +183,5 @@ watch(() => [imgSrc.value, JSON.stringify(videoSources.value)], () => {
     &.center {
         object-position: top center;
     }
-}
-
-.loading-shimmer {
-    position: relative;
-    overflow: hidden;
-    background: var(--ui-gray-1);
-}
-
-.loading-shimmer::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(
-        90deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.6) 50%,
-    rgba(255,255,255,0) 100%
-    );
-    animation: shimmer 1.2s infinite;
-}
-
-@keyframes shimmer {
-    100% { transform: translateX(200%); }
 }
 </style>

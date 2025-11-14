@@ -115,7 +115,7 @@ const proj = computed(() => state.projectDetails[slug])
     <template v-else-if="!loading && !!proj">
         <div class="richtext fade-slide-from-bottom">
             <div class="grid gap-4 lg:grid-cols-12 items-start">
-                <div class="lg:col-span-7 card-item bg-darkest h-full">
+                <div class="lg:col-span-7 card-item bg-darkest h-full w-full">
                     <MediaItem :item="proj.images[0].image" rounded fullHeight />
                 </div>
 

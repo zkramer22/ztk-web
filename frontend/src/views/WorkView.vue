@@ -171,7 +171,7 @@ onMounted(() => {
                     :to="`/work/${slug.current}`" 
                     class="card-item card-item-hover col-span-1 fade-slide-from-bottom work-item"
                 >
-                    <div class="h-full bg-darkest">
+                    <div class="h-full w-full bg-darkest">
                         <MediaItem :item="cover.image"
                             :alt="cover.alt || title"
                             :aspectRatio="16/9"

@@ -62,6 +62,9 @@
 		background-position: 0% 50%;
 	}
 }
+@keyframes shimmer {
+    100% { transform: translateX(200%); }
+}
 .fade-in { animation: fadein 1s ease forwards }
 .slide-from-bottom { animation: slideFromBottom 1s ease forwards }
 .slide-from-left { animation: slideFromLeft 1s ease forwards }
